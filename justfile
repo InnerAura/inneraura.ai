@@ -6,47 +6,31 @@ default:
 install:
   pnpm install
 
-# Start development server
+# Start local development server
 dev:
-  pnpm run dev
+  pnpm exec wrangler dev
 
-# Build for production
-build:
-  pnpm run build
+# Deploy to production
+deploy:
+  pnpm exec wrangler deploy
 
-# Preview production build
+# Preview deployment (non-production)
 preview:
-  pnpm run preview
+  pnpm exec wrangler versions upload
 
-# Run linter and formatter
+# Verify deployment readiness
 check:
-  pnpm run check
-
-# Run tests
-test:
-  pnpm run test
-
-# Run tests with UI
-test-ui:
-  pnpm run test:ui
-
-# Run tests with coverage
-test-coverage:
-  pnpm run test:coverage
+  @echo "Checking deployment files..."
+  @test -f public/index.html && echo "✓ public/index.html" || echo "✗ MISSING: public/index.html"
+  @test -f public/_headers && echo "✓ public/_headers" || echo "✗ MISSING: public/_headers"
+  @test -f wrangler.jsonc && echo "✓ wrangler.jsonc" || echo "✗ MISSING: wrangler.jsonc"
 
 # Clean build artifacts
 clean:
-  rm -rf dist node_modules .vite coverage
+  rm -rf dist node_modules .vite coverage .wrangler
 
 # Full reset and reinstall
 reset: clean install
 
-# Run all checks (lint, format, test)
-ci: check test
-
-# Start dev server with specific port
-dev-port PORT="3000":
-  pnpm run dev -- --port {{PORT}}
-
-# Build and preview
-build-preview: build preview
+# Run deployment checks before deploy
+ci: check

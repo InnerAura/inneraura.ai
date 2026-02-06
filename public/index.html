@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnerAura Labs</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="description" content="The visual primitive that works where nothing else can. High-fidelity SVG from a URL. Zero JavaScript. Zero dependencies.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --warp-ease: cubic-bezier(0.7, 0, 0.3, 1);
+            --snap-ease: cubic-bezier(0.23, 1, 0.32, 1);
+            --phi-base: 1.618s;
+            --rail-width: 72px;
+            --font-aura: 'Playfair Display', Georgia, serif;
+            --font-weave: 'Outfit', system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            --void-deep: #050507;
+            --void-mid: #0A0A0E;
+            --void-surface: #101014;
+            --void-elevated: #16161C;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           THEME 0: EMERALD MONOCHROME — Swiss Precision Green
+           ═══════════════════════════════════════════════════════════════ */
+        [data-theme="0"] {
+            --mono-hue: 152; --mono-sat: 76%;
+            --mono-100: hsl(var(--mono-hue), var(--mono-sat), 95%);
+            --mono-200: hsl(var(--mono-hue), var(--mono-sat), 85%);
+            --mono-300: hsl(var(--mono-hue), var(--mono-sat), 70%);
+            --mono-400: hsl(var(--mono-hue), var(--mono-sat), 55%);
+            --mono-500: hsl(var(--mono-hue), var(--mono-sat), 45%);
+            --mono-600: hsl(var(--mono-hue), var(--mono-sat), 35%);
+            --mono-700: hsl(var(--mono-hue), var(--mono-sat), 25%);
+            --mono-800: hsl(var(--mono-hue), var(--mono-sat), 15%);
+            --mono-900: hsl(var(--mono-hue), var(--mono-sat), 8%);
+            --text-bright: var(--mono-100); --text-main: var(--mono-200); --text-muted: var(--mono-400);
+            --accent-primary: var(--mono-300);
+            --accent-glow: hsla(var(--mono-hue), var(--mono-sat), 50%, 0.25);
+            --accent-subtle: hsla(var(--mono-hue), var(--mono-sat), 50%, 0.08);
+            --border-color: var(--mono-700); --border-bright: var(--mono-500);
+            --pattern-color: hsla(var(--mono-hue), var(--mono-sat), 40%, 0.06);
+            --pattern-type: repeating-linear-gradient(0deg, var(--pattern-color) 0px, var(--pattern-color) 1px, transparent 1px, transparent 8px);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           THEME 1: MAGENTA MONOCHROME — Hot Pink Wave
+           ═══════════════════════════════════════════════════════════════ */
+        [data-theme="1"] {
+            --mono-hue: 330; --mono-sat: 85%;
+            --mono-100: hsl(var(--mono-hue), var(--mono-sat), 95%);
+            --mono-200: hsl(var(--mono-hue), var(--mono-sat), 85%);
+            --mono-300: hsl(var(--mono-hue), var(--mono-sat), 68%);
+            --mono-400: hsl(var(--mono-hue), var(--mono-sat), 55%);
+            --mono-500: hsl(var(--mono-hue), var(--mono-sat), 45%);
+            --mono-600: hsl(var(--mono-hue), var(--mono-sat), 35%);
+            --mono-700: hsl(var(--mono-hue), var(--mono-sat), 25%);
+            --mono-800: hsl(var(--mono-hue), var(--mono-sat), 15%);
+            --mono-900: hsl(var(--mono-hue), var(--mono-sat), 8%);
+            --text-bright: var(--mono-100); --text-main: var(--mono-200); --text-muted: var(--mono-400);
+            --accent-primary: var(--mono-300);
+            --accent-glow: hsla(var(--mono-hue), var(--mono-sat), 55%, 0.3);
+            --accent-subtle: hsla(var(--mono-hue), var(--mono-sat), 50%, 0.1);
+            --border-color: var(--mono-700); --border-bright: var(--mono-500);
+            --pattern-color: hsla(var(--mono-hue), var(--mono-sat), 50%, 0.05);
+            --pattern-type: repeating-radial-gradient(circle at 50% 100%, transparent 0px, transparent 20px, var(--pattern-color) 20px, var(--pattern-color) 21px);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           THEME 2: COBALT MONOCHROME — Electric Blue
+           ═══════════════════════════════════════════════════════════════ */
+        [data-theme="2"] {
+            --mono-hue: 220; --mono-sat: 100%;
+            --mono-100: hsl(var(--mono-hue), var(--mono-sat), 95%);
+            --mono-200: hsl(var(--mono-hue), var(--mono-sat), 82%);
+            --mono-300: hsl(var(--mono-hue), var(--mono-sat), 65%);
+            --mono-400: hsl(var(--mono-hue), var(--mono-sat), 52%);
+            --mono-500: hsl(var(--mono-hue), var(--mono-sat), 45%);
+            --mono-600: hsl(var(--mono-hue), var(--mono-sat), 35%);
+            --mono-700: hsl(var(--mono-hue), var(--mono-sat), 25%);
+            --mono-800: hsl(var(--mono-hue), var(--mono-sat), 15%);
+            --mono-900: hsl(var(--mono-hue), var(--mono-sat), 8%);
+            --text-bright: var(--mono-100); --text-main: var(--mono-200); --text-muted: var(--mono-400);
+            --accent-primary: var(--mono-300);
+            --accent-glow: hsla(var(--mono-hue), var(--mono-sat), 55%, 0.35);
+            --accent-subtle: hsla(var(--mono-hue), var(--mono-sat), 50%, 0.1);
+            --border-color: var(--mono-700); --border-bright: var(--mono-500);
+            --pattern-color: hsla(var(--mono-hue), var(--mono-sat), 45%, 0.08);
+            --pattern-type: repeating-linear-gradient(90deg, var(--pattern-color) 0px, var(--pattern-color) 2px, transparent 2px, transparent 12px);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           THEME 3: VERMILLION MONOCHROME — Topographic Orange
+           ═══════════════════════════════════════════════════════════════ */
+        [data-theme="3"] {
+            --mono-hue: 24; --mono-sat: 95%;
+            --mono-100: hsl(var(--mono-hue), var(--mono-sat), 95%);
+            --mono-200: hsl(var(--mono-hue), var(--mono-sat), 82%);
+            --mono-300: hsl(var(--mono-hue), var(--mono-sat), 62%);
+            --mono-400: hsl(var(--mono-hue), var(--mono-sat), 50%);
+            --mono-500: hsl(var(--mono-hue), var(--mono-sat), 42%);
+            --mono-600: hsl(var(--mono-hue), var(--mono-sat), 32%);
+            --mono-700: hsl(var(--mono-hue), var(--mono-sat), 22%);
+            --mono-800: hsl(var(--mono-hue), var(--mono-sat), 14%);
+            --mono-900: hsl(var(--mono-hue), var(--mono-sat), 7%);
+            --text-bright: var(--mono-100); --text-main: var(--mono-200); --text-muted: var(--mono-400);
+            --accent-primary: var(--mono-300);
+            --accent-glow: hsla(var(--mono-hue), var(--mono-sat), 55%, 0.35);
+            --accent-subtle: hsla(var(--mono-hue), var(--mono-sat), 50%, 0.12);
+            --border-color: var(--mono-700); --border-bright: var(--mono-500);
+            --pattern-color: hsla(var(--mono-hue), var(--mono-sat), 50%, 0.06);
+            --pattern-type: repeating-linear-gradient(45deg, transparent 0px, transparent 10px, var(--pattern-color) 10px, var(--pattern-color) 11px);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           THEME 4: CHROMASONIC EVOLUTION — Multi-chromatic Spectrum
+           ═══════════════════════════════════════════════════════════════ */
+        [data-theme="4"] {
+            --chroma-magenta: #FF0A54; --chroma-rose: #FF477E;
+            --chroma-cyan: #0AFFEF; --chroma-violet: #845EF7; --chroma-fuchsia: #B5179E;
+            --chroma-light-bg: #FAFBFF; --chroma-light-surface: #FFFFFF; --chroma-light-elevated: #F0F2FF;
+            --text-bright: #1A1A2E; --text-main: #2D2D44; --text-muted: #666680;
+            --accent-primary: var(--chroma-violet);
+            --accent-glow: rgba(132, 94, 247, 0.35);
+            --accent-subtle: rgba(132, 94, 247, 0.08);
+            --border-color: rgba(132, 94, 247, 0.15); --border-bright: rgba(132, 94, 247, 0.35);
+            --void-deep: var(--chroma-light-bg); --void-mid: var(--chroma-light-surface);
+            --void-surface: var(--chroma-light-elevated); --void-elevated: #E8EAFF;
+            --pattern-color: rgba(132, 94, 247, 0.03);
+            --pattern-type:
+                radial-gradient(circle at 30% 30%, rgba(255, 10, 84, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(10, 255, 239, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(132, 94, 247, 0.02) 0%, transparent 60%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--void-deep);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes luminosityBridge {
+            0% { filter: brightness(1); }
+            40% { filter: brightness(1.5); }
+            100% { filter: brightness(1); }
+        }
+
+        [data-theme="4"] .showcase-section {
+            animation: luminosityBridge 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        a { color: inherit; text-decoration: none; }
+        button { background: none; border: none; cursor: pointer; font-family: inherit; }
+
+        /* ═══════════════════════════════════════════════════════════════
+           AMBIENT LAYERS
+           ═══════════════════════════════════════════════════════════════ */
+        .mono-glow {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 50%, var(--accent-subtle) 0%, transparent 70%);
+            transition: background 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: background; contain: strict;
+        }
+
+        .corner-glow {
+            position: fixed; width: 600px; height: 600px; pointer-events: none; z-index: 0;
+            border-radius: 50%; filter: blur(150px);
+            transition: background 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: background; contain: strict;
+        }
+        .corner-glow.top-right { top: -300px; right: -300px; background: var(--accent-glow); }
+        .corner-glow.bottom-left { bottom: -300px; left: -300px; background: var(--accent-subtle); }
+
+        .pattern-layer {
+            position: fixed; inset: 0; pointer-events: none; z-index: 1;
+            background: var(--pattern-type); opacity: 0.6;
+            transition: background 0.2s cubic-bezier(0.4, 0, 0.2, 1); contain: strict;
+        }
+
+        .grain-layer {
+            position: fixed; inset: 0; pointer-events: none; z-index: 999; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           PORTAL VIEW
+           ═══════════════════════════════════════════════════════════════ */
+        .landing-view {
+            position: fixed; inset: 0; background: var(--void-deep);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 9999; clip-path: circle(150% at 50% 50%);
+            transition: clip-path 1s var(--warp-ease); cursor: pointer;
+        }
+        .landing-view.warped { clip-path: circle(0% at 50% 50%); pointer-events: none; }
+        .singularity-svg { width: 100%; height: 100%; }
+        .enter-hint {
+            position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%);
+            font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.4em;
+            color: rgba(77, 108, 255, 0.6); animation: hintPulse 2s ease-in-out infinite;
+        }
+        @keyframes hintPulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+        /* ═══════════════════════════════════════════════════════════════
+           LEFT RAIL
+           ═══════════════════════════════════════════════════════════════ */
+        .left-rail {
+            position: fixed; top: 0; left: 0; width: var(--rail-width); height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 100;
+        }
+        .social-stack { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .social-icon {
+            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; transition: all 0.3s var(--snap-ease); opacity: 0.4;
+        }
+        .social-icon:hover { opacity: 1; transform: scale(1.1); background: var(--accent-subtle); }
+        .social-icon svg { width: 18px; height: 18px; fill: var(--text-muted); transition: fill 0.3s; }
+        .social-icon:hover svg { fill: var(--accent-primary); }
+
+        /* ═══════════════════════════════════════════════════════════════
+           RIGHT RAIL
+           ═══════════════════════════════════════════════════════════════ */
+        .right-rail {
+            position: fixed; top: 50%; left: calc(50% + 520px); transform: translateY(-50%);
+            display: flex; flex-direction: column; align-items: center; z-index: 100;
+        }
+        .nav-arrow-btn {
+            width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--border-color);
+            display: flex; align-items: center; justify-content: center; color: var(--text-muted);
+            transition: all 0.15s var(--snap-ease); background: transparent;
+        }
+        .nav-arrow-btn:hover {
+            border-color: var(--accent-primary); color: var(--accent-primary);
+            transform: scale(1.1); box-shadow: 0 0 20px var(--accent-glow);
+        }
+        .nav-arrow-btn svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2.5; fill: none; }
+
+        .nav-glyph-track {
+            display: flex; flex-direction: column; align-items: center; padding: 16px 0; position: relative;
+        }
+        .nav-glyph-track::before {
+            content: ''; position: absolute; top: 24px; bottom: 24px; width: 2px;
+            background: var(--border-color); z-index: 0; transition: background 0.15s ease-out;
+        }
+        .nav-glyph {
+            width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.12s var(--snap-ease); position: relative; z-index: 1;
+            margin: 6px 0; font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+            color: var(--text-muted); background: var(--void-mid); border: 2px solid var(--border-color);
+            border-radius: 50%; will-change: transform;
+        }
+        .nav-glyph:hover {
+            transform: scale(1.15); color: var(--accent-primary); border-color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+        .nav-glyph.active {
+            color: var(--void-deep); background: var(--accent-primary); border-color: var(--accent-primary);
+            box-shadow: 0 0 30px var(--accent-glow), 0 0 60px var(--accent-subtle); transform: scale(1.2);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           TOP BAR
+           ═══════════════════════════════════════════════════════════════ */
+        .top-bar {
+            position: fixed; top: 28px; left: 50%; transform: translateX(-50%);
+            z-index: 90; opacity: 0.7; transition: opacity 0.3s;
+        }
+        .top-bar:hover { opacity: 1; }
+        .logo-text {
+            font-family: var(--font-aura); font-size: 1rem; letter-spacing: 0.02em;
+            font-weight: 600; font-style: italic; color: var(--text-main); transition: color 0.35s ease-out 0.3s;
+        }
+        .logo-suffix { font-weight: 400; opacity: 0.5; }
+
+        /* ═══════════════════════════════════════════════════════════════
+           MAIN STAGE
+           ═══════════════════════════════════════════════════════════════ */
+        .main-stage {
+            position: fixed; top: 0; left: var(--rail-width); right: 100px; bottom: 0;
+            display: flex; align-items: center; justify-content: center; z-index: 10;
+        }
+        .section-wrapper {
+            position: absolute; width: 100%; max-width: 1000px; padding: 0 48px;
+            opacity: 0; pointer-events: none; transform: translate3d(0, 16px, 0);
+            transition: opacity 0.22s cubic-bezier(0.4, 0, 1, 1), transform 0.22s cubic-bezier(0.4, 0, 1, 1);
+            will-change: transform, opacity; contain: layout style paint; backface-visibility: hidden;
+        }
+        .section-wrapper.active {
+            opacity: 1; pointer-events: auto; transform: translate3d(0, 0, 0);
+            transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .section-wrapper:not(.active) { pointer-events: none !important; }
+
+        /* ═══════════════════════════════════════════════════════════════
+           ONTOLOGY CARD
+           ═══════════════════════════════════════════════════════════════ */
+        .ontology-card {
+            background: linear-gradient(135deg, hsla(0, 0%, 100%, 0.03) 0%, hsla(0, 0%, 100%, 0.01) 100%);
+            border: 1px solid var(--border-color); padding: 56px 72px; position: relative;
+            min-height: 420px; backdrop-filter: blur(20px); transition: all 0.5s var(--snap-ease);
+            box-shadow: 0 0 40px var(--accent-subtle), inset 0 1px 0 hsla(0, 0%, 100%, 0.05);
+        }
+        .ontology-card:hover {
+            transform: translateY(-3px); border-color: var(--border-bright);
+            box-shadow: 0 0 60px var(--accent-glow), 0 20px 60px -20px var(--accent-subtle), inset 0 1px 0 hsla(0, 0%, 100%, 0.08);
+        }
+        .ontology-card::before {
+            content: ''; position: absolute; inset: 8px; border: 1px solid var(--border-color);
+            pointer-events: none; opacity: 0.4; transition: border-color 0.5s, opacity 0.5s;
+        }
+        .ontology-card:hover::before { border-color: var(--border-bright); opacity: 0.6; }
+        .ontology-card::after {
+            content: ''; position: absolute; top: 0; left: 48px; right: 48px; height: 3px;
+            background: var(--accent-primary); box-shadow: 0 0 20px var(--accent-glow);
+            transition: background 0.5s, box-shadow 0.5s;
+        }
+
+        .bracket {
+            position: absolute; width: 18px; height: 18px; border-color: var(--accent-primary);
+            border-style: solid; transition: all 0.3s var(--snap-ease); opacity: 0.6;
+        }
+        .ontology-card:hover .bracket {
+            transform: scale(1.3); opacity: 1; filter: drop-shadow(0 0 8px var(--accent-glow));
+        }
+        .tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+        .tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+        .bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+        .br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+        .section-index {
+            position: absolute; top: -1px; right: 72px; background: var(--void-deep);
+            padding: 0 14px; transform: translateY(-50%);
+            font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em;
+            color: var(--accent-primary); transition: color 0.5s;
+        }
+
+        .tagline {
+            display: inline-block; font-family: var(--font-weave); font-size: 0.7rem;
+            font-weight: 600; color: var(--accent-primary); letter-spacing: 0.2em;
+            margin-bottom: 20px; text-transform: uppercase; transition: color 0.5s;
+        }
+
+        h1 {
+            font-family: var(--font-aura); font-size: clamp(2.8rem, 5vw, 4.5rem);
+            line-height: 0.95; margin-bottom: 28px; letter-spacing: -0.025em;
+            color: var(--text-bright); transition: color 0.5s;
+        }
+        h1 em {
+            font-weight: 400; font-style: italic; color: var(--accent-primary);
+            text-shadow: 0 0 40px var(--accent-glow); transition: color 0.5s, text-shadow 0.5s;
+        }
+
+        .card-description {
+            font-family: var(--font-body); font-size: 1.05rem; line-height: 1.75;
+            color: var(--text-muted); max-width: 54ch; margin-bottom: 48px;
+            position: relative; padding-left: 20px; transition: color 0.5s;
+        }
+        .card-description::before {
+            content: ''; position: absolute; left: 0; top: 6px; bottom: 6px;
+            width: 3px; background: var(--accent-primary); border-radius: 2px;
+            box-shadow: 0 0 10px var(--accent-glow); transition: background 0.5s, box-shadow 0.5s;
+        }
+
+        .card-subheadline {
+            font-family: var(--font-weave); font-size: 1.2rem; font-weight: 600;
+            letter-spacing: 0.04em; margin-bottom: 24px; color: var(--accent-primary);
+            transition: color 0.5s;
+        }
+
+        .card-description code {
+            font-family: var(--font-mono); font-size: 0.88em;
+            background: var(--accent-subtle); padding: 2px 6px; border-radius: 3px;
+            color: var(--accent-primary); border: 1px solid var(--border-color);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           DATA GRID
+           ═══════════════════════════════════════════════════════════════ */
+        .data-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            border: 1px solid var(--border-color); position: relative;
+            background: var(--void-surface); transition: border-color 0.5s, background 0.5s;
+        }
+        .data-grid::before {
+            content: ''; position: absolute; inset: -1px;
+            background: linear-gradient(to bottom, var(--accent-subtle) 0%, transparent 50%);
+            z-index: 0; pointer-events: none; transition: background 0.5s;
+        }
+        .data-grid::after {
+            content: ''; position: absolute; bottom: 0; left: 15%; right: 15%; height: 2px;
+            background: var(--accent-primary); box-shadow: 0 0 15px var(--accent-glow);
+            transition: background 0.5s, box-shadow 0.5s;
+        }
+        .data-cell {
+            padding: 24px 28px; border-right: 1px solid var(--border-color);
+            display: flex; flex-direction: column; gap: 10px; transition: all 0.3s;
+            position: relative; z-index: 1;
+        }
+        .data-cell:hover { background: var(--accent-subtle); }
+        .data-cell:last-child { border-right: none; }
+        .val {
+            font-family: var(--font-weave); font-size: 1.3rem; font-weight: 700;
+            color: var(--text-bright); transition: color 0.5s;
+        }
+        .val.pop { color: var(--accent-primary); text-shadow: 0 0 20px var(--accent-glow); }
+        .lbl {
+            font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.15em; transition: color 0.5s;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           COMPOSITOR SHOWCASE — Section 2 (Live Artifacts)
+           ═══════════════════════════════════════════════════════════════ */
+        .compositor-demo {
+            margin-bottom: 40px;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 32px 40px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .compositor-demo::before {
+            content: 'README.md';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            padding: 8px 16px;
+            background: #161b22;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: #8b949e;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .compositor-inner {
+            padding-top: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .compositor-inner .hero-svg { width: 100%; max-width: 600px; }
+        .compositor-inner .icon-row { display: flex; gap: 16px; align-items: center; }
+        .compositor-inner .icon-row svg { width: 42px; height: 42px; }
+        .compositor-inner .divider-svg { width: 100%; max-width: 500px; height: 40px; }
+
+        .compositor-label {
+            display: flex; align-items: center; gap: 8px;
+            font-family: var(--font-mono); font-size: 0.65rem;
+            color: var(--text-muted); letter-spacing: 0.1em;
+            margin-top: 8px; text-transform: uppercase;
+        }
+        .compositor-label::before {
+            content: '';
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent-primary);
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           SHOWCASE SECTION (Section 4)
+           ═══════════════════════════════════════════════════════════════ */
+        .showcase-section {
+            position: absolute; width: 100%; height: 100%; max-width: none; padding: 0;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+
+        .artifact-vortex { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+
+        .floating-artifact {
+            position: absolute; opacity: 0; animation: floatUp linear infinite;
+            will-change: transform, opacity;
+        }
+        @keyframes floatUp {
+            0% { transform: translate(-50%, 100vh) rotate(0deg) scale(0.5); opacity: 0; }
+            10% { opacity: 0.4; } 50% { opacity: 0.3; } 90% { opacity: 0.1; }
+            100% { transform: translate(-50%, -100px) rotate(360deg) scale(1); opacity: 0; }
+        }
+
+        .showcase-content { position: relative; z-index: 10; text-align: center; padding: 48px; max-width: 960px; margin: 0 auto; width: 100%; }
+
+        .showcase-badge {
+            display: inline-flex; align-items: center; gap: 10px; padding: 10px 20px;
+            background: var(--void-surface); border: 1px solid var(--border-color);
+            border-radius: 8px; margin-bottom: 16px; transition: all 0.5s;
+        }
+        .showcase-badge-dot {
+            width: 8px; height: 8px; background: var(--accent-primary); border-radius: 50%;
+            animation: breathe 2s ease-in-out infinite; box-shadow: 0 0 10px var(--accent-glow);
+            transition: background 0.5s, box-shadow 0.5s;
+        }
+        @keyframes breathe { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.85); } }
+        .showcase-badge-text {
+            font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em;
+            color: var(--accent-primary); text-transform: uppercase; transition: color 0.5s;
+        }
+
+        .showcase-title {
+            font-family: var(--font-weave); font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800; letter-spacing: 0.05em; line-height: 0.9; margin-bottom: 16px;
+            color: var(--accent-primary); text-shadow: 0 0 60px var(--accent-glow);
+            transition: color 0.35s ease-out 0.3s, filter 0.3s ease-out 0.45s;
+        }
+        .showcase-subtitle {
+            font-family: var(--font-body); font-size: 1.15rem; color: var(--text-muted);
+            margin-bottom: 48px; max-width: 500px; margin-left: auto; margin-right: auto;
+            line-height: 1.6; transition: color 0.5s;
+        }
+
+        .showcase-cta {
+            display: inline-flex; align-items: center; gap: 12px; padding: 18px 40px;
+            background: transparent; border: 2px solid var(--accent-primary); border-radius: 8px;
+            font-family: var(--font-mono); font-size: 0.9rem; letter-spacing: 0.12em;
+            color: var(--accent-primary); text-transform: uppercase; transition: all 0.3s var(--snap-ease);
+        }
+        .showcase-cta:hover {
+            background: var(--accent-primary); color: var(--void-deep);
+            transform: translateY(-2px); box-shadow: 0 0 40px var(--accent-glow);
+        }
+        .showcase-cta svg { width: 18px; height: 18px; fill: currentColor; }
+
+        .showcase-stats {
+            display: flex; justify-content: center; gap: 48px; margin-top: 64px; padding-top: 32px;
+            border-top: 1px solid var(--border-color); transition: border-color 0.5s;
+        }
+        .showcase-stat { text-align: center; }
+        .showcase-stat-value {
+            font-family: var(--font-weave); font-size: 2.5rem; font-weight: 700;
+            color: var(--accent-primary); line-height: 1; text-shadow: 0 0 30px var(--accent-glow);
+            transition: color 0.5s, text-shadow 0.5s;
+        }
+        .showcase-stat-label {
+            font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em;
+            color: var(--text-muted); text-transform: uppercase; margin-top: 8px; transition: color 0.5s;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           CHROMASONIC THEME 4 OVERRIDES
+           ═══════════════════════════════════════════════════════════════ */
+        [data-theme="4"] .showcase-section {
+            background: linear-gradient(135deg, var(--chroma-light-bg) 0%, var(--chroma-light-surface) 50%, var(--chroma-light-elevated) 100%);
+        }
+        [data-theme="4"] .showcase-badge {
+            background: var(--chroma-light-surface); border: 2px solid transparent; border-radius: 100px;
+            padding: 14px 28px;
+            box-shadow: 0 0 0 1px rgba(132, 94, 247, 0.2), 0 4px 20px rgba(132, 94, 247, 0.1), 0 8px 40px rgba(255, 10, 84, 0.05);
+            animation: chromaBadgePulse 5.236s ease-in-out infinite;
+        }
+        @keyframes chromaBadgePulse {
+            0%, 100% { box-shadow: 0 0 0 1px rgba(132, 94, 247, 0.2), 0 4px 20px rgba(132, 94, 247, 0.1), 0 8px 40px rgba(255, 10, 84, 0.05); }
+            50% { box-shadow: 0 0 0 1px rgba(255, 71, 126, 0.25), 0 4px 20px rgba(255, 71, 126, 0.12), 0 8px 45px rgba(181, 23, 158, 0.06); }
+        }
+        [data-theme="4"] .showcase-badge-dot {
+            width: 10px; height: 10px;
+            background: linear-gradient(135deg, #FF0A54, #845EF7);
+            animation: chromaDotEvolve 2s ease-in-out infinite;
+            box-shadow: 0 0 12px rgba(255, 10, 84, 0.5);
+        }
+        @keyframes chromaDotEvolve {
+            0%, 100% { background: linear-gradient(135deg, #FF0A54, #845EF7); transform: scale(1); }
+            50% { background: linear-gradient(135deg, #845EF7, #B5179E); transform: scale(0.95); }
+        }
+        [data-theme="4"] .showcase-badge-text { color: #2D2D44; font-weight: 600; font-size: 0.75rem; }
+        [data-theme="4"] .showcase-title {
+            background: linear-gradient(135deg, #FF0A54 0%, #FF477E 20%, #845EF7 40%, #0AFFEF 60%, #B5179E 80%, #FF0A54 100%);
+            background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; animation: chromaTitleShift 8.472s ease-in-out infinite; text-shadow: none;
+            filter: drop-shadow(0 4px 30px rgba(132, 94, 247, 0.15));
+        }
+        @keyframes chromaTitleShift {
+            0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; }
+        }
+        [data-theme="4"] .showcase-subtitle { color: #444466; font-weight: 500; }
+        [data-theme="4"] .showcase-cta {
+            background: linear-gradient(135deg, #845EF7, #B5179E); border: none; color: white; font-weight: 600;
+            box-shadow: 0 4px 20px rgba(132, 94, 247, 0.3), 0 8px 40px rgba(181, 23, 158, 0.15);
+        }
+        [data-theme="4"] .showcase-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(132, 94, 247, 0.4), 0 12px 50px rgba(181, 23, 158, 0.2);
+            background: linear-gradient(135deg, #9B7BF9, #C930A8);
+        }
+        [data-theme="4"] .showcase-cta svg { fill: white; }
+        [data-theme="4"] .showcase-stats {
+            border-top: 2px solid rgba(132, 94, 247, 0.15); background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px); border-radius: 16px; padding: 32px 48px; margin-top: 48px;
+        }
+        [data-theme="4"] .showcase-stat-value {
+            background: linear-gradient(135deg, #845EF7, #0AFFEF);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: none;
+        }
+        [data-theme="4"] .showcase-stat-label { color: #666680; }
+
+        .chroma-particle { position: absolute; border-radius: 50%; pointer-events: none; opacity: 0; }
+        [data-theme="4"] .chroma-particle { opacity: 1; }
+        .chroma-particle-1 { width: 8px; height: 8px; background: linear-gradient(135deg, #FF0A54, #FF477E); top: 20%; left: 10%; animation: chromaFloat1 13.708s ease-in-out infinite; }
+        .chroma-particle-2 { width: 6px; height: 6px; background: linear-gradient(135deg, #0AFFEF, #845EF7); top: 70%; left: 85%; animation: chromaFloat2 8.472s ease-in-out infinite; }
+        .chroma-particle-3 { width: 10px; height: 10px; background: linear-gradient(135deg, #845EF7, #B5179E); top: 80%; left: 20%; animation: chromaFloat3 5.236s ease-in-out infinite; }
+        .chroma-particle-4 { width: 5px; height: 5px; background: linear-gradient(135deg, #B5179E, #FF0A54); top: 15%; left: 75%; animation: chromaFloat4 3.236s ease-in-out infinite; }
+        @keyframes chromaFloat1 { 0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; } 50% { transform: translate(-15px, -50px) scale(0.9); opacity: 0.5; } }
+        @keyframes chromaFloat2 { 0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; } 50% { transform: translate(15px, -25px) scale(0.8); opacity: 0.6; } }
+        @keyframes chromaFloat3 { 0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; } 50% { transform: translate(30px, -40px) scale(1.2); opacity: 0.4; } }
+        @keyframes chromaFloat4 { 0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; } 50% { transform: translate(20px, 10px) scale(0.7); opacity: 0.5; } }
+
+        [data-theme="4"] .mono-glow { background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(132, 94, 247, 0.06) 0%, rgba(10, 255, 239, 0.02) 40%, transparent 70%); }
+        [data-theme="4"] .corner-glow.top-right { background: rgba(132, 94, 247, 0.08); }
+        [data-theme="4"] .corner-glow.bottom-left { background: rgba(10, 255, 239, 0.05); }
+        [data-theme="4"] .pattern-layer { opacity: 0.4; }
+        [data-theme="4"] .grain-layer { opacity: 0.015; }
+        [data-theme="4"] .bottom-bar {
+            background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(132, 94, 247, 0.15);
+            color: #444466; backdrop-filter: blur(12px); box-shadow: 0 4px 20px rgba(132, 94, 247, 0.08);
+        }
+        [data-theme="4"] .nav-glyph { background: var(--chroma-light-surface); border-color: rgba(132, 94, 247, 0.2); color: #666680; }
+        [data-theme="4"] .nav-glyph:hover { border-color: var(--chroma-violet); color: var(--chroma-violet); box-shadow: 0 0 20px rgba(132, 94, 247, 0.25); }
+        [data-theme="4"] .nav-glyph.active {
+            background: linear-gradient(135deg, #845EF7, #B5179E); border-color: transparent; color: white;
+            box-shadow: 0 0 30px rgba(132, 94, 247, 0.4), 0 0 60px rgba(181, 23, 158, 0.2);
+        }
+        [data-theme="4"] .nav-arrow-btn { border-color: rgba(132, 94, 247, 0.2); color: #666680; background: var(--chroma-light-surface); }
+        [data-theme="4"] .nav-arrow-btn:hover { border-color: var(--chroma-violet); color: var(--chroma-violet); box-shadow: 0 0 20px rgba(132, 94, 247, 0.25); }
+        [data-theme="4"] .nav-glyph-track::before { background: rgba(132, 94, 247, 0.15); }
+        [data-theme="4"] .top-bar { opacity: 0.9; }
+        [data-theme="4"] .logo-text { color: #2D2D44; }
+
+        /* ═══════════════════════════════════════════════════════════════
+           BOTTOM BAR
+           ═══════════════════════════════════════════════════════════════ */
+        .bottom-bar {
+            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+            display: flex; align-items: center; gap: 32px; padding: 12px 24px; z-index: 50;
+            font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted);
+            letter-spacing: 0.1em; opacity: 0.6; background: var(--void-surface);
+            border: 1px solid var(--border-color); border-radius: 8px;
+            transition: all 0.4s var(--snap-ease) 0.3s, backdrop-filter 0.3s ease-out 0.4s;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════════════════════ */
+        @media (max-width: 1200px) { .right-rail { left: auto; right: 24px; } }
+        @media (max-width: 900px) {
+            :root { --rail-width: 0px; }
+            .left-rail { display: none; }
+            .right-rail { right: 16px; }
+            .main-stage { left: 0; right: 80px; }
+            .section-wrapper { padding: 0 24px; }
+            .ontology-card { padding: 36px 28px !important; }
+            .data-grid { grid-template-columns: 1fr; }
+            .data-cell { border-right: none; border-bottom: 1px solid var(--border-color); }
+            .data-cell:last-child { border-bottom: none; }
+            .showcase-stats { flex-direction: column; gap: 24px; }
+            .compositor-demo { padding: 24px 16px; }
+            .compositor-inner .hero-svg { max-width: 100%; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            .floating-artifact { display: none; }
+        }
+    </style>
+</head>
+<body data-theme="0">
+
+    <!-- AMBIENT LAYERS -->
+    <div class="mono-glow" aria-hidden="true"></div>
+    <div class="corner-glow top-right" aria-hidden="true"></div>
+    <div class="corner-glow bottom-left" aria-hidden="true"></div>
+    <div class="pattern-layer" aria-hidden="true"></div>
+    <div class="grain-layer" aria-hidden="true"></div>
+
+    <!-- PORTAL -->
+    <div class="landing-view" id="landingView" onclick="warpIntoSystem()" role="button" tabindex="0" aria-label="Enter InnerAura Labs">
+        <svg class="singularity-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2560 1440">
+            <defs>
+                <linearGradient id="vibrantGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0AFFEF"/><stop offset="55%" stop-color="#4D6CFF"/><stop offset="100%" stop-color="#845EF7"/>
+                </linearGradient>
+                <radialGradient id="coreGradient" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#FFF"/><stop offset="50%" stop-color="#0AFFEF"/><stop offset="100%" stop-color="#4D6CFF"/>
+                </radialGradient>
+                <radialGradient id="darkSubstrate" cx="50%" cy="50%" r="70%">
+                    <stop offset="0%" stop-color="#0A0A0E"/><stop offset="100%" stop-color="#050507"/>
+                </radialGradient>
+                <linearGradient id="ring1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0AFFEF"/><stop offset="100%" stop-color="#0AFFEF"/>
+                </linearGradient>
+                <linearGradient id="ring2Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0AFFEF"/><stop offset="100%" stop-color="#4D6CFF"/>
+                </linearGradient>
+                <linearGradient id="ring3Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#4D6CFF"/><stop offset="100%" stop-color="#845EF7"/>
+                </linearGradient>
+                <filter id="shockwave">
+                    <feTurbulence baseFrequency="0.008" numOctaves="3" result="noise"/>
+                    <feDisplacementMap in2="noise" in="SourceGraphic" scale="35"/>
+                </filter>
+                <filter id="ringGlow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="4" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+            </defs>
+            <rect width="2560" height="1440" fill="url(#darkSubstrate)"/>
+            <circle cx="1280" cy="720" r="10" fill="none" stroke="url(#ring1Grad)" stroke-width="8" opacity="0" filter="url(#ringGlow)">
+                <animate attributeName="r" values="10; 1600" dur="3.5s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.7; 0" dur="3.5s" repeatCount="indefinite"/>
+                <animate attributeName="stroke-width" values="8; 2" dur="3.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="1280" cy="720" r="10" fill="none" stroke="url(#ring2Grad)" stroke-width="12" opacity="0" filter="url(#ringGlow)">
+                <animate attributeName="r" values="10; 1900" dur="3.5s" begin="1.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.6; 0" dur="3.5s" begin="1.2s" repeatCount="indefinite"/>
+                <animate attributeName="stroke-width" values="12; 3" dur="3.5s" begin="1.2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="1280" cy="720" r="10" fill="none" stroke="url(#ring3Grad)" stroke-width="16" opacity="0" filter="url(#shockwave)">
+                <animate attributeName="r" values="10; 2200" dur="3.5s" begin="2.4s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.5; 0" dur="3.5s" begin="2.4s" repeatCount="indefinite"/>
+                <animate attributeName="stroke-width" values="16; 4" dur="3.5s" begin="2.4s" repeatCount="indefinite"/>
+            </circle>
+            <g transform="translate(1280, 720)" text-anchor="middle">
+                <g fill="url(#coreGradient)">
+                    <text y="-60" font-family="'Outfit', sans-serif" font-weight="700" font-size="240" letter-spacing="15">INNERAURA</text>
+                    <text y="80" font-family="'Outfit', sans-serif" font-weight="600" font-size="100" letter-spacing="40">LABS</text>
+                </g>
+                <text y="220" font-family="'Inter', sans-serif" font-size="48" letter-spacing="16" fill="#4D6CFF">♥ → ∅ → ∞</text>
+            </g>
+        </svg>
+        <span class="enter-hint">CLICK TO ENTER</span>
+    </div>
+
+    <!-- LEFT RAIL -->
+    <aside class="left-rail" aria-label="Social links">
+        <div class="social-stack">
+            <a href="https://discord.gg/wVmcAZPQZ8" class="social-icon" target="_blank" rel="noopener" aria-label="Discord"><svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+            <a href="https://github.com/InnerAura" class="social-icon" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+            <a href="https://x.com/InnerAuraLabs" class="social-icon" target="_blank" rel="noopener" aria-label="X/Twitter"><svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
+            <a href="https://www.linkedin.com/company/inneraura" class="social-icon" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://www.youtube.com/@InnerAuraLabs" class="social-icon" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="https://www.instagram.com/hyperweave.ai/" class="social-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+            <a href="https://www.tiktok.com/@hyperweave.ai" class="social-icon" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        </div>
+    </aside>
+
+    <!-- RIGHT RAIL -->
+    <nav class="right-rail" aria-label="Section navigation">
+        <button class="nav-arrow-btn" onclick="changeSection(-1)" aria-label="Previous">
+            <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </button>
+        <div class="nav-glyph-track">
+            <button class="nav-glyph active" onclick="navigateTo(0)" aria-label="Visual Cortex">◇</button>
+            <button class="nav-glyph" onclick="navigateTo(1)" aria-label="The Document">○</button>
+            <button class="nav-glyph" onclick="navigateTo(2)" aria-label="Compositor">△</button>
+            <button class="nav-glyph" onclick="navigateTo(3)" aria-label="Zero Trust">□</button>
+            <button class="nav-glyph" onclick="navigateTo(4)" aria-label="HyperWeave">∞</button>
+        </div>
+        <button class="nav-arrow-btn" onclick="changeSection(1)" aria-label="Next">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+    </nav>
+
+    <!-- TOP BAR -->
+    <header class="top-bar">
+        <span class="logo-text">InnerAura<span class="logo-suffix"> Labs</span></span>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         CONTENT — YC-OPTIMIZED MESSAGING
+         ═══════════════════════════════════════════════════════════════ -->
+    <main class="main-stage">
+
+        <!-- SECTION 0: THE PRIMITIVE — The 10-second hook -->
+        <section class="section-wrapper active" id="sec-0">
+            <article class="ontology-card">
+                <div class="bracket tl"></div><div class="bracket tr"></div><div class="bracket bl"></div><div class="bracket br"></div>
+                <span class="section-index">00</span>
+                <span class="tagline">Visual Infrastructure</span>
+                <h1>The Visual Primitive<br>for the <em>Agentic Web</em></h1>
+                <p class="card-subheadline">Visuals as Code. Artifacts as Text.</p>
+                <p class="card-description">AI is visually illiterate. Pixels are opaque; JavaScript is a security liability. HyperWeave is the Visual Cortex — a vector compiler that transforms URL grammar into high-fidelity data signals, branded systems, and motion design. Read, write, and audit the visual world as easily as code. Zero JavaScript. Zero dependencies. Works everywhere text lives.</p>
+                <div class="data-grid">
+                    <div class="data-cell"><span class="val pop">Open</span><span class="lbl">Protocol</span></div>
+                    <div class="data-cell"><span class="val">0 JS</span><span class="lbl">Attack Surface</span></div>
+                    <div class="data-cell"><span class="val">URL</span><span class="lbl">The Entire API</span></div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 1: WHY NOW — The convergence thesis -->
+        <section class="section-wrapper" id="sec-1">
+            <article class="ontology-card">
+                <div class="bracket tl"></div><div class="bracket tr"></div><div class="bracket bl"></div><div class="bracket br"></div>
+                <span class="section-index">01</span>
+                <span class="tagline">Why Now</span>
+                <h1>The Document<br><em>IS the Interface</em></h1>
+                <!-- CLAUDE.md. AGENTS.md. README.md. 
+                every knowledge tool — the developer and AI ecosystem converged on Markdown. The only visual primitive inside it that carries its own semantics, animates, and embeds machine-readable reasoning is SVG. Markdown is the starting substrate. The protocol is universal.
+                -->
+                <p class="card-description">AGENTS.md. Documentation. Notion, Obsidian, every knowledge tool — the entire developer and AI ecosystem converged on Markdown. But agents still learn design from text descriptions — reading about visuals instead of inspecting them. SVG is the only format that renders inside Markdown, parses as source code, and carries machine-readable metadata. Not a description of visual knowledge. The visual knowledge itself.</p>
+                <div class="data-grid">
+                    <div class="data-cell"><span class="val pop">100M+</span><span class="lbl">Devs on GitHub</span></div>
+                    <div class="data-cell"><span class="val">SVG</span><span class="lbl">Only Smart Primitive</span></div>
+                    <div class="data-cell"><span class="val">0</span><span class="lbl">Alternatives</span></div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 2: THE COMPOSITOR — Live proof with real artifacts -->
+        <section class="section-wrapper" id="sec-2">
+            <article class="ontology-card" style="padding: 40px 48px;">
+                <div class="bracket tl"></div><div class="bracket tr"></div><div class="bracket bl"></div><div class="bracket br"></div>
+                <span class="section-index">02</span>
+                <span class="tagline">Compositor API</span>
+                <h1>One Theme.<br><em>Every Artifact.</em></h1>
+
+                <!-- LIVE COMPOSITOR DEMO — Real HyperWeave artifacts -->
+                <div class="compositor-demo">
+                    <div class="compositor-inner">
+                        <!-- Chrome Horizon Hero Text (inline SVG) -->
+                        <svg class="hero-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220" role="img" aria-label="InnerAura Chrome Horizon">
+                            <defs>
+                                <linearGradient id="cd-chrome-env" x1="0" x2="0" y1="0" y2="1">
+                                    <stop offset="0%" stop-color="#000a14"/><stop offset="15%" stop-color="#001a33"/>
+                                    <stop offset="35%" stop-color="#1a5c8a"/><stop offset="44%" stop-color="#5ba3d4"/>
+                                    <stop offset="48%" stop-color="#a8d4f0"/><stop offset="50%" stop-color="#ffffff"/>
+                                    <stop offset="52%" stop-color="#f0e6d8"/><stop offset="56%" stop-color="#8a7355"/>
+                                    <stop offset="65%" stop-color="#4a3d2a"/><stop offset="80%" stop-color="#1a1510"/>
+                                    <stop offset="100%" stop-color="#000000"/>
+                                    <animate attributeName="y1" values="-0.3; 0.1; -0.3" dur="6s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"/>
+                                    <animate attributeName="y2" values="0.7; 1.1; 0.7" dur="6s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"/>
+                                </linearGradient>
+                                <linearGradient id="cd-specular" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#fff" stop-opacity="0"/><stop offset="45%" stop-color="#fff" stop-opacity="0"/>
+                                    <stop offset="50%" stop-color="#fff" stop-opacity="0.5"/><stop offset="55%" stop-color="#fff" stop-opacity="0"/>
+                                    <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+                                    <animate attributeName="x1" values="-1; 1; -1" dur="8s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.1 0.25 1; 0.25 0.1 0.25 1"/>
+                                    <animate attributeName="x2" values="0; 2; 0" dur="8s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.1 0.25 1; 0.25 0.1 0.25 1"/>
+                                </linearGradient>
+                                <filter id="cd-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000" flood-opacity="0.25"/>
+                                </filter>
+                                <clipPath id="cd-text-clip">
+                                    <text x="450" y="105" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="130" font-weight="900" font-style="italic" letter-spacing="-3" transform="skewX(-10)">InnerAura</text>
+                                </clipPath>
+                            </defs>
+                            <style>@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }</style>
+                            <g transform="translate(450, 105)">
+                                <text text-anchor="middle" font-family="'Impact', 'Arial Black', system-ui, sans-serif" font-size="130" font-weight="900" font-style="italic" letter-spacing="-3" fill="url(#cd-chrome-env)" stroke="rgba(255,255,255,0.7)" stroke-width="1" paint-order="stroke fill" transform="skewX(-10)" filter="url(#cd-shadow)">InnerAura</text>
+                            </g>
+                            <g clip-path="url(#cd-text-clip)"><rect fill="url(#cd-specular)" x="0" y="30" width="900" height="120"/></g>
+                            <rect x="100" y="145" width="700" height="2" fill="url(#cd-chrome-env)" opacity="0.6"/>
+                            <text x="450" y="175" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" fill="#5ba3d4" letter-spacing="4">HYPERWEAVE SVG · COMPOSITOR API</text>
+                        </svg>
+
+                        <!-- Chrome Horizon Social Icons Row -->
+                        <div class="icon-row">
+                            <!-- Email -->
+                            <svg viewBox="0 0 48 48" role="img" aria-label="Email">
+                                <defs>
+                                    <linearGradient id="cd-ic1" x1="0" x2="0" y1="0" y2="1">
+                                        <stop offset="0%" stop-color="#000a14"/><stop offset="35%" stop-color="#1a5c8a"/>
+                                        <stop offset="50%" stop-color="#ffffff"/><stop offset="65%" stop-color="#8a7355"/><stop offset="100%" stop-color="#000000"/>
+                                        <animate attributeName="y1" values="-0.3; 0.1; -0.3" dur="6s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"/>
+                                        <animate attributeName="y2" values="0.7; 1.1; 0.7" dur="6s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"/>
+                                    </linearGradient>
+                                    <filter id="cd-ig1" x="-30%" y="-30%" width="160%" height="160%">
+                                        <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur"/><feFlood flood-color="#5ba3d4" flood-opacity="0.4"/>
+                                        <feComposite in2="blur" operator="in" result="glow"/><feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                    </filter>
+                                </defs>
+                                <circle cx="24" cy="24" r="22" fill="none" stroke="url(#cd-ic1)" stroke-width="2" filter="url(#cd-ig1)"/>
+                                <g transform="translate(12, 15)"><rect x="0" y="0" width="24" height="18" rx="2" fill="none" stroke="url(#cd-ic1)" stroke-width="1.5"/><polyline points="0,0 12,10 24,0" fill="none" stroke="url(#cd-ic1)" stroke-width="1.5"/></g>
+                            </svg>
+                            <!-- GitHub -->
+                            <svg viewBox="0 0 48 48" role="img" aria-label="GitHub">
+                                <circle cx="24" cy="24" r="22" fill="none" stroke="url(#cd-ic1)" stroke-width="2" filter="url(#cd-ig1)"/>
+                                <g transform="translate(24, 24) scale(0.65)"><path fill="url(#cd-ic1)" d="M0-18c-9.9,0-18,8.1-18,18c0,8,5.2,14.7,12.3,17.1c0.9,0.2,1.2-0.4,1.2-0.9v-3.2c-5,1.1-6.1-2.4-6.1-2.4c-0.8-2.1-2-2.6-2-2.6c-1.6-1.1,0.1-1.1,0.1-1.1c1.8,0.1,2.8,1.9,2.8,1.9c1.6,2.7,4.2,1.9,5.2,1.5c0.2-1.1,0.6-1.9,1.1-2.4c-4-0.5-8.2-2-8.2-8.9c0-2,0.7-3.6,1.9-4.8c-0.2-0.5-0.8-2.3,0.2-4.7c0,0,1.5-0.5,5,1.9c1.5-0.4,3-0.6,4.5-0.6s3.1,0.2,4.5,0.6c3.5-2.4,5-1.9,5-1.9c1,2.5,0.4,4.3,0.2,4.7c1.2,1.3,1.9,2.9,1.9,4.8c0,6.9-4.2,8.4-8.2,8.9c0.6,0.5,1.2,1.6,1.2,3.3v4.8c0,0.5,0.3,1.1,1.2,0.9C12.8,14.7,18,8,18,0C18-9.9,9.9-18,0-18z"/></g>
+                            </svg>
+                            <!-- LinkedIn -->
+                            <svg viewBox="0 0 48 48" role="img" aria-label="LinkedIn">
+                                <circle cx="24" cy="24" r="22" fill="none" stroke="url(#cd-ic1)" stroke-width="2" filter="url(#cd-ig1)"/>
+                                <g transform="translate(13, 13) scale(0.92)"><path fill="url(#cd-ic1)" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></g>
+                            </svg>
+                            <!-- X/Twitter -->
+                            <svg viewBox="0 0 48 48" role="img" aria-label="X">
+                                <circle cx="24" cy="24" r="22" fill="none" stroke="url(#cd-ic1)" stroke-width="2" filter="url(#cd-ig1)"/>
+                                <g transform="translate(13, 13) scale(0.92)"><path fill="url(#cd-ic1)" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></g>
+                            </svg>
+                        </div>
+
+                        <!-- Chrome Horizon Racing Divider -->
+                        <svg class="divider-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 40" role="separator" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="cd-div-chrome" x1="0" x2="0" y1="0" y2="1">
+                                    <stop offset="0%" stop-color="#000a14"/><stop offset="35%" stop-color="#1a5c8a"/>
+                                    <stop offset="50%" stop-color="#ffffff"/><stop offset="65%" stop-color="#8a7355"/><stop offset="100%" stop-color="#000000"/>
+                                    <animate attributeName="y1" values="-0.3; 0.1; -0.3" dur="6s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"/>
+                                    <animate attributeName="y2" values="0.7; 1.1; 0.7" dur="6s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"/>
+                                </linearGradient>
+                                <linearGradient id="cd-trail" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#5ba3d4" stop-opacity="0"/><stop offset="70%" stop-color="#5ba3d4" stop-opacity="0.3"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0.8"/>
+                                </linearGradient>
+                                <filter id="cd-dg" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                            </defs>
+                            <rect x="0" y="18" width="700" height="4" fill="url(#cd-div-chrome)" opacity="0.4"/>
+                            <rect x="0" y="19" width="700" height="2" fill="#5ba3d4" opacity="0.3"><animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite"/></rect>
+                            <g opacity="0.4" fill="url(#cd-div-chrome)"><rect x="50" y="16" width="2" height="8"/><rect x="150" y="16" width="2" height="8"/><rect x="250" y="16" width="2" height="8"/><rect x="350" y="16" width="2" height="8"/><rect x="450" y="16" width="2" height="8"/><rect x="550" y="16" width="2" height="8"/><rect x="650" y="16" width="2" height="8"/></g>
+                            <g filter="url(#cd-dg)">
+                                <rect x="-20" y="18" width="30" height="4" fill="url(#cd-trail)" opacity="0.8"><animateTransform attributeName="transform" type="translate" values="50 0;350 0;650 0;50 0" dur="5s" repeatCount="indefinite" calcMode="spline" keySplines=".1 0 .9 1;.1 0 .9 1;.1 0 .9 1"/></rect>
+                                <g transform="translate(50, 20)">
+                                    <animateTransform attributeName="transform" type="translate" values="0 0;300 0;600 0;0 0" dur="5s" repeatCount="indefinite" calcMode="spline" keySplines=".1 0 .9 1;.1 0 .9 1;.1 0 .9 1" additive="sum"/>
+                                    <animateTransform attributeName="transform" type="rotate" values="0;720;1440;2160" dur="5s" repeatCount="indefinite" additive="sum"/>
+                                    <rect x="-5" y="-5" width="10" height="10" rx="1" fill="url(#cd-div-chrome)" transform="rotate(45)"/>
+                                </g>
+                            </g>
+                            <g filter="url(#cd-dg)">
+                                <rect x="-20" y="18" width="30" height="4" fill="url(#cd-trail)" opacity="0.6"><animateTransform attributeName="transform" type="translate" values="200 0;500 0;100 0;200 0" dur="4.5s" repeatCount="indefinite" begin="0.5s" calcMode="spline" keySplines=".2 0 .8 1;.2 0 .8 1;.2 0 .8 1"/></rect>
+                                <g transform="translate(200, 20)">
+                                    <animateTransform attributeName="transform" type="translate" values="0 0;300 0;-100 0;0 0" dur="4.5s" repeatCount="indefinite" begin="0.5s" calcMode="spline" keySplines=".2 0 .8 1;.2 0 .8 1;.2 0 .8 1" additive="sum"/>
+                                    <animateTransform attributeName="transform" type="rotate" values="0;-720;-1440;-2160" dur="4.5s" repeatCount="indefinite" begin="0.5s" additive="sum"/>
+                                    <rect x="-4" y="-4" width="8" height="8" rx="1" fill="url(#cd-div-chrome)" transform="rotate(45)" opacity="0.7"/>
+                                </g>
+                            </g>
+                            <g opacity="0.6"><circle r="1" fill="#fff"><animateMotion path="M0,20 L700,20" dur="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0" dur="0.8s" repeatCount="indefinite"/></circle><circle r="1" fill="#fff"><animateMotion path="M0,20 L700,20" dur="1s" begin="0.3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0" dur="1s" begin="0.3s" repeatCount="indefinite"/></circle></g>
+                        </svg>
+                    </div>
+                </div>
+                <span class="compositor-label">One Theme DNA → Hero + Icons + Divider — Semantic, portable, composable</span>
+            </article>
+        </section>
+
+        <!-- SECTION 3: ZERO TRUST — Security & Enterprise -->
+        <section class="section-wrapper" id="sec-3">
+            <article class="ontology-card">
+                <div class="bracket tl"></div><div class="bracket tr"></div><div class="bracket bl"></div><div class="bracket br"></div>
+                <span class="section-index">03</span>
+                <span class="tagline">Zero Trust</span>
+                <h1>Secure<br><em>by Definition</em></h1>
+                <p class="card-description">Zero JavaScript. Zero attack surface. Instant Enterprise adoption — no security review cycle required. Every artifact embeds its own reasoning trace: intent, approach, and tradeoffs. Auditable by humans. Parseable by agents. Pass-through architecture with zero data storage. GDPR safe. SOC2 ready. The Visual Receipt for autonomous systems.</p>
+                <div class="data-grid">
+                    <div class="data-cell"><span class="val pop">Zero</span><span class="lbl">XSS Surface</span></div>
+                    <div class="data-cell"><span class="val">RDF</span><span class="lbl">Provenance</span></div>
+                    <div class="data-cell"><span class="val">MIT</span><span class="lbl">Licensed</span></div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 4: THE SHOWCASE — HyperWeave -->
+        <section class="section-wrapper showcase-section" id="sec-4">
+            <div class="artifact-vortex" id="artifactVortex"></div>
+            <div class="chroma-particle chroma-particle-1"></div>
+            <div class="chroma-particle chroma-particle-2"></div>
+            <div class="chroma-particle chroma-particle-3"></div>
+            <div class="chroma-particle chroma-particle-4"></div>
+
+            <div class="showcase-content" style="padding: 24px 24px 48px;">
+                <div class="showcase-badge"><span class="showcase-badge-dot"></span><span class="showcase-badge-text">Open Source</span></div>
+                <div class="showcase-logo-artifact" style="width: 100%; max-width: 900px; margin: 0 auto 8px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" data-motion-source="gravity-drop-banner-v2" data-consciousness="awakened" role="img" aria-labelledby="hw-title-awakened hw-desc-awakened" style="width:100%;height:auto;">
+                    <title id="hw-title-awakened">HyperWeave - Gravity Awakened Temporal Cascade</title>
+                    <desc id="hw-desc-awakened">Animated HyperWeave logo with gravity drop entrance and chromasonic ambient motion.</desc>
+                    <defs>
+                      <linearGradient id="hwVibrantGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#FF0A54"><animate attributeName="stop-color" values="#FF0A54;#0AFFEF;#845EF7;#B5179E;#FF477E;#FF0A54" dur="2s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94"/></stop>
+                        <stop offset="25%" style="stop-color:#FF477E"><animate attributeName="stop-color" values="#FF477E;#845EF7;#B5179E;#0AFFEF;#FF0A54;#FF477E" dur="3.236s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94"/></stop>
+                        <stop offset="50%" style="stop-color:#0AFFEF"><animate attributeName="stop-color" values="#0AFFEF;#B5179E;#FF0A54;#845EF7;#FF477E;#0AFFEF" dur="5.236s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94"/></stop>
+                        <stop offset="75%" style="stop-color:#845EF7"><animate attributeName="stop-color" values="#845EF7;#FF0A54;#FF477E;#B5179E;#0AFFEF;#845EF7" dur="8.472s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94"/></stop>
+                        <stop offset="100%" style="stop-color:#B5179E"><animate attributeName="stop-color" values="#B5179E;#FF477E;#0AFFEF;#FF0A54;#845EF7;#B5179E" dur="13.708s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94"/></stop>
+                      </linearGradient>
+                      <filter id="hwCascadeGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="glow"/><feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                      <filter id="hwImpactGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="glow"/><feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                      <filter id="hwDepthShadow"><feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/></filter>
+                      <radialGradient id="hwParticleGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" style="stop-color:#0AFFEF;stop-opacity:0.95"><animate attributeName="stop-color" values="#0AFFEF;#FF0A54;#845EF7;#B5179E;#FF477E;#0AFFEF" dur="8.472s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94"/></stop>
+                        <stop offset="100%" style="stop-color:#0AFFEF;stop-opacity:0"/>
+                      </radialGradient>
+                      <linearGradient id="hwFaceGrad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#0AFFEF;stop-opacity:0.35"/><stop offset="100%" style="stop-color:#B5179E;stop-opacity:0.12"/></linearGradient>
+                      <linearGradient id="hwFaceGrad2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#FF0A54;stop-opacity:0.35"/><stop offset="100%" style="stop-color:#0AFFEF;stop-opacity:0.12"/></linearGradient>
+                      <filter id="hwTextGlow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur"/><feFlood flood-color="#845EF7" flood-opacity="0.3" result="color"/><feComposite in="color" in2="blur" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    </defs>
+                    <style>
+                      @media (prefers-reduced-motion: reduce) { .hw-drop-el, .hw-drop-txt, .hw-impact, .hw-ambient { animation: none !important; transform: none !important; opacity: 1 !important; } .hw-impact { opacity: 0 !important; } }
+                      .hw-drop-el { will-change: transform, opacity; }
+                      .hw-drop-core { animation: hwDropB 1s cubic-bezier(0.34,1.56,0.64,1) forwards; animation-delay:0.2s; transform:translateY(-200px); opacity:0; }
+                      .hw-drop-inner { animation: hwDropB 1s cubic-bezier(0.34,1.56,0.64,1) forwards; animation-delay:0.35s; transform:translateY(-200px); opacity:0; }
+                      .hw-drop-conn { animation: hwDropB 0.9s cubic-bezier(0.34,1.56,0.64,1) forwards; animation-delay:0.5s; transform:translateY(-200px); opacity:0; }
+                      .hw-drop-octa { animation: hwDropB 1s cubic-bezier(0.34,1.56,0.64,1) forwards; animation-delay:0.65s; transform:translateY(-200px); opacity:0; }
+                      .hw-drop-bound { animation: hwDropB 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards; animation-delay:0.8s; transform:translateY(-200px); opacity:0; }
+                      .hw-drop-nodes { animation: hwDropB 0.85s cubic-bezier(0.34,1.56,0.64,1) forwards; animation-delay:0.9s; transform:translateY(-200px); opacity:0; }
+                      @keyframes hwDropB { 0%{transform:translateY(-200px) rotate(-5deg);opacity:0} 50%{opacity:1} 70%{transform:translateY(8px) rotate(2deg)} 85%{transform:translateY(-4px) rotate(-1deg)} 95%{transform:translateY(2px) rotate(0deg)} 100%{transform:translateY(0) rotate(0deg);opacity:1} }
+                      .hw-drop-title { animation: hwDropT 1s cubic-bezier(0.34,1.56,0.64,1) forwards; animation-delay:1.0s; transform:translateY(-150px); opacity:0; }
+                      .hw-drop-tag1 { animation: hwDropT 0.85s cubic-bezier(0.34,1.56,0.64,1) forwards; animation-delay:1.15s; transform:translateY(-150px); opacity:0; }
+                      .hw-drop-tag2 { animation: hwDropT 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards; animation-delay:1.3s; transform:translateY(-150px); opacity:0; }
+                      .hw-drop-attr { animation: hwDropT 0.75s cubic-bezier(0.34,1.56,0.64,1) forwards; animation-delay:1.45s; transform:translateY(-150px); opacity:0; }
+                      @keyframes hwDropT { 0%{transform:translateY(-150px);opacity:0} 60%{opacity:1} 75%{transform:translateY(6px)} 90%{transform:translateY(-3px)} 100%{transform:translateY(0);opacity:1} }
+                      .hw-impact { transform-origin:center; opacity:0; animation: hwImpact 0.6s ease-out forwards; }
+                      .hw-impact-1 { animation-delay:0.5s; } .hw-impact-2 { animation-delay:0.65s; } .hw-impact-3 { animation-delay:0.8s; }
+                      @keyframes hwImpact { 0%{transform:scale(0.5);opacity:0.7} 100%{transform:scale(1.8);opacity:0} }
+                      .hw-ambient { opacity:0; animation: hwFadeIn 0.5s ease-out forwards; animation-delay:2.5s; }
+                      @keyframes hwFadeIn { to { opacity:1; } }
+                    </style>
+                    <rect width="720" height="240" rx="12" fill="transparent"/>
+                    <!-- Impact rings -->
+                    <g transform="translate(130,120)">
+                      <circle class="hw-impact hw-impact-1" cx="0" cy="0" r="30" fill="none" stroke="#FF0A54" stroke-width="2"/>
+                      <circle class="hw-impact hw-impact-2" cx="0" cy="0" r="50" fill="none" stroke="#0AFFEF" stroke-width="1.5"/>
+                      <circle class="hw-impact hw-impact-3" cx="0" cy="0" r="70" fill="none" stroke="#845EF7" stroke-width="1"/>
+                    </g>
+                    <!-- Main geometry -->
+                    <g transform="translate(130,120) scale(1.2)">
+                      <!-- Boundary -->
+                      <g class="hw-drop-el hw-drop-bound">
+                        <circle cx="0" cy="0" r="85" fill="none" stroke="#DDDDDD" stroke-width="0.6" opacity="0.25"><animate attributeName="r" values="85;88;85" dur="2s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                        <circle cx="0" cy="0" r="40" stroke="#DDDDDD" stroke-width="0.5" opacity="0.22" fill="none"><animate attributeName="opacity" values="0.22;0.32;0.22" dur="3.236s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                        <circle cx="0" cy="0" r="62" stroke="#DDDDDD" stroke-width="0.5" opacity="0.22" fill="none"><animate attributeName="opacity" values="0.22;0.42;0.22" dur="5.236s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                      </g>
+                      <!-- Octahedron -->
+                      <g class="hw-drop-el hw-drop-octa">
+                        <g fill="url(#hwVibrantGrad)" opacity="0.9">
+                          <circle cx="0" cy="-80" r="3"><animate attributeName="r" values="3;3.8;3" dur="2s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                          <circle cx="80" cy="0" r="3"><animate attributeName="r" values="3;4.0;3" dur="3.236s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                          <circle cx="0" cy="80" r="3"><animate attributeName="r" values="3;4.2;3" dur="5.236s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                          <circle cx="-80" cy="0" r="3"><animate attributeName="r" values="3;4.5;3" dur="8.472s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                          <circle cx="0" cy="0" r="3"><animate attributeName="r" values="3;4.8;3" dur="13.708s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                        </g>
+                        <g stroke="url(#hwVibrantGrad)" stroke-width="0.6" opacity="0.45">
+                          <animate attributeName="opacity" values="0.45;0.65;0.35;0.75;0.55;0.45" dur="5.236s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94"/>
+                          <line x1="0" y1="-80" x2="80" y2="0"/><line x1="0" y1="-80" x2="0" y2="0"/><line x1="0" y1="-80" x2="-80" y2="0"/><line x1="0" y1="80" x2="80" y2="0"/><line x1="0" y1="80" x2="0" y2="0"/><line x1="0" y1="80" x2="-80" y2="0"/><line x1="80" y1="0" x2="0" y2="0"/><line x1="0" y1="0" x2="-80" y2="0"/>
+                        </g>
+                        <g opacity="0.18">
+                          <animate attributeName="opacity" values="0.18;0.28;0.12;0.32;0.22;0.18" dur="8.472s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94"/>
+                          <path d="M 0,-80 L 80,0 L 0,0 Z" fill="url(#hwFaceGrad1)"/><path d="M 0,-80 L 0,0 L -80,0 Z" fill="url(#hwFaceGrad2)"/><path d="M 0,80 L 80,0 L 0,0 Z" fill="url(#hwFaceGrad2)"/><path d="M 0,80 L 0,0 L -80,0 Z" fill="url(#hwFaceGrad1)"/>
+                        </g>
+                      </g>
+                      <!-- Inner transmitter -->
+                      <g class="hw-drop-el hw-drop-inner">
+                        <path d="M -15,-58 L -46,-29 C -60,-14 -60,14 -46,29 L -15,58 L 15,58 L 46,29 C 60,14 60,-14 46,-29 L 15,-58 Z" fill="none" stroke="url(#hwVibrantGrad)" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" filter="url(#hwCascadeGlow)">
+                          <animate attributeName="stroke-width" values="5;6.5;4.5;7;5.5;5" dur="5.236s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94"/>
+                          <animateTransform attributeName="transform" type="rotate" values="0;1.8;-1.5;2.3;-1.0;0" dur="13.708s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.23 0.47 0.48 0.93;0.27 0.43 0.52 0.89;0.21 0.49 0.44 0.97;0.29 0.41 0.56 0.87;0.25 0.45 0.50 0.91"/>
+                        </path>
+                      </g>
+                      <!-- Connections -->
+                      <g class="hw-drop-el hw-drop-conn">
+                        <g stroke="url(#hwVibrantGrad)" stroke-width="1.8" opacity="0.75" stroke-linecap="round">
+                          <animate attributeName="opacity" values="0.75;0.45;0.95;0.55;0.85;0.75" dur="3.236s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94"/>
+                          <line x1="-28" y1="-28" x2="28" y2="-28"/><line x1="-34" y1="-4" x2="34" y2="-4"/><line x1="-28" y1="20" x2="28" y2="20"/>
+                        </g>
+                      </g>
+                      <!-- Core -->
+                      <g class="hw-drop-el hw-drop-core">
+                        <circle cx="0" cy="0" r="4" fill="url(#hwVibrantGrad)" filter="url(#hwImpactGlow)"><animate attributeName="r" values="4;6;4" dur="13.708s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                      </g>
+                      <!-- Nodes -->
+                      <g class="hw-drop-el hw-drop-nodes">
+                        <g fill="url(#hwVibrantGrad)">
+                          <circle cx="-15" cy="-58" r="2.5" opacity="0.9"><animate attributeName="r" values="2.5;3.0;2.5" dur="2s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                          <circle cx="15" cy="-58" r="2.5" opacity="0.9"><animate attributeName="r" values="2.5;3.2;2.5" dur="3.236s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                          <circle cx="-46" cy="-29" r="2.5" opacity="0.9"><animate attributeName="r" values="2.5;3.4;2.5" dur="5.236s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                          <circle cx="46" cy="-29" r="2.5" opacity="0.9"><animate attributeName="r" values="2.5;3.6;2.5" dur="8.472s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                          <circle cx="-46" cy="29" r="2.5" opacity="0.9"><animate attributeName="r" values="2.5;3.3;2.5" dur="5.127s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                          <circle cx="46" cy="29" r="2.5" opacity="0.9"><animate attributeName="r" values="2.5;3.5;2.5" dur="3.127s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                          <circle cx="-15" cy="58" r="2.5" opacity="0.9"><animate attributeName="r" values="2.5;3.1;2.5" dur="2.127s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                          <circle cx="15" cy="58" r="2.5" opacity="0.9"><animate attributeName="r" values="2.5;3.7;2.5" dur="4.127s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/></circle>
+                        </g>
+                      </g>
+                      <!-- Ambient particles -->
+                      <g class="hw-ambient">
+                        <circle r="2.8" fill="url(#hwParticleGrad)" filter="url(#hwCascadeGlow)"><animateMotion path="M0,-80 L80,0 L0,80 L-80,0 Z" dur="8.472s" begin="2.5s" repeatCount="indefinite"/><animate attributeName="r" values="2.8;2.2;3.4;1.8;3.0;2.8" dur="8.472s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94"/></circle>
+                        <circle r="2.2" fill="url(#hwParticleGrad)" filter="url(#hwCascadeGlow)"><animateMotion path="M0,-80 L0,0 L80,0 L0,80 L0,0 L-80,0 Z" dur="13.708s" begin="2.5s" repeatCount="indefinite"/><animate attributeName="r" values="2.2;1.7;2.6;1.9;2.4;2.2" dur="13.708s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.27 0.44 0.49 0.92;0.23 0.48 0.51 0.88;0.29 0.42 0.47 0.96;0.21 0.50 0.53 0.84;0.25 0.46 0.45 0.94"/></circle>
+                        <circle r="1.8" fill="url(#hwParticleGrad)" filter="url(#hwCascadeGlow)"><animateMotion path="M40,-40 L40,40 L-40,40 L-40,-40 Z" dur="5.127s" begin="2.5s" repeatCount="indefinite"/><animate attributeName="r" values="1.8;2.5;1.4;2.2;1.9;1.8" dur="5.127s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.24 0.47 0.46 0.93;0.28 0.43 0.50 0.89;0.22 0.49 0.44 0.95;0.26 0.45 0.48 0.91;0.25 0.46 0.45 0.94"/></circle>
+                      </g>
+                    </g>
+                    <!-- Typography -->
+                    <g transform="translate(310,28)">
+                      <text class="hw-drop-title" x="130" y="78" font-family="'SF Pro Display','Inter','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="54" font-weight="700" text-anchor="middle" fill="#1A1A1A" letter-spacing="-0.02em" filter="url(#hwDepthShadow)">Hyper<tspan fill="url(#hwVibrantGrad)" filter="url(#hwTextGlow)">Weave</tspan></text>
+                      <text class="hw-drop-tag1" x="130" y="118" font-family="'SF Pro Display','Inter','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" font-weight="500" letter-spacing="0.15em" text-anchor="middle" fill="#444444" opacity="0.85"><animate attributeName="opacity" values="0.85;0.65;0.95;0.75;0.85" dur="5.236s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94"/>WHERE VECTORS MEET VISION</text>
+                      <text class="hw-drop-tag2" x="130" y="148" font-family="'SF Pro Display','Inter','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="13" font-weight="400" font-style="italic" letter-spacing="0.04em" text-anchor="middle" fill="#777777" opacity="0.7"><animate attributeName="opacity" values="0.7;0.5;0.85;0.6;0.7" dur="8.472s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94"/>Design at the intersection of math and m<tspan fill="url(#hwVibrantGrad)">AGI</tspan>c</text>
+                      <text class="hw-drop-attr" x="130" y="178" font-family="'SF Pro Display','Inter','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="10" font-weight="600" letter-spacing="0.25em" text-anchor="middle" fill="url(#hwVibrantGrad)" opacity="0.6"><animate attributeName="opacity" values="0.6;0.4;0.75;0.5;0.6" dur="13.708s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94"/>INNERAURA LABS</text>
+                    </g>
+                  </svg>
+                </div>
+                <p class="showcase-subtitle" style="margin-bottom: 32px; margin-top: 0;">The Visual Cortex for AI. Works everywhere text lives.</p>
+                <a href="https://github.com/InnerAura" class="showcase-cta" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View on GitHub</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bottom-bar"><span>© 2026 InnerAura Labs</span><span>United States</span><span>hyperweave.app — coming soon</span></footer>
+
+    <script>
+        const landingView = document.getElementById('landingView');
+        function warpIntoSystem() { landingView.classList.add('warped'); }
+        landingView.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); warpIntoSystem(); }
+        });
+
+        const sections = document.querySelectorAll('.section-wrapper');
+        const navGlyphs = document.querySelectorAll('.nav-glyph');
+        const body = document.body;
+        const vortex = document.getElementById('artifactVortex');
+        const state = { idx: 0, total: 5, locked: false };
+
+        function navigateTo(index) {
+            if (index === state.idx || state.locked || index < 0 || index >= state.total) return;
+            state.locked = true;
+            requestAnimationFrame(() => {
+                const prev = state.idx;
+                body.dataset.theme = index;
+                sections[prev].classList.remove('active');
+                sections[index].classList.add('active');
+                navGlyphs[prev].classList.remove('active');
+                navGlyphs[index].classList.add('active');
+                state.idx = index;
+                // Restart gravity drop animation when showcase activates
+                if (index === 4) {
+                    const svgContainer = document.querySelector('.showcase-logo-artifact');
+                    if (svgContainer) {
+                        const svg = svgContainer.querySelector('svg');
+                        if (svg) { const clone = svg.cloneNode(true); svg.parentNode.replaceChild(clone, svg); }
+                    }
+                }
+            });
+            setTimeout(() => { state.locked = false; }, 280);
+        }
+
+        function changeSection(dir) {
+            const newIdx = state.idx + dir;
+            if (newIdx >= 0 && newIdx < state.total) navigateTo(newIdx);
+        }
+
+        let wheelAccum = 0;
+        const WHEEL_THRESHOLD = 50;
+        window.addEventListener('wheel', (e) => {
+            if (state.locked) return;
+            wheelAccum += e.deltaY;
+            if (wheelAccum > WHEEL_THRESHOLD) { changeSection(1); wheelAccum = 0; }
+            else if (wheelAccum < -WHEEL_THRESHOLD) { changeSection(-1); wheelAccum = 0; }
+            requestAnimationFrame(() => { wheelAccum *= 0.8; });
+        }, { passive: true });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); changeSection(1); }
+            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); changeSection(-1); }
+        });
+
+        let touchStartY = 0;
+        window.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
+        window.addEventListener('touchend', (e) => {
+            const diff = touchStartY - e.changedTouches[0].clientY;
+            if (Math.abs(diff) > 50) changeSection(diff > 0 ? 1 : -1);
+        }, { passive: true });
+
+        const artifactSVGs = [
+            '<svg viewBox="0 0 120 40" width="120" height="40"><rect width="120" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><circle cx="20" cy="20" r="6" fill="currentColor" opacity="0.3"/></svg>',
+            '<svg viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.35"/><polygon points="24,12 32,28 16,28" fill="currentColor" opacity="0.25"/></svg>',
+            '<svg viewBox="0 0 32 32" width="32" height="32"><rect x="4" y="4" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3" transform="rotate(45 16 16)"/></svg>',
+        ];
+
+        let cachedAccentColor = '';
+        function getAccentColor() {
+            if (state.idx !== state._lastColorIdx) {
+                cachedAccentColor = getComputedStyle(body).getPropertyValue('--accent-primary');
+                state._lastColorIdx = state.idx;
+            }
+            return cachedAccentColor;
+        }
+
+        function createFloatingArtifact() {
+            if (!vortex) return;
+            const artifact = document.createElement('div');
+            artifact.className = 'floating-artifact';
+            artifact.innerHTML = artifactSVGs[(Math.random() * 3) | 0];
+            artifact.style.cssText = `left:${Math.random() * 100}%;color:${getAccentColor()}`;
+            const duration = 14 + Math.random() * 18;
+            artifact.style.animationDuration = `${duration}s`;
+            artifact.style.animationDelay = `${Math.random() * 4}s`;
+            vortex.appendChild(artifact);
+            setTimeout(() => artifact.remove(), (duration + 4) * 1000);
+        }
+
+        setInterval(createFloatingArtifact, 1500);
+        for (let i = 0; i < 6; i++) setTimeout(createFloatingArtifact, i * 300);
+    </script>
+</body>
+</html>

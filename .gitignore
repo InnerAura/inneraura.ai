@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Wrangler local state
+.wrangler/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -23,15 +26,14 @@ dist-ssr
 *.sln
 *.sw?
 
-# InnerAurora Labs Site
-blog
+# inneraura/inneraura.ai
 .claude
 CLAUDE.md
-COMPONENT_OPTIMIZATIONS.md
-public/favicon-circular-dark.svg
-public/favicon-circular-light.svg
-public/favicon-liquid-chrome.svg
-public/favicon-morph-light.svg
-public/favicon-morph.svg
-public/favicon-retro-futuristic.svg
-public/icon-design.html
+assets/html/
+assets/svg/
+docs/
+scripts/
+worker/
+llms.txt
+llm.txt
+.env

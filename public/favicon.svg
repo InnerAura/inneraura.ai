@@ -1,0 +1,153 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  role="img"
+  aria-label="INNERAURA Favicon"
+>
+  <title>INNERAURA Favicon</title>
+
+  <defs>
+    <linearGradient id="vg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0AFFEF"/>
+      <stop offset="30%" stop-color="#3DBBFF"/>
+      <stop offset="55%" stop-color="#4D6CFF"/>
+      <stop offset="80%" stop-color="#6D5FC9"/>
+      <stop offset="100%" stop-color="#845EF7"/>
+    </linearGradient>
+
+    <linearGradient id="ce1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="35%" stop-color="#FDE68A" stop-opacity="0.6"/>
+      <stop offset="65%" stop-color="#A0C8E8" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <linearGradient id="ce2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.85"/>
+      <stop offset="40%" stop-color="#FBBF24" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.85"/>
+    </linearGradient>
+
+    <linearGradient id="cv" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#7896AC" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <linearGradient id="fg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0AFFEF" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#845EF7" stop-opacity="0.25"/>
+    </linearGradient>
+
+    <linearGradient id="fg2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4D6CFF" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#0AFFEF" stop-opacity="0.25"/>
+    </linearGradient>
+
+    <radialGradient id="vtx" cx="30%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+      <stop offset="50%" stop-color="#FDE68A" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#A0C8E8" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="ct" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0F8FF" stop-opacity="0.5"/>
+      <stop offset="50%" stop-color="#8BA8BC" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#F0F8FF" stop-opacity="0.5"/>
+    </linearGradient>
+
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.8" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g transform="translate(32, 32)">
+    <!-- Face fills -->
+    <g opacity="0.45">
+      <path d="M 0,-24 L 24,0 L 0,0 Z" fill="url(#fg1)"/>
+      <path d="M 0,-24 L 0,0 L -24,0 Z" fill="url(#fg2)"/>
+      <path d="M 0,24 L 24,0 L 0,0 Z" fill="url(#fg2)"/>
+      <path d="M 0,24 L 0,0 L -24,0 Z" fill="url(#fg1)"/>
+    </g>
+
+    <!-- Quantum edges -->
+    <g stroke="url(#vg)" stroke-width="1.5" opacity="0.95" stroke-linecap="round">
+      <line x1="0" y1="-24" x2="24" y2="0"/>
+      <line x1="0" y1="-24" x2="0" y2="0"/>
+      <line x1="0" y1="-24" x2="-24" y2="0"/>
+      <line x1="0" y1="24" x2="24" y2="0"/>
+      <line x1="0" y1="24" x2="0" y2="0"/>
+      <line x1="0" y1="24" x2="-24" y2="0"/>
+      <line x1="24" y1="0" x2="0" y2="0"/>
+      <line x1="-24" y1="0" x2="0" y2="0"/>
+    </g>
+
+    <!-- Chrome edge highlights -->
+    <g opacity="0.6" stroke-linecap="round">
+      <line x1="0" y1="-24" x2="24" y2="0" stroke="url(#ce1)" stroke-width="1"/>
+      <line x1="0" y1="-24" x2="0" y2="0" stroke="url(#cv)" stroke-width="1.2"/>
+      <line x1="0" y1="-24" x2="-24" y2="0" stroke="url(#ce2)" stroke-width="1"/>
+      <line x1="0" y1="24" x2="24" y2="0" stroke="url(#ce2)" stroke-width="1"/>
+      <line x1="0" y1="24" x2="0" y2="0" stroke="url(#cv)" stroke-width="1.2"/>
+      <line x1="0" y1="24" x2="-24" y2="0" stroke="url(#ce1)" stroke-width="1"/>
+      <line x1="24" y1="0" x2="0" y2="0" stroke="url(#ce1)" stroke-width="1"/>
+      <line x1="-24" y1="0" x2="0" y2="0" stroke="url(#ce2)" stroke-width="1"/>
+    </g>
+
+    <!-- Transmitter shape -->
+    <path d="M -4.5,-18 L -13.5,-9 C -18,-4.5 -18,4.5 -13.5,9 L -4.5,18 L 4.5,18 L 13.5,9 C 18,4.5 18,-4.5 13.5,-9 L 4.5,-18 Z"
+          fill="none"
+          stroke="url(#vg)"
+          stroke-width="2.8"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+          opacity="0.97"
+          filter="url(#glow)"/>
+
+    <!-- Chrome transmitter overlay -->
+    <path d="M -4.5,-18 L -13.5,-9 C -18,-4.5 -18,4.5 -13.5,9 L -4.5,18 L 4.5,18 L 13.5,9 C 18,4.5 18,-4.5 13.5,-9 L 4.5,-18 Z"
+          fill="none"
+          stroke="url(#ct)"
+          stroke-width="1.5"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+          opacity="0.55"/>
+
+    <!-- Transmitter specular highlights -->
+    <g opacity="0.7" stroke="#FFFFFF" stroke-width="0.6" fill="none" stroke-linecap="round">
+      <path d="M -4.5,-18 L -13.5,-9"/>
+      <path d="M 4.5,-18 L 13.5,-9"/>
+    </g>
+
+    <!-- Vertices -->
+    <g fill="url(#vg)">
+      <circle cx="0" cy="-24" r="2.2"/>
+      <circle cx="24" cy="0" r="2.2"/>
+      <circle cx="0" cy="24" r="2.2"/>
+      <circle cx="-24" cy="0" r="2.2"/>
+      <circle cx="0" cy="0" r="2.8"/>
+    </g>
+
+    <!-- Chrome vertex overlays -->
+    <g opacity="0.75">
+      <circle cx="0" cy="-24" r="2.8" fill="url(#vtx)"/>
+      <circle cx="24" cy="0" r="2.8" fill="url(#vtx)"/>
+      <circle cx="0" cy="24" r="2.8" fill="url(#vtx)"/>
+      <circle cx="-24" cy="0" r="2.8" fill="url(#vtx)"/>
+      <circle cx="0" cy="0" r="3.2" fill="url(#vtx)"/>
+    </g>
+
+    <!-- Vertex caps -->
+    <g fill="#FFFFFF" opacity="0.6">
+      <circle cx="-0.4" cy="-24.4" r="0.8"/>
+      <circle cx="23.6" cy="-0.4" r="0.8"/>
+      <circle cx="-0.4" cy="23.6" r="0.8"/>
+      <circle cx="-24.4" cy="-0.4" r="0.8"/>
+      <circle cx="-0.4" cy="-0.4" r="1"/>
+    </g>
+  </g>
+</svg>
