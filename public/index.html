@@ -197,22 +197,136 @@
         }
 
         /* ═══════════════════════════════════════════════════════════════
-           PORTAL VIEW
+           PORTAL VIEW — Plasma Scalpel Vertical Slice
            ═══════════════════════════════════════════════════════════════ */
-        .landing-view {
-            position: fixed; inset: 0; background: var(--void-deep);
-            display: flex; align-items: center; justify-content: center;
-            z-index: 9999; clip-path: circle(150% at 50% 50%);
-            transition: clip-path 1s var(--warp-ease); cursor: pointer;
+        .portal {
+            position: fixed; inset: 0; z-index: 9999;
+            overflow: hidden; background: var(--void-deep); cursor: pointer;
         }
-        .landing-view.warped { clip-path: circle(0% at 50% 50%); pointer-events: none; }
-        .singularity-svg { width: 100%; height: 100%; }
-        .enter-hint {
-            position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%);
-            font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.4em;
-            color: rgba(77, 108, 255, 0.6); animation: hintPulse 2s ease-in-out infinite;
+        .portal.done { pointer-events: none; }
+
+        .half {
+            position: absolute; inset: 0;
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
-        @keyframes hintPulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+        .half-top { clip-path: inset(0 0 50.05% 0); }
+        .half-bottom { clip-path: inset(49.95% 0 0 0); }
+        .half svg { position: absolute; width: 100%; height: 100%; }
+
+        .scan-beam {
+            position: absolute; top: 0; left: -6px; width: 6px; height: 100%;
+            z-index: 20; opacity: 0;
+            will-change: transform, opacity;
+            transform: translateX(0) translateZ(0);
+            background: linear-gradient(180deg,
+                transparent 20%, rgba(10, 255, 239, 0.03) 35%, rgba(10, 255, 239, 0.15) 45%,
+                rgba(255, 255, 255, 0.95) 49.5%, #fff 50%, rgba(255, 255, 255, 0.95) 50.5%,
+                rgba(10, 255, 239, 0.15) 55%, rgba(10, 255, 239, 0.03) 65%, transparent 80%
+            );
+            box-shadow: 0 0 20px 4px rgba(10, 255, 239, 0.5), 0 0 60px 8px rgba(10, 255, 239, 0.2), 0 0 120px 20px rgba(77, 108, 255, 0.1);
+        }
+
+        .scar-line {
+            position: absolute; left: 0; right: 0; top: 50%; height: 2px;
+            transform: translateY(-50%) scaleX(0); transform-origin: left center;
+            z-index: 15; will-change: transform, opacity; opacity: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(10, 255, 239, 0.6) 10%, rgba(255, 255, 255, 0.9) 30%, #fff 50%, rgba(255, 255, 255, 0.9) 70%, rgba(10, 255, 239, 0.6) 90%, transparent 100%);
+            box-shadow: 0 0 8px 2px rgba(10, 255, 239, 0.6), 0 0 30px 4px rgba(10, 255, 239, 0.3);
+        }
+
+        .portal-flash {
+            position: absolute; inset: 0; z-index: 30;
+            opacity: 0; pointer-events: none; will-change: opacity; background: white;
+        }
+
+        .edge-glow-top, .edge-glow-bottom {
+            position: absolute; left: 0; right: 0; height: 40px;
+            z-index: 12; opacity: 0; will-change: opacity; pointer-events: none;
+        }
+        .edge-glow-top { bottom: 50%; background: linear-gradient(to top, rgba(10, 255, 239, 0.25), transparent); }
+        .edge-glow-bottom { top: 50%; background: linear-gradient(to bottom, rgba(10, 255, 239, 0.25), transparent); }
+
+        /* ═══════════════════════════════════════════════════════════════
+           PORTAL SLICE ANIMATIONS
+           ═══════════════════════════════════════════════════════════════ */
+        .portal.slicing .scan-beam {
+            animation: beamSweep 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes beamSweep {
+            0%   { opacity: 0; transform: translateX(0) translateZ(0); }
+            5%   { opacity: 1; }
+            95%  { opacity: 0.8; }
+            100% { opacity: 0; transform: translateX(calc(100vw + 12px)) translateZ(0); }
+        }
+
+        .portal.slicing .scar-line {
+            animation: scarDraw 550ms cubic-bezier(0.22, 1, 0.36, 1) 100ms forwards,
+                       scarGlow 400ms cubic-bezier(0.16, 1, 0.3, 1) 600ms forwards;
+        }
+        @keyframes scarDraw {
+            0%   { opacity: 0; transform: translateY(-50%) scaleX(0); }
+            15%  { opacity: 1; }
+            100% { opacity: 1; transform: translateY(-50%) scaleX(1); }
+        }
+        @keyframes scarGlow {
+            0%   { opacity: 1; box-shadow: 0 0 8px 2px rgba(10,255,239,0.6), 0 0 30px 4px rgba(10,255,239,0.3); }
+            40%  { opacity: 1; box-shadow: 0 0 20px 6px rgba(10,255,239,0.9), 0 0 60px 12px rgba(10,255,239,0.4), 0 0 120px 30px rgba(77,108,255,0.2); }
+            100% { opacity: 0; box-shadow: 0 0 4px 1px rgba(10,255,239,0.2), 0 0 20px 4px rgba(10,255,239,0.05); }
+        }
+
+        .portal.slicing .edge-glow-top, .portal.slicing .edge-glow-bottom {
+            animation: edgePulse 600ms cubic-bezier(0.16, 1, 0.3, 1) 550ms forwards;
+        }
+        @keyframes edgePulse { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0; } }
+
+        .portal.slicing .half-top {
+            animation: splitTop 750ms cubic-bezier(0.55, 0, 0.1, 1) 550ms forwards;
+        }
+        @keyframes splitTop {
+            0%   { transform: translateY(0) translateZ(0); opacity: 1; }
+            15%  { transform: translateY(-2%) translateZ(0); opacity: 1; }
+            100% { transform: translateY(-105%) translateZ(0); opacity: 0; }
+        }
+
+        .portal.slicing .half-bottom {
+            animation: splitBottom 750ms cubic-bezier(0.55, 0, 0.1, 1) 550ms forwards;
+        }
+        @keyframes splitBottom {
+            0%   { transform: translateY(0) translateZ(0); opacity: 1; }
+            15%  { transform: translateY(2%) translateZ(0); opacity: 1; }
+            100% { transform: translateY(105%) translateZ(0); opacity: 0; }
+        }
+
+        .portal.slicing .portal-flash {
+            animation: sliceFlash 500ms cubic-bezier(0.16, 1, 0.3, 1) 580ms forwards;
+        }
+        @keyframes sliceFlash {
+            0%   { opacity: 0; }
+            15%  { opacity: 0.55; background: rgba(255,255,255,0.9); }
+            35%  { opacity: 0.25; background: rgba(10, 255, 239, 0.12); }
+            100% { opacity: 0; }
+        }
+
+        .portal.slicing { animation: portalFade 200ms ease-out 1250ms forwards; }
+        @keyframes portalFade { to { visibility: hidden; opacity: 0; } }
+
+        @media (prefers-reduced-motion: reduce) { .portal { display: none !important; } }
+
+        @media (max-width: 900px) {
+            .scan-beam {
+                width: 4px;
+                box-shadow: 0 0 12px 2px rgba(10, 255, 239, 0.4), 0 0 40px 6px rgba(10, 255, 239, 0.15);
+            }
+            .scar-line { box-shadow: 0 0 6px 1px rgba(10, 255, 239, 0.5), 0 0 20px 3px rgba(10, 255, 239, 0.2); }
+            @keyframes scarGlow {
+                0%   { opacity: 1; box-shadow: 0 0 6px 1px rgba(10,255,239,0.5), 0 0 20px 3px rgba(10,255,239,0.2); }
+                40%  { opacity: 1; box-shadow: 0 0 12px 4px rgba(10,255,239,0.7), 0 0 40px 8px rgba(10,255,239,0.3); }
+                100% { opacity: 0; box-shadow: 0 0 4px 1px rgba(10,255,239,0.1); }
+            }
+            .edge-glow-top, .edge-glow-bottom { height: 24px; }
+        }
 
         /* ═══════════════════════════════════════════════════════════════
            LEFT RAIL
@@ -849,18 +963,26 @@
     <div class="pattern-layer" aria-hidden="true"></div>
     <div class="grain-layer" aria-hidden="true"></div>
 
-    <!-- PORTAL — FIX 1: Removed feTurbulence/feDisplacementMap, replaced ♥ with SVG path -->
-    <div class="landing-view" id="landingView" onclick="warpIntoSystem()" role="button" tabindex="0" aria-label="Enter InnerAura Labs">
-        <svg class="singularity-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2560 1440">
+    <!-- PORTAL — Plasma Scalpel Vertical Slice (auto-trigger) -->
+    <div class="portal" id="portal">
+        <div class="half half-top" id="halfTop"></div>
+        <div class="half half-bottom" id="halfBottom"></div>
+        <div class="scan-beam"></div>
+        <div class="scar-line"></div>
+        <div class="edge-glow-top"></div>
+        <div class="edge-glow-bottom"></div>
+        <div class="portal-flash"></div>
+    </div>
+
+    <!-- SVG Template for Portal -->
+    <template id="portalSvgTemplate">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2560 1440" preserveAspectRatio="xMidYMid meet">
             <defs>
-                <linearGradient id="vibrantGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#0AFFEF"/><stop offset="55%" stop-color="#4D6CFF"/><stop offset="100%" stop-color="#845EF7"/>
-                </linearGradient>
-                <radialGradient id="coreGradient" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#FFF"/><stop offset="50%" stop-color="#0AFFEF"/><stop offset="100%" stop-color="#4D6CFF"/>
-                </radialGradient>
                 <radialGradient id="darkSubstrate" cx="50%" cy="50%" r="70%">
                     <stop offset="0%" stop-color="#0A0A0E"/><stop offset="100%" stop-color="#050507"/>
+                </radialGradient>
+                <radialGradient id="coreGradient" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#FFF"/><stop offset="50%" stop-color="#0AFFEF"/><stop offset="100%" stop-color="#4D6CFF"/>
                 </radialGradient>
                 <linearGradient id="ring1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#0AFFEF"/><stop offset="100%" stop-color="#0AFFEF"/>
@@ -871,46 +993,35 @@
                 <linearGradient id="ring3Grad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#4D6CFF"/><stop offset="100%" stop-color="#845EF7"/>
                 </linearGradient>
-                <!-- FIX: Replaced expensive feTurbulence+feDisplacementMap with simple glow -->
                 <filter id="ringGlow" x="-50%" y="-50%" width="200%" height="200%">
                     <feGaussianBlur stdDeviation="4" result="blur"/>
                     <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                 </filter>
-                <filter id="outerRingGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="6" result="blur"/>
-                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
             </defs>
             <rect width="2560" height="1440" fill="url(#darkSubstrate)"/>
-            <!-- Ring 1: lightweight glow instead of shockwave -->
             <circle cx="1280" cy="720" r="10" fill="none" stroke="url(#ring1Grad)" stroke-width="8" opacity="0" filter="url(#ringGlow)">
-                <animate attributeName="r" values="10; 1600" dur="3.5s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.7; 0" dur="3.5s" repeatCount="indefinite"/>
-                <animate attributeName="stroke-width" values="8; 2" dur="3.5s" repeatCount="indefinite"/>
+                <animate attributeName="r" values="10;1600" dur="3.5s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.7;0" dur="3.5s" repeatCount="indefinite"/>
+                <animate attributeName="stroke-width" values="8;2" dur="3.5s" repeatCount="indefinite"/>
             </circle>
-            <!-- Ring 2 -->
             <circle cx="1280" cy="720" r="10" fill="none" stroke="url(#ring2Grad)" stroke-width="12" opacity="0" filter="url(#ringGlow)">
-                <animate attributeName="r" values="10; 1900" dur="3.5s" begin="1.2s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.6; 0" dur="3.5s" begin="1.2s" repeatCount="indefinite"/>
-                <animate attributeName="stroke-width" values="12; 3" dur="3.5s" begin="1.2s" repeatCount="indefinite"/>
+                <animate attributeName="r" values="10;1900" dur="3.5s" begin="1.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.6;0" dur="3.5s" begin="1.2s" repeatCount="indefinite"/>
+                <animate attributeName="stroke-width" values="12;3" dur="3.5s" begin="1.2s" repeatCount="indefinite"/>
             </circle>
-            <!-- Ring 3: FIX — uses outerRingGlow instead of shockwave (feTurbulence) -->
-            <circle cx="1280" cy="720" r="10" fill="none" stroke="url(#ring3Grad)" stroke-width="16" opacity="0" filter="url(#outerRingGlow)">
-                <animate attributeName="r" values="10; 2200" dur="3.5s" begin="2.4s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.5; 0" dur="3.5s" begin="2.4s" repeatCount="indefinite"/>
-                <animate attributeName="stroke-width" values="16; 4" dur="3.5s" begin="2.4s" repeatCount="indefinite"/>
+            <circle cx="1280" cy="720" r="10" fill="none" stroke="url(#ring3Grad)" stroke-width="16" opacity="0" filter="url(#ringGlow)">
+                <animate attributeName="r" values="10;2200" dur="3.5s" begin="2.4s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.5;0" dur="3.5s" begin="2.4s" repeatCount="indefinite"/>
+                <animate attributeName="stroke-width" values="16;4" dur="3.5s" begin="2.4s" repeatCount="indefinite"/>
             </circle>
             <g transform="translate(1280, 720)" text-anchor="middle">
                 <g fill="url(#coreGradient)">
                     <text y="-60" font-family="'Outfit', sans-serif" font-weight="700" font-size="240" letter-spacing="15">INNERAURA</text>
                     <text y="80" font-family="'Outfit', sans-serif" font-weight="600" font-size="100" letter-spacing="40">LABS</text>
                 </g>
-                <!-- FIX: U+FE0E variation selector forces text presentation, prevents iOS emoji rendering -->
-                <text y="220" font-family="'Inter', sans-serif" font-size="48" letter-spacing="16" fill="#4D6CFF">♥︎ → ∅ → ∞</text>
             </g>
         </svg>
-        <span class="enter-hint">CLICK TO ENTER</span>
-    </div>
+    </template>
 
     <!-- LEFT RAIL -->
     <aside class="left-rail" aria-label="Social links">
@@ -1120,7 +1231,7 @@
                 <span class="section-index">03</span>
                 <span class="tagline">Zero Trust</span>
                 <h1>Secure<br><em>by Definition</em></h1>
-                <p class="card-description">Zero JavaScript. Zero attack surface. Instant Enterprise adoption — no security review cycle required. Every artifact embeds its own reasoning trace: intent, approach, and tradeoffs. Auditable by humans. Parseable by agents. Pass-through architecture with zero data storage. GDPR safe. SOC2 ready. The Visual Receipt for autonomous systems.</p>
+                <p class="card-description">Zero JavaScript. Zero attack surface. Instant Enterprise adoption — no security review cycle required. Every artifact embeds its own reasoning trace: intent, approach, and tradeoffs. Auditable by humans. Parseable by agents. Pass-through architecture with zero data storage. GDPR safe. Architected for SOC2 compliance. The Visual Receipt for autonomous systems.</p>
                 <div class="data-grid">
                     <div class="data-cell"><span class="val pop">Zero</span><span class="lbl">XSS Surface</span></div>
                     <div class="data-cell"><span class="val">RDF</span><span class="lbl">Provenance</span></div>
@@ -1256,16 +1367,55 @@
     <footer class="bottom-bar"><span>© 2026 InnerAura Labs</span><span>United States</span><span>hyperweave.app — coming soon</span></footer>
 
     <script>
-        const landingView = document.getElementById('landingView');
+        // ═══════════════════════════════════════════════════════════════
+        // PORTAL SETUP — Plasma Scalpel
+        // ═══════════════════════════════════════════════════════════════
+        const portal = document.getElementById('portal');
+        const halfTop = document.getElementById('halfTop');
+        const halfBottom = document.getElementById('halfBottom');
+        const template = document.getElementById('portalSvgTemplate');
         const isMobile = window.matchMedia('(max-width: 900px)').matches;
 
-        function warpIntoSystem() {
-            landingView.classList.add('warped');
-            document.body.classList.remove('portal-active');
+        function injectPortalSVGs() {
+            halfTop.innerHTML = '';
+            halfBottom.innerHTML = '';
+            halfTop.appendChild(template.content.cloneNode(true));
+            halfBottom.appendChild(template.content.cloneNode(true));
+
+            // Deduplicate SVG IDs for the bottom copy to avoid conflicts
+            const bottomSvg = halfBottom.querySelector('svg');
+            if (bottomSvg) {
+                bottomSvg.querySelectorAll('[id]').forEach(el => {
+                    const oldId = el.id;
+                    const newId = oldId + '_b';
+                    el.id = newId;
+                    bottomSvg.querySelectorAll(`[fill="url(#${oldId})"]`).forEach(ref => ref.setAttribute('fill', `url(#${newId})`));
+                    bottomSvg.querySelectorAll(`[stroke="url(#${oldId})"]`).forEach(ref => ref.setAttribute('stroke', `url(#${newId})`));
+                    bottomSvg.querySelectorAll(`[filter="url(#${oldId})"]`).forEach(ref => ref.setAttribute('filter', `url(#${newId})`));
+                });
+            }
         }
-        landingView.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); warpIntoSystem(); }
-        });
+
+        // Initialize portal SVGs
+        injectPortalSVGs();
+
+        let warpFired = false;
+        function warpIntoSystem() {
+            if (warpFired) return;
+            warpFired = true;
+
+            // Fire the slice animation
+            portal.classList.add('slicing');
+
+            // Remove portal-active from body after animation completes
+            setTimeout(() => {
+                document.body.classList.remove('portal-active');
+                portal.classList.add('done');
+            }, 1300);
+        }
+
+        // Auto-trigger at 1.3s (identical to vertical-slice.html)
+        setTimeout(warpIntoSystem, 1300);
 
         const sections = document.querySelectorAll('.section-wrapper');
         const navGlyphs = document.querySelectorAll('.nav-glyph');
