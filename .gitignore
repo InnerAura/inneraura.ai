@@ -27,6 +27,7 @@ dist-ssr
 *.sw?
 
 # inneraura/inneraura.ai
+.x26
 .claude
 CLAUDE.md
 assets/html/
@@ -34,6 +35,4 @@ assets/svg/
 docs/
 scripts/
 worker/
-llms.txt
-llm.txt
 .env
