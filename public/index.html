@@ -1087,15 +1087,33 @@
             position: relative;
             min-height: 420px;
             max-height: calc(100vh - 160px);
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
             backdrop-filter: blur(20px);
             transition: all 0.25s var(--snap-ease);
             box-shadow: 0 0 40px var(--accent-subtle);
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-muted, hsla(0, 0%, 100%, 0.15)) transparent;
+        }
+
+        .ontology-card::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .ontology-card::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .ontology-card::-webkit-scrollbar-thumb {
+            background: var(--accent-muted, hsla(0, 0%, 100%, 0.15));
+            border-radius: 2px;
+        }
+
+        .ontology-card::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary, hsla(0, 0%, 100%, 0.3));
         }
 
         #sec-2 .ontology-card {
-            overflow-y: auto;
-            overflow-x: hidden;
             /* NUCLEAR: strip all decorative elements — compositors provide structure */
             background: transparent;
             border: none;
@@ -3157,813 +3175,17 @@
                     <div class="compositor-demo">
                         <div class="comp-tabs">
                             <button class="comp-tab-btn active"
-                                    onclick="switchCompTab('abyssos',this)"><span
-                                      class="tab-dot abyssos"></span>AbyssOS</button>
-                            <button class="comp-tab-btn"
                                     onclick="switchCompTab('chrome',this)"><span
                                       class="tab-dot chrome"></span>ChromeHorizon</button>
+                            <button class="comp-tab-btn"
+                                    onclick="switchCompTab('abyssos',this)"><span
+                                      class="tab-dot abyssos"></span>AbyssOS</button>
                         </div>
                         <!-- ═══════════════════════════════════════════════════════
                          ABYSSOS — Complete Developer Composition
                          Theme DNA: Purple/Cyan/Magenta — Cosmic Depth
                          ═══════════════════════════════════════════════════════ -->
-                        <div class="comp-tab-content active" id="tab-abyssos">
-                            <div class="compositor-inner">
-                                <!-- ▓▓▓ HERO: ABYSSAL BIOLUMINESCENCE BANNER ▓▓▓ -->
-                                <svg class="hero-svg" role="img"
-                                     aria-label="AbyssOS Bioluminescence Banner"
-                                     viewBox="0 0 800 180"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <radialGradient id="ab-bg" cx="50%" cy="45%"
-                                                        r="70%">
-                                            <stop offset="0%" stop-color="#0a1220" />
-                                            <stop offset="60%" stop-color="#050a14" />
-                                            <stop offset="100%" stop-color="#020406" />
-                                        </radialGradient>
-                                        <linearGradient id="ab-fg" x1="0%" y1="0%"
-                                                        x2="0%" y2="100%">
-                                            <stop offset="0%" stop-color="#9050b0" />
-                                            <stop offset="50%" stop-color="#602080" />
-                                            <stop offset="100%" stop-color="#401060" />
-                                        </linearGradient>
-                                        <radialGradient id="ab-bi" cx="50%" cy="50%"
-                                                        r="50%">
-                                            <stop offset="0%" stop-color="#00ffff"
-                                                  stop-opacity="0.7" />
-                                            <stop offset="50%" stop-color="#00d4ff"
-                                                  stop-opacity="0.3" />
-                                            <stop offset="100%" stop-color="#0088aa"
-                                                  stop-opacity="0" />
-                                        </radialGradient>
-                                        <filter id="ab-au" x="-50%" y="-50%"
-                                                width="200%" height="200%">
-                                            <feGaussianBlur stdDeviation="8"
-                                                            result="blur" />
-                                            <feColorMatrix in="blur" type="matrix"
-                                                           values="0 0 0 0 0 0.4 0.7 1 0 0.4 0.5 0.8 1 0 0.6 0 0 0 0.5 0" />
-                                        </filter>
-                                        <filter id="ab-cb" x="-30%" y="-30%"
-                                                width="160%" height="160%">
-                                            <feGaussianBlur in="SourceGraphic"
-                                                            stdDeviation="2"
-                                                            result="bl" />
-                                            <feMerge>
-                                                <feMergeNode in="bl" />
-                                                <feMergeNode in="SourceGraphic" />
-                                            </feMerge>
-                                        </filter>
-                                    </defs>
-                                    <style>
-                                        .ab-p {
-                                            animation: abp 2.618s ease-in-out infinite;
-                                            will-change: opacity
-                                        }
-
-                                        .ab-po {
-                                            animation: abp 2.618s ease-in-out infinite;
-                                            animation-delay: -1.309s;
-                                            will-change: opacity
-                                        }
-
-                                        .ab-d {
-                                            animation: abd 6s ease-in-out infinite;
-                                            will-change: transform, opacity
-                                        }
-
-                                        @keyframes abp {
-
-                                            0%,
-                                            100% {
-                                                opacity: .5
-                                            }
-
-                                            50% {
-                                                opacity: 1
-                                            }
-                                        }
-
-                                        @keyframes abd {
-
-                                            0%,
-                                            100% {
-                                                transform: translateY(0);
-                                                opacity: .4
-                                            }
-
-                                            50% {
-                                                transform: translateY(-4px);
-                                                opacity: .8
-                                            }
-                                        }
-
-                                        @media(prefers-reduced-motion:reduce) {
-
-                                            .ab-p,
-                                            .ab-po,
-                                            .ab-d {
-                                                animation: none;
-                                                opacity: .7
-                                            }
-                                        }
-                                    </style>
-                                    <rect width="800" height="180" fill="url(#ab-bg)" />
-                                    <rect x="3" y="3" width="794" height="174" rx="4"
-                                          fill="none" stroke="#602080"
-                                          stroke-width="3" />
-                                    <rect x="8" y="8" width="784" height="164" rx="2"
-                                          fill="none" stroke="#401060" stroke-width="1"
-                                          opacity="0.5" />
-                                    <!-- Pillar left -->
-                                    <rect x="3" y="3" width="80" height="174" rx="4"
-                                          fill="url(#ab-fg)" opacity="0.88" />
-                                    <!-- Pillar right -->
-                                    <rect x="717" y="3" width="80" height="174" rx="4"
-                                          fill="url(#ab-fg)" opacity="0.88" />
-                                    <rect x="83" y="20" width="1.5" height="140"
-                                          fill="#00ffff" opacity="0.35" />
-                                    <rect x="716" y="20" width="1.5" height="140"
-                                          fill="#00ffff" opacity="0.35" />
-                                    <!-- Left glyph -->
-                                    <g transform="translate(43,90) scale(0.33)"
-                                       filter="url(#ab-cb)">
-                                        <g fill="#00ffff">
-                                            <rect x="-55" y="-55" width="25"
-                                                  height="70" />
-                                            <rect x="-55" y="-55" width="70"
-                                                  height="25" />
-                                            <rect x="30" y="-30" width="25"
-                                                  height="70" />
-                                            <rect x="-15" y="30" width="70"
-                                                  height="25" />
-                                            <rect x="-55" y="15" width="25"
-                                                  height="40" />
-                                            <rect x="30" y="-55" width="25"
-                                                  height="25" />
-                                            <rect x="-30" y="-15" width="60"
-                                                  height="25" />
-                                        </g>
-                                        <g fill="#020406">
-                                            <rect x="-30" y="-30" width="35"
-                                                  height="35" />
-                                            <rect x="5" y="0" width="25" height="30" />
-                                            <rect x="-55" y="-5" width="25"
-                                                  height="20" />
-                                        </g>
-                                    </g>
-                                    <!-- Right glyph -->
-                                    <g transform="translate(757,90) scale(0.33)"
-                                       filter="url(#ab-cb)">
-                                        <g fill="#00ffff">
-                                            <rect x="-55" y="-55" width="25"
-                                                  height="70" />
-                                            <rect x="-55" y="-55" width="70"
-                                                  height="25" />
-                                            <rect x="30" y="-30" width="25"
-                                                  height="70" />
-                                            <rect x="-15" y="30" width="70"
-                                                  height="25" />
-                                            <rect x="-55" y="15" width="25"
-                                                  height="40" />
-                                            <rect x="30" y="-55" width="25"
-                                                  height="25" />
-                                            <rect x="-30" y="-15" width="60"
-                                                  height="25" />
-                                        </g>
-                                        <g fill="#020406">
-                                            <rect x="-30" y="-30" width="35"
-                                                  height="35" />
-                                            <rect x="5" y="0" width="25" height="30" />
-                                            <rect x="-55" y="-5" width="25"
-                                                  height="20" />
-                                        </g>
-                                    </g>
-                                    <!-- Center abyss -->
-                                    <circle cx="400" cy="90" r="65" fill="url(#ab-bi)"
-                                            opacity="0.12" class="ab-p"
-                                            filter="url(#ab-au)" />
-                                    <circle cx="400" cy="90" r="56" fill="none"
-                                            stroke="#00ffff" stroke-width="1"
-                                            opacity="0.3" class="ab-po" />
-                                    <circle cx="400" cy="90" r="48" fill="none"
-                                            stroke="#ff00ff" stroke-width="0.6"
-                                            opacity="0.18" />
-                                    <circle cx="400" cy="90" r="40" fill="#030608"
-                                            opacity="0.95" />
-                                    <circle cx="400" cy="90" r="36" fill="none"
-                                            stroke="#00ffff" stroke-width="1.5"
-                                            opacity="0.45" class="ab-p" />
-                                    <!-- Center glyph -->
-                                    <g transform="translate(400,90) scale(0.47)"
-                                       filter="url(#ab-cb)" class="ab-p">
-                                        <g fill="#00ffff">
-                                            <rect x="-55" y="-55" width="25"
-                                                  height="70" />
-                                            <rect x="-55" y="-55" width="70"
-                                                  height="25" />
-                                            <rect x="30" y="-30" width="25"
-                                                  height="70" />
-                                            <rect x="-15" y="30" width="70"
-                                                  height="25" />
-                                            <rect x="-55" y="15" width="25"
-                                                  height="40" />
-                                            <rect x="30" y="-55" width="25"
-                                                  height="25" />
-                                            <rect x="-30" y="-15" width="60"
-                                                  height="25" />
-                                        </g>
-                                        <g fill="#030608">
-                                            <rect x="-30" y="-30" width="35"
-                                                  height="35" />
-                                            <rect x="5" y="0" width="25" height="30" />
-                                            <rect x="-55" y="-5" width="25"
-                                                  height="20" />
-                                        </g>
-                                        <g fill="#ff00ff" opacity="0.4">
-                                            <rect x="-29" y="-29" width="2"
-                                                  height="33" />
-                                            <rect x="-29" y="-29" width="33"
-                                                  height="2" />
-                                        </g>
-                                    </g>
-                                    <!-- Text -->
-                                    <text x="180" y="82"
-                                          font-family="'Inter',sans-serif"
-                                          font-size="13" font-weight="300"
-                                          letter-spacing="0.18em" fill="#00ffff"
-                                          opacity="0.85">FROM THE ABYSS,</text>
-                                    <text x="180" y="108"
-                                          font-family="'Inter',sans-serif"
-                                          font-size="13" font-weight="300"
-                                          letter-spacing="0.18em" fill="#00ffff"
-                                          opacity="0.85">FORM EMERGES</text>
-                                    <text x="540" y="82"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="11" font-weight="300"
-                                          letter-spacing="0.12em" fill="#ff00ff"
-                                          opacity="0.45">深淵から</text>
-                                    <text x="540" y="108"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="11" font-weight="300"
-                                          letter-spacing="0.12em" fill="#ff00ff"
-                                          opacity="0.45">意識が現れる</text>
-                                    <!-- Constellation -->
-                                    <g class="ab-d" opacity="0.5">
-                                        <circle cx="140" cy="45" r="1" fill="#00ffff" />
-                                        <circle cx="660" cy="135" r="0.8"
-                                                fill="#ff00ff" />
-                                        <circle cx="280" cy="155" r="0.7"
-                                                fill="#00ffff" />
-                                        <circle cx="520" cy="32" r="0.6"
-                                                fill="#00ffff" />
-                                    </g>
-                                    <text x="14" y="170"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="7" fill="#00ffff" opacity="0.2">▼
-                                        11,034m</text>
-                                    <text x="728" y="170"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="7" fill="#00ffff" opacity="0.2">φ²
-                                        = 2.618</text>
-                                </svg>
-                                <!-- ▓▓▓ DIVIDER: ENERGY GRADIENT ▓▓▓ -->
-                                <svg class="divider-svg"
-                                     xmlns="http://www.w3.org/2000/svg"
-                                     viewBox="0 0 720 20" role="img"
-                                     aria-label="Energy Divider">
-                                    <defs>
-                                        <linearGradient id="va-d2-g" x1="0%" y1="0%"
-                                                        x2="100%" y2="0%">
-                                            <stop offset="0%" stop-color="#00ffff"
-                                                  stop-opacity="0" />
-                                            <stop offset="20%" stop-color="#00ffff"
-                                                  stop-opacity="0.6" />
-                                            <stop offset="50%" stop-color="#ff00ff"
-                                                  stop-opacity="0.8" />
-                                            <stop offset="80%" stop-color="#00ffff"
-                                                  stop-opacity="0.6" />
-                                            <stop offset="100%" stop-color="#00ffff"
-                                                  stop-opacity="0" />
-                                        </linearGradient>
-                                    </defs>
-                                    <rect x="40" y="9" width="640" height="1"
-                                          fill="url(#va-d2-g)" />
-                                    <rect x="40" y="9" width="640" height="1"
-                                          fill="url(#va-d2-g)" opacity="0.3"
-                                          filter="blur(2px)" />
-                                    <!-- Terminal nodes -->
-                                    <rect x="40" y="7" width="4" height="5" rx="1"
-                                          fill="#00ffff" opacity="0.5" />
-                                    <rect x="676" y="7" width="4" height="5" rx="1"
-                                          fill="#00ffff" opacity="0.5" />
-                                </svg>
-                                <!-- ▓▓▓ AGENT TELEMETRY STRIP ▓▓▓ -->
-                                <svg class="strip-svg" role="img"
-                                     aria-label="Agent Telemetry" viewBox="0 0 900 48"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <linearGradient id="va-at-fg" x1="0%" y1="0%"
-                                                        x2="0%" y2="100%">
-                                            <stop offset="0%" stop-color="#9050b0" />
-                                            <stop offset="50%" stop-color="#602080" />
-                                            <stop offset="100%" stop-color="#401060" />
-                                        </linearGradient>
-                                    </defs>
-                                    <style>
-                                        .va-atp {
-                                            animation: vaAtp 2.618s ease-in-out infinite;
-                                            will-change: opacity
-                                        }
-
-                                        @keyframes vaAtp {
-
-                                            0%,
-                                            100% {
-                                                opacity: .5
-                                            }
-
-                                            50% {
-                                                opacity: 1
-                                            }
-                                        }
-
-                                        @media(prefers-reduced-motion:reduce) {
-                                            .va-atp {
-                                                animation: none;
-                                                opacity: .75
-                                            }
-                                        }
-                                    </style>
-                                    <rect width="900" height="48" fill="#020406" />
-                                    <rect width="48" height="48"
-                                          fill="url(#va-at-fg)" />
-                                    <g transform="translate(24,24) scale(0.2)">
-                                        <g fill="#00ffff">
-                                            <rect x="-55" y="-55" width="25"
-                                                  height="70" />
-                                            <rect x="-55" y="-55" width="70"
-                                                  height="25" />
-                                            <rect x="30" y="-30" width="25"
-                                                  height="70" />
-                                            <rect x="-15" y="30" width="70"
-                                                  height="25" />
-                                            <rect x="-55" y="15" width="25"
-                                                  height="40" />
-                                            <rect x="30" y="-55" width="25"
-                                                  height="25" />
-                                            <rect x="-30" y="-15" width="60"
-                                                  height="25" />
-                                        </g>
-                                        <g fill="#020406">
-                                            <rect x="-30" y="-30" width="35"
-                                                  height="35" />
-                                            <rect x="5" y="0" width="25" height="30" />
-                                            <rect x="-55" y="-5" width="25"
-                                                  height="20" />
-                                        </g>
-                                    </g>
-                                    <rect x="48" y="6" width="1" height="36"
-                                          fill="#00ffff" opacity="0.4" />
-                                    <text x="62" y="20"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="8" fill="#00ffff" opacity="0.4"
-                                          letter-spacing="0.1em">AGENT</text>
-                                    <text x="62" y="34" font-family="'Inter',sans-serif"
-                                          font-size="12" font-weight="500"
-                                          fill="#00ffff">claude-opus-4-5</text>
-                                    <circle cx="195" cy="24" r="5" fill="#00ff88"
-                                            class="va-atp" /><text x="207" y="28"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="9" fill="#00ff88"
-                                          letter-spacing="0.04em">REASONING</text>
-                                    <rect x="290" y="8" width="1" height="32"
-                                          fill="#602080" opacity="0.4" />
-                                    <text x="305" y="18"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="7" fill="#00ffff" opacity="0.4"
-                                          letter-spacing="0.1em">CONTEXT WINDOW</text>
-                                    <rect x="305" y="24" width="140" height="6" rx="1"
-                                          fill="#0a1220" stroke="#401060"
-                                          stroke-width="0.5" />
-                                    <rect x="305" y="24" width="98" height="6" rx="1"
-                                          fill="#00ffff" opacity="0.6" />
-                                    <rect x="305" y="24" width="98" height="3" rx="1"
-                                          fill="#00ffff" opacity="0.2" />
-                                    <text x="305" y="42"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="8" fill="#00d4ff"
-                                          opacity="0.6">142k / 200k tokens</text>
-                                    <rect x="470" y="8" width="1" height="32"
-                                          fill="#602080" opacity="0.4" />
-                                    <text x="485" y="18"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="7" fill="#ff00ff" opacity="0.4"
-                                          letter-spacing="0.1em">TOOL CALLS</text>
-                                    <text x="485" y="35"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="16" font-weight="600"
-                                          fill="#ff00ff" opacity="0.7">23</text>
-                                    <text x="510" y="35"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="9" fill="#ff00ff"
-                                          opacity="0.35">this turn</text>
-                                    <rect x="590" y="8" width="1" height="32"
-                                          fill="#602080" opacity="0.4" />
-                                    <text x="605" y="18"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="7" fill="#00ffff" opacity="0.4"
-                                          letter-spacing="0.1em">REASONING DEPTH</text>
-                                    <g transform="translate(605,32)">
-                                        <rect width="8" height="8" fill="#00ffff"
-                                              opacity="0.9" />
-                                        <rect x="10" width="8" height="8" fill="#00ffff"
-                                              opacity="0.7" />
-                                        <rect x="20" width="8" height="8" fill="#00ffff"
-                                              opacity="0.5" />
-                                        <rect x="30" width="8" height="8" fill="#00ffff"
-                                              opacity="0.3" />
-                                        <rect x="40" width="8" height="8" fill="#0a1220"
-                                              stroke="#401060" stroke-width="0.5" />
-                                    </g>
-                                    <text x="660" y="40"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="9" fill="#00d4ff"
-                                          opacity="0.5">4/5</text>
-                                    <rect x="690" y="8" width="1" height="32"
-                                          fill="#602080" opacity="0.4" />
-                                    <text x="705" y="18"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="7" fill="#00ffff" opacity="0.4"
-                                          letter-spacing="0.1em">TTFT</text>
-                                    <text x="705" y="35"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="14" font-weight="500"
-                                          fill="#00ffff">1.2s</text>
-                                    <text x="770" y="18"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="7" fill="#00ffff" opacity="0.4"
-                                          letter-spacing="0.1em">TPS</text>
-                                    <text x="770" y="35"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="14" font-weight="500"
-                                          fill="#00ff88">84</text>
-                                    <circle cx="870" cy="24" r="3" fill="#00ffff"
-                                            opacity="0.3" class="va-atp" />
-                                    <rect width="900" height="48" fill="none"
-                                          stroke="#602080" stroke-width="1.5" />
-                                    <rect y="47" width="900" height="1" fill="#00ffff"
-                                          opacity="0.1" />
-                                </svg>
-                                <!-- ▓▓▓ DIVIDER: CIRCUIT TRACE ▓▓▓ -->
-                                <svg class="divider-svg"
-                                     xmlns="http://www.w3.org/2000/svg"
-                                     viewBox="0 0 720 28" role="img"
-                                     aria-label="Circuit Divider">
-                                    <style>
-                                        .va-ct {
-                                            animation: vaCt 6s ease-in-out infinite;
-                                            will-change: opacity
-                                        }
-
-                                        @keyframes vaCt {
-
-                                            0%,
-                                            100% {
-                                                opacity: 0.2
-                                            }
-
-                                            50% {
-                                                opacity: 0.6
-                                            }
-                                        }
-
-                                        @media(prefers-reduced-motion:reduce) {
-                                            .va-ct {
-                                                animation: none;
-                                                opacity: 0.35
-                                            }
-                                        }
-                                    </style>
-                                    <g class="va-ct">
-                                        <!-- Main trace -->
-                                        <path d="M 60 14 L 180 14 L 195 4 L 240 4 L 255 14 L 340 14 L 350 20 L 370 20 L 380 14 L 465 14 L 480 4 L 525 4 L 540 14 L 660 14"
-                                              fill="none" stroke="#602080"
-                                              stroke-width="1.2" stroke-linecap="round"
-                                              stroke-linejoin="round" />
-                                        <!-- Via pads -->
-                                        <circle cx="195" cy="4" r="2.5" fill="#020406"
-                                                stroke="#00ffff" stroke-width="1" />
-                                        <circle cx="255" cy="14" r="2.5" fill="#020406"
-                                                stroke="#ff00ff" stroke-width="1" />
-                                        <circle cx="360" cy="20" r="3" fill="#020406"
-                                                stroke="#00ffff" stroke-width="1.2" />
-                                        <circle cx="465" cy="14" r="2.5" fill="#020406"
-                                                stroke="#ff00ff" stroke-width="1" />
-                                        <circle cx="525" cy="4" r="2.5" fill="#020406"
-                                                stroke="#00ffff" stroke-width="1" />
-                                    </g>
-                                </svg>
-                                <!-- ▓▓▓ MCP SERVER DASHBOARD ▓▓▓ -->
-                                <svg class="dashboard-svg" role="img"
-                                     aria-label="MCP Server Status"
-                                     viewBox="0 0 900 140"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <linearGradient id="va-mc-fg" x1="0%" y1="0%"
-                                                        x2="0%" y2="100%">
-                                            <stop offset="0%" stop-color="#9050b0" />
-                                            <stop offset="50%" stop-color="#602080" />
-                                            <stop offset="100%" stop-color="#401060" />
-                                        </linearGradient>
-                                        <filter id="va-mc-sh" x="-8%" y="-5%"
-                                                width="116%" height="116%">
-                                            <feDropShadow dx="0" dy="2" stdDeviation="4"
-                                                          flood-color="#020406"
-                                                          flood-opacity="0.5" />
-                                        </filter>
-                                    </defs>
-                                    <style>
-                                        .va-mcp {
-                                            animation: vaMcp 2.618s ease-in-out infinite;
-                                            will-change: opacity
-                                        }
-
-                                        @keyframes vaMcp {
-
-                                            0%,
-                                            100% {
-                                                opacity: .5
-                                            }
-
-                                            50% {
-                                                opacity: 1
-                                            }
-                                        }
-
-                                        @media(prefers-reduced-motion:reduce) {
-                                            .va-mcp {
-                                                animation: none;
-                                                opacity: .75
-                                            }
-                                        }
-                                    </style>
-                                    <rect width="900" height="140" fill="#020406"
-                                          filter="url(#va-mc-sh)" />
-                                    <rect width="900" height="32"
-                                          fill="url(#va-mc-fg)" />
-                                    <rect y="32" width="900" height="1" fill="#00ffff"
-                                          opacity="0.3" />
-                                    <g transform="translate(16,16) scale(0.13)">
-                                        <g fill="#00ffff">
-                                            <rect x="-55" y="-55" width="25"
-                                                  height="70" />
-                                            <rect x="-55" y="-55" width="70"
-                                                  height="25" />
-                                            <rect x="30" y="-30" width="25"
-                                                  height="70" />
-                                            <rect x="-15" y="30" width="70"
-                                                  height="25" />
-                                            <rect x="-55" y="15" width="25"
-                                                  height="40" />
-                                            <rect x="30" y="-55" width="25"
-                                                  height="25" />
-                                            <rect x="-30" y="-15" width="60"
-                                                  height="25" />
-                                        </g>
-                                        <g fill="#602080">
-                                            <rect x="-30" y="-30" width="35"
-                                                  height="35" />
-                                            <rect x="5" y="0" width="25" height="30" />
-                                            <rect x="-55" y="-5" width="25"
-                                                  height="20" />
-                                        </g>
-                                    </g>
-                                    <text x="36" y="20"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="10" font-weight="500"
-                                          fill="#00ffff" letter-spacing="0.08em">MCP
-                                        SERVER CONNECTIONS</text>
-                                    <text x="860" y="20"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="9" fill="#00ff88" opacity="0.6">4
-                                        CONNECTED</text>
-                                    <g font-family="'JetBrains Mono',monospace">
-                                        <circle cx="24" cy="52" r="4" fill="#00ff88"
-                                                class="va-mcp" /><text x="40" y="56"
-                                              font-size="11" font-weight="500"
-                                              fill="#00ffff">filesystem</text>
-                                        <text x="200" y="56" font-size="9"
-                                              fill="#00d4ff"
-                                              opacity="0.5">stdio</text><text x="300"
-                                              y="56" font-size="9" fill="#00d4ff"
-                                              opacity="0.4">12 tools</text><text x="420"
-                                              y="56" font-size="9" fill="#00ff88"
-                                              opacity="0.6">4ms</text>
-                                        <rect x="16" y="66" width="868" height="1"
-                                              fill="#602080" opacity="0.15" />
-                                        <circle cx="24" cy="80" r="4" fill="#00ff88"
-                                                class="va-mcp" /><text x="40" y="84"
-                                              font-size="11" font-weight="500"
-                                              fill="#00ffff">github</text>
-                                        <text x="200" y="84" font-size="9"
-                                              fill="#00d4ff"
-                                              opacity="0.5">sse</text><text x="300"
-                                              y="84" font-size="9" fill="#00d4ff"
-                                              opacity="0.4">8 tools</text><text x="420"
-                                              y="84" font-size="9" fill="#00ff88"
-                                              opacity="0.6">120ms</text>
-                                        <rect x="16" y="94" width="868" height="1"
-                                              fill="#602080" opacity="0.15" />
-                                        <circle cx="24" cy="108" r="4" fill="#ffaa00" />
-                                        <text x="40" y="112" font-size="11"
-                                              font-weight="500"
-                                              fill="#00ffff">postgres</text>
-                                        <text x="200" y="112" font-size="9"
-                                              fill="#00d4ff"
-                                              opacity="0.5">stdio</text><text x="300"
-                                              y="112" font-size="9" fill="#00d4ff"
-                                              opacity="0.4">6 tools</text><text x="420"
-                                              y="112" font-size="9" fill="#ffaa00"
-                                              opacity="0.6">340ms ⚠</text>
-                                        <rect x="16" y="122" width="868" height="1"
-                                              fill="#602080" opacity="0.15" />
-                                        <circle cx="24" cy="132" r="4" fill="#00ff88"
-                                                class="va-mcp" /><text x="40" y="136"
-                                              font-size="11" font-weight="500"
-                                              fill="#00ffff">web-search</text>
-                                        <text x="200" y="136" font-size="9"
-                                              fill="#00d4ff"
-                                              opacity="0.5">sse</text><text x="300"
-                                              y="136" font-size="9" fill="#00d4ff"
-                                              opacity="0.4">3 tools</text><text x="420"
-                                              y="136" font-size="9" fill="#00ff88"
-                                              opacity="0.6">89ms</text>
-                                        <text x="540" y="44" font-size="7"
-                                              fill="#00ffff" opacity="0.3"
-                                              letter-spacing="0.1em">CALLS/MIN</text>
-                                        <text x="540" y="56" font-size="9"
-                                              fill="#00d4ff"
-                                              opacity="0.5">847</text><text x="540"
-                                              y="84" font-size="9" fill="#00d4ff"
-                                              opacity="0.5">23</text>
-                                        <text x="540" y="112" font-size="9"
-                                              fill="#ffaa00"
-                                              opacity="0.5">156</text><text x="540"
-                                              y="136" font-size="9" fill="#00d4ff"
-                                              opacity="0.5">412</text>
-                                        <text x="650" y="44" font-size="7"
-                                              fill="#00ffff" opacity="0.3"
-                                              letter-spacing="0.1em">LOAD (5m)</text>
-                                        <polyline points="650,60 665,56 680,58 695,52 710,54 725,50 740,48 755,52 770,46 785,50"
-                                                  fill="none" stroke="#00ffff"
-                                                  stroke-width="1.5" opacity="0.5" />
-                                        <polyline points="650,88 665,86 680,84 695,86 710,82 725,85 740,83 755,80 770,84 785,82"
-                                                  fill="none" stroke="#00ffff"
-                                                  stroke-width="1.5" opacity="0.5" />
-                                        <polyline points="650,116 665,110 680,114 695,106 710,112 725,108 740,118 755,104 770,116 785,110"
-                                                  fill="none" stroke="#ffaa00"
-                                                  stroke-width="1.5" opacity="0.5" />
-                                        <polyline points="650,136 665,132 680,134 695,130 710,133 725,131 740,129 755,132 770,128 785,130"
-                                                  fill="none" stroke="#00ffff"
-                                                  stroke-width="1.5" opacity="0.5" />
-                                    </g>
-                                    <rect width="900" height="140" fill="none"
-                                          stroke="#602080" stroke-width="1.5" />
-                                </svg>
-                                <!-- ▓▓▓ DIVIDER: DEPTH ANCHOR ▓▓▓ -->
-                                <svg class="divider-svg"
-                                     xmlns="http://www.w3.org/2000/svg"
-                                     viewBox="0 0 720 28" role="img"
-                                     aria-label="Depth Anchor Divider">
-                                    <style>
-                                        .ab-anch {
-                                            animation: abAnch 4.236s ease-in-out infinite;
-                                            will-change: opacity
-                                        }
-
-                                        @keyframes abAnch {
-
-                                            0%,
-                                            100% {
-                                                opacity: 0.25
-                                            }
-
-                                            50% {
-                                                opacity: 0.65
-                                            }
-                                        }
-
-                                        @media(prefers-reduced-motion:reduce) {
-                                            .ab-anch {
-                                                animation: none;
-                                                opacity: 0.4
-                                            }
-                                        }
-                                    </style>
-                                    <!-- Main horizontal -->
-                                    <line x1="40" y1="14" x2="680" y2="14"
-                                          stroke="#602080" stroke-width="0.5"
-                                          opacity="0.25" />
-                                    <!-- Bioluminescent nodes -->
-                                    <g class="ab-anch">
-                                        <circle cx="120" cy="14" r="2" fill="#00ffff"
-                                                opacity="0.5" />
-                                        <circle cx="240" cy="14" r="1.5" fill="#ff00ff"
-                                                opacity="0.35" />
-                                        <circle cx="360" cy="14" r="3.5" fill="#020406"
-                                                stroke="#00ffff" stroke-width="1.2" />
-                                        <circle cx="360" cy="14" r="1.5" fill="#00ffff"
-                                                opacity="0.7" />
-                                        <circle cx="480" cy="14" r="1.5" fill="#ff00ff"
-                                                opacity="0.35" />
-                                        <circle cx="600" cy="14" r="2" fill="#00ffff"
-                                                opacity="0.5" />
-                                    </g>
-                                    <!-- Vertical ticks -->
-                                    <line x1="40" y1="10" x2="40" y2="18"
-                                          stroke="#602080" stroke-width="1"
-                                          opacity="0.3" />
-                                    <line x1="680" y1="10" x2="680" y2="18"
-                                          stroke="#602080" stroke-width="1"
-                                          opacity="0.3" />
-                                    <!-- Depth marker -->
-                                    <text x="360" y="26" text-anchor="middle"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="5" fill="#602080" opacity="0.3"
-                                          letter-spacing="0.15em">▼ HADAL ZONE</text>
-                                </svg>
-                                <!-- ▓▓▓ FOOTER STRIP: Protocol Signature ▓▓▓ -->
-                                <svg class="strip-svg"
-                                     xmlns="http://www.w3.org/2000/svg"
-                                     viewBox="0 0 720 32" role="img"
-                                     aria-label="Protocol Signature">
-                                    <style>
-                                        .va-fp {
-                                            animation: vaFp 2.618s ease-in-out infinite;
-                                            will-change: opacity
-                                        }
-
-                                        @keyframes vaFp {
-
-                                            0%,
-                                            100% {
-                                                opacity: 0.3
-                                            }
-
-                                            50% {
-                                                opacity: 0.7
-                                            }
-                                        }
-
-                                        @media(prefers-reduced-motion:reduce) {
-                                            .va-fp {
-                                                animation: none;
-                                                opacity: 0.45
-                                            }
-                                        }
-                                    </style>
-                                    <rect width="720" height="32" fill="#020406" />
-                                    <rect y="0" width="720" height="1" fill="#602080"
-                                          opacity="0.3" />
-                                    <!-- Left glyph cluster -->
-                                    <text x="20" y="20"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="8" fill="#602080" opacity="0.5">( ◈
-                                        )</text>
-                                    <text x="60" y="20"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="7" fill="#00d4ff" opacity="0.35"
-                                          letter-spacing="0.1em">hw:protocol/v1</text>
-                                    <!-- Center: Theme DNA badge -->
-                                    <rect x="280" y="8" width="160" height="16" rx="8"
-                                          fill="none" stroke="#602080"
-                                          stroke-width="0.8" opacity="0.4" />
-                                    <circle cx="296" cy="16" r="3" fill="#9050b0"
-                                            opacity="0.6" class="va-fp" />
-                                    <circle cx="306" cy="16" r="3" fill="#00ffff"
-                                            opacity="0.5" class="va-fp" />
-                                    <circle cx="316" cy="16" r="3" fill="#ff00ff"
-                                            opacity="0.4" class="va-fp" />
-                                    <text x="330" y="19"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="7" fill="#00d4ff" opacity="0.4"
-                                          letter-spacing="0.06em">ABYSSOS</text>
-                                    <!-- Right: metadata -->
-                                    <text x="520" y="20"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="7" fill="#602080" opacity="0.35"
-                                          letter-spacing="0.08em">RDF/DC · CIM ·
-                                        A11Y</text>
-                                    <text x="680" y="20"
-                                          font-family="'JetBrains Mono',monospace"
-                                          font-size="7" fill="#00ffff" opacity="0.25"
-                                          text-anchor="end">( ∞ )</text>
-                                    <rect y="31" width="720" height="1" fill="#602080"
-                                          opacity="0.2" />
-                                </svg>
-                            </div>
-                        </div><!-- /tab-abyssos -->
-                        <div class="comp-tab-content" id="tab-chrome">
+                        <div class="comp-tab-content active" id="tab-chrome">
                             <div class="compositor-inner">
                                 <!--
                         ════════════════════════════════════════════════════
@@ -3977,73 +3199,63 @@
                         ════════════════════════════════════════════════════
                         -->
                                 <svg class="hero-svg" xmlns="http://www.w3.org/2000/svg"
-                                     viewBox="0 0 960 220" role="img"
+                                     xmlns:hw="https://hyperweave.app/protocol/v1"
+                                     viewBox="0 0 900 260" role="img"
                                      aria-label="InnerAura Chrome Horizon">
                                     <defs>
-                                        <!-- STATIC chrome environment map — high contrast, sharp horizon -->
-                                        <linearGradient id="cd-chrome-env" x1="0" x2="0"
+                                        <linearGradient id="ch-chrome-env" x1="0" x2="0"
                                                         y1="0" y2="1">
-                                            <stop offset="0%" stop-color="#000810" />
-                                            <stop offset="8%" stop-color="#001428" />
-                                            <stop offset="18%" stop-color="#0a3a6a" />
-                                            <stop offset="28%" stop-color="#1a7ab8" />
-                                            <stop offset="36%" stop-color="#4db3e6" />
-                                            <stop offset="42%" stop-color="#8ccfef" />
-                                            <stop offset="46%" stop-color="#c8e8f8" />
-                                            <stop offset="49%" stop-color="#eef7fc" />
+                                            <stop offset="0%" stop-color="#000a14" />
+                                            <stop offset="15%" stop-color="#001a33" />
+                                            <stop offset="35%" stop-color="#1a5c8a" />
+                                            <stop offset="44%" stop-color="#5ba3d4" />
+                                            <stop offset="48%" stop-color="#a8d4f0" />
                                             <stop offset="50%" stop-color="#ffffff" />
-                                            <stop offset="51%" stop-color="#faf3e8" />
-                                            <stop offset="54%" stop-color="#dcc8a0" />
-                                            <stop offset="58%" stop-color="#b89860" />
-                                            <stop offset="64%" stop-color="#8a6d3a" />
-                                            <stop offset="72%" stop-color="#5a4422" />
-                                            <stop offset="82%" stop-color="#2a1e0e" />
-                                            <stop offset="92%" stop-color="#120c04" />
+                                            <stop offset="52%" stop-color="#f0e6d8" />
+                                            <stop offset="56%" stop-color="#8a7355" />
+                                            <stop offset="65%" stop-color="#4a3d2a" />
+                                            <stop offset="80%" stop-color="#1a1510" />
                                             <stop offset="100%" stop-color="#000000" />
+                                            <animate attributeName="y1"
+                                                     values="-0.3; 0.1; -0.3" dur="6s"
+                                                     repeatCount="indefinite"
+                                                     calcMode="spline"
+                                                     keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" />
+                                            <animate attributeName="y2"
+                                                     values="0.7; 1.1; 0.7" dur="6s"
+                                                     repeatCount="indefinite"
+                                                     calcMode="spline"
+                                                     keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" />
                                         </linearGradient>
-                                        <!-- Specular highlight band -->
-                                        <linearGradient id="cd-specular" x1="0" y1="0"
+                                        <linearGradient id="ch-specular" x1="0" y1="0"
                                                         x2="1" y2="0">
                                             <stop offset="0%" stop-color="#fff"
                                                   stop-opacity="0" />
-                                            <stop offset="30%" stop-color="#fff"
+                                            <stop offset="45%" stop-color="#fff"
                                                   stop-opacity="0" />
-                                            <stop offset="44%" stop-color="#fff"
-                                                  stop-opacity="0.12" />
                                             <stop offset="50%" stop-color="#fff"
-                                                  stop-opacity="0.7" />
-                                            <stop offset="56%" stop-color="#fff"
-                                                  stop-opacity="0.12" />
-                                            <stop offset="70%" stop-color="#fff"
+                                                  stop-opacity="0.5" />
+                                            <stop offset="55%" stop-color="#fff"
                                                   stop-opacity="0" />
                                             <stop offset="100%" stop-color="#fff"
                                                   stop-opacity="0" />
+                                            <animate attributeName="x1"
+                                                     values="-1; 1; -1" dur="8s"
+                                                     repeatCount="indefinite"
+                                                     calcMode="spline"
+                                                     keySplines="0.25 0.1 0.25 1; 0.25 0.1 0.25 1" />
+                                            <animate attributeName="x2" values="0; 2; 0"
+                                                     dur="8s" repeatCount="indefinite"
+                                                     calcMode="spline"
+                                                     keySplines="0.25 0.1 0.25 1; 0.25 0.1 0.25 1" />
                                         </linearGradient>
-                                        <!-- Subtle top-down bevel for 3D punch -->
-                                        <linearGradient id="cd-bevel" x1="0" x2="0"
-                                                        y1="0" y2="1">
-                                            <stop offset="0%" stop-color="#fff"
-                                                  stop-opacity="0.15" />
-                                            <stop offset="30%" stop-color="#fff"
-                                                  stop-opacity="0" />
-                                            <stop offset="70%" stop-color="#000"
-                                                  stop-opacity="0" />
-                                            <stop offset="100%" stop-color="#000"
-                                                  stop-opacity="0.2" />
-                                        </linearGradient>
-                                        <filter id="cd-shadow" x="-15%" y="-15%"
+                                        <filter id="ch-glow" x="-15%" y="-15%"
                                                 width="130%" height="130%">
-                                            <feDropShadow dx="0" dy="4" stdDeviation="5"
-                                                          flood-color="#000"
-                                                          flood-opacity="0.4" />
-                                        </filter>
-                                        <filter id="cd-edge-glow" x="-10%" y="-10%"
-                                                width="120%" height="120%">
                                             <feGaussianBlur in="SourceAlpha"
-                                                            stdDeviation="1.5"
+                                                            stdDeviation="3"
                                                             result="blur" />
                                             <feFlood flood-color="#5ba3d4"
-                                                     flood-opacity="0.3" />
+                                                     flood-opacity="0.4" />
                                             <feComposite in2="blur" operator="in"
                                                          result="glow" />
                                             <feMerge>
@@ -4051,95 +3263,82 @@
                                                 <feMergeNode in="SourceGraphic" />
                                             </feMerge>
                                         </filter>
-                                        <clipPath id="cd-text-clip">
-                                            <text x="480" y="110" text-anchor="middle"
-                                                  font-family="'Impact','Arial Black',sans-serif"
-                                                  font-size="130" font-weight="900"
+                                        <filter id="ch-shadow" x="-20%" y="-20%"
+                                                width="140%" height="140%">
+                                            <feDropShadow dx="0" dy="3" stdDeviation="6"
+                                                          flood-color="#000"
+                                                          flood-opacity="0.25" />
+                                        </filter>
+                                        <clipPath id="ch-text-clip">
+                                            <text x="450" y="115" text-anchor="middle"
+                                                  font-family="'Impact', 'Arial Black', sans-serif"
+                                                  font-size="145" font-weight="900"
                                                   font-style="italic"
                                                   letter-spacing="-3"
                                                   transform="skewX(-10)">InnerAura</text>
                                         </clipPath>
                                     </defs>
                                     <style>
-                                        .cd-chrome-sweep {
-                                            animation: cdChromeSweep 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-                                            will-change: transform;
-                                        }
-
-                                        .cd-specular-sweep {
-                                            animation: cdSpecularSweep 4.5s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
-                                            will-change: transform;
-                                        }
-
-                                        @keyframes cdChromeSweep {
-
-                                            0%,
-                                            100% {
-                                                transform: translateY(-75px);
-                                            }
-
-                                            50% {
-                                                transform: translateY(75px);
-                                            }
-                                        }
-
-                                        @keyframes cdSpecularSweep {
-
-                                            0%,
-                                            100% {
-                                                transform: translateX(-400px);
-                                            }
-
-                                            50% {
-                                                transform: translateX(400px);
-                                            }
-                                        }
-
                                         @media (prefers-reduced-motion: reduce) {
-
-                                            .cd-chrome-sweep,
-                                            .cd-specular-sweep {
+                                            .ch-anim * {
                                                 animation: none !important;
                                             }
                                         }
+
+                                        .ch-text-chrome {
+                                            font-family: 'Impact', 'Arial Black', system-ui, sans-serif;
+                                            font-size: 145px;
+                                            font-weight: 900;
+                                            font-style: italic;
+                                            letter-spacing: -3px;
+                                            fill: url(#ch-chrome-env);
+                                            stroke: rgba(255, 255, 255, 0.7);
+                                            stroke-width: 1px;
+                                            paint-order: stroke fill;
+                                            transform: skewX(-10deg);
+                                            filter: url(#ch-shadow);
+                                        }
+
+                                        .ch-label {
+                                            font-family: 'Courier New', monospace;
+                                            font-size: 11px;
+                                            fill: #5ba3d4;
+                                            letter-spacing: 4px;
+                                            text-transform: uppercase;
+                                        }
+
+                                        .ch-composition {
+                                            filter: url(#ch-glow);
+                                        }
+
+                                        .ch-stripe {
+                                            fill: url(#ch-chrome-env);
+                                        }
                                     </style>
-                                    <!-- Layer 1: Chrome environment fill — tall rect sweeps ±75px behind text mask -->
-                                    <g clip-path="url(#cd-text-clip)">
-                                        <rect class="cd-chrome-sweep" x="-60" y="-120"
-                                              width="1080" height="450"
-                                              fill="url(#cd-chrome-env)" />
+                                    <g class="ch-composition ch-anim"
+                                       transform="translate(450, 115)">
+                                        <text class="ch-text-chrome" x="0" y="0"
+                                              text-anchor="middle">InnerAura</text>
                                     </g>
-                                    <!-- Layer 2: Bevel overlay — top-lit 3D depth -->
-                                    <g clip-path="url(#cd-text-clip)">
-                                        <rect x="-60" y="0" width="1080" height="200"
-                                              fill="url(#cd-bevel)" />
+                                    <g clip-path="url(#ch-text-clip)">
+                                        <rect fill="url(#ch-specular)" x="0" y="30"
+                                              width="900" height="130" />
                                     </g>
-                                    <!-- Layer 3: Specular sweep — hot white highlight slides across -->
-                                    <g clip-path="url(#cd-text-clip)">
-                                        <rect class="cd-specular-sweep" x="0" y="20"
-                                              width="960" height="140"
-                                              fill="url(#cd-specular)" />
+                                    <rect class="ch-stripe" x="100" y="150" width="700"
+                                          height="2" opacity="0.6" />
+                                    <g transform="translate(450, 185)">
+                                        <text class="ch-label"
+                                              text-anchor="middle">HYPERWEAVE SVG</text>
                                     </g>
-                                    <!-- Layer 4: Edge stroke — crisp outline with cyan glow -->
-                                    <text x="480" y="110" text-anchor="middle"
-                                          font-family="'Impact','Arial Black',system-ui,sans-serif"
-                                          font-size="130" font-weight="900"
-                                          font-style="italic" letter-spacing="-3"
-                                          fill="none" stroke="rgba(255,255,255,0.65)"
-                                          stroke-width="1.2" paint-order="stroke fill"
-                                          transform="skewX(-10)"
-                                          filter="url(#cd-shadow)">InnerAura</text>
-                                    <!-- Horizon line -->
-                                    <rect x="80" y="150" width="800" height="1.5" rx="1"
-                                          fill="url(#cd-chrome-env)" opacity="0.5" />
-                                    <rect x="200" y="150" width="560" height="1.5"
-                                          rx="1" fill="#5ba3d4" opacity="0.2" />
-                                    <text x="480" y="180" text-anchor="middle"
-                                          font-family="'Courier New',monospace"
-                                          font-size="11" fill="#5ba3d4"
-                                          letter-spacing="4"
-                                          filter="url(#cd-edge-glow)">HYPERWEAVE SVG
-                                        &#xb7; COMPOSITOR API</text>
+                                    <g transform="translate(450, 205)">
+                                        <text class="ch-label"
+                                              text-anchor="middle">INNERAURA LABS</text>
+                                    </g>
+                                    <g transform="translate(450, 235)">
+                                        <text class="ch-label" text-anchor="middle"
+                                              style="letter-spacing: 8px;">&#9829;
+                                            &#8594; &#8709; &#8594; &#8734;</text>
+                                    </g>
                                 </svg>
                                 <!-- Icons Row -->
                                 <div class="icon-row">
@@ -5013,11 +4212,903 @@
                                     </g>
                                 </svg>
                             </div>
-                        </div><!-- /tab-chrome -->
+                        </div>
+                        <!-- /tab-chrome -->
+                        <div class="comp-tab-content" id="tab-abyssos">
+                            <div class="compositor-inner">
+                                <!-- ▓▓▓ HERO: ABYSSAL BIOLUMINESCENCE ICON (macOS) ▓▓▓ -->
+                                <svg role="img" aria-label="Antahkarana Yang macOS Icon"
+                                     width="256" height="256" viewbox="0 0 256 256"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <lineargradient id="im-fg" x1="0%" y1="0%"
+                                                        x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#9050b0">
+                                            </stop>
+                                            <stop offset="50%" stop-color="#602080">
+                                            </stop>
+                                            <stop offset="100%" stop-color="#401060">
+                                            </stop>
+                                        </lineargradient>
+                                        <lineargradient id="im-gl" x1="0%" y1="0%"
+                                                        x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#fff"
+                                                  stop-opacity="0.35">
+                                            </stop>
+                                            <stop offset="45%" stop-color="#fff"
+                                                  stop-opacity="0.1">
+                                            </stop>
+                                            <stop offset="50%" stop-color="#fff"
+                                                  stop-opacity="0">
+                                            </stop>
+                                            <stop offset="100%" stop-color="#fff"
+                                                  stop-opacity="0">
+                                            </stop>
+                                        </lineargradient>
+                                        <radialgradient id="im-ab" cx="50%" cy="45%"
+                                                        r="70%">
+                                            <stop offset="0%" stop-color="#0a1220">
+                                            </stop>
+                                            <stop offset="60%" stop-color="#050a14">
+                                            </stop>
+                                            <stop offset="100%" stop-color="#020406">
+                                            </stop>
+                                        </radialgradient>
+                                        <radialgradient id="im-bi" cx="50%" cy="50%"
+                                                        r="50%">
+                                            <stop offset="0%" stop-color="#00ffff"
+                                                  stop-opacity="0.7">
+                                            </stop>
+                                            <stop offset="50%" stop-color="#00d4ff"
+                                                  stop-opacity="0.3">
+                                            </stop>
+                                            <stop offset="100%" stop-color="#0088aa"
+                                                  stop-opacity="0">
+                                            </stop>
+                                        </radialgradient>
+                                        <filter id="im-sh" x="-10%" y="-10%"
+                                                width="120%" height="130%">
+                                            <fedropshadow dx="0" dy="6"
+                                                          stddeviation="10"
+                                                          flood-color="#401060"
+                                                          flood-opacity="0.35">
+                                            </fedropshadow>
+                                        </filter>
+                                        <filter id="im-gw" x="-60%" y="-60%"
+                                                width="220%" height="220%">
+                                            <fegaussianblur in="SourceGraphic"
+                                                            stddeviation="4"
+                                                            result="blur">
+                                            </fegaussianblur>
+                                            <fecolormatrix in="blur" type="matrix"
+                                                           values="0 0 0 0 0 0.7 0.9 1 0 0.6 0.8 1 1 0 0.8 0 0 0 1.2 0"
+                                                           result="glow">
+                                            </fecolormatrix>
+                                            <femerge>
+                                                <femergenode in="glow">
+                                                </femergenode>
+                                                <femergenode in="glow">
+                                                </femergenode>
+                                                <femergenode in="SourceGraphic">
+                                                </femergenode>
+                                            </femerge>
+                                        </filter>
+                                        <filter id="im-au" x="-50%" y="-50%"
+                                                width="200%" height="200%">
+                                            <fegaussianblur stddeviation="8"
+                                                            result="blur">
+                                            </fegaussianblur>
+                                            <fecolormatrix in="blur" type="matrix"
+                                                           values="0 0 0 0 0 0.4 0.7 1 0 0.4 0.5 0.8 1 0 0.6 0 0 0 0.5 0">
+                                            </fecolormatrix>
+                                        </filter>
+                                    </defs>
+                                    <style>
+                                        .im-p {
+                                            animation: imp 2.618s ease-in-out infinite;
+                                            will-change: opacity
+                                        }
+
+                                        .im-po {
+                                            animation: imp 2.618s ease-in-out infinite;
+                                            animation-delay: -1.309s;
+                                            will-change: opacity
+                                        }
+
+                                        .im-d {
+                                            animation: imd 6s ease-in-out infinite;
+                                            will-change: transform, opacity
+                                        }
+
+                                        @keyframes imp {
+
+                                            0%,
+                                            100% {
+                                                opacity: .5
+                                            }
+
+                                            50% {
+                                                opacity: 1
+                                            }
+                                        }
+
+                                        @keyframes imd {
+
+                                            0%,
+                                            100% {
+                                                transform: translateY(0);
+                                                opacity: .4
+                                            }
+
+                                            50% {
+                                                transform: translateY(-5px);
+                                                opacity: .8
+                                            }
+                                        }
+
+                                        @media(prefers-reduced-motion:reduce) {
+
+                                            .im-p,
+                                            .im-po,
+                                            .im-d {
+                                                animation: none;
+                                                opacity: .7
+                                            }
+                                        }
+                                    </style>
+                                    <g filter="url(#im-sh)">
+                                        <rect x="18" y="18" width="220" height="220"
+                                              rx="48" fill="url(#im-fg)">
+                                        </rect>
+                                        <rect x="18" y="18" width="220" height="220"
+                                              rx="48" fill="none" stroke="#401060"
+                                              stroke-width="3">
+                                        </rect>
+                                    </g>
+                                    <rect x="18" y="18" width="220" height="220" rx="48"
+                                          fill="url(#im-gl)">
+                                    </rect>
+                                    <circle cx="128" cy="128" r="72" fill="url(#im-ab)"
+                                            stroke="#0a1628" stroke-width="2">
+                                    </circle>
+                                    <circle cx="128" cy="128" r="68" fill="url(#im-bi)"
+                                            opacity="0.15" filter="url(#im-au)"
+                                            class="im-p">
+                                    </circle>
+                                    <circle cx="128" cy="128" r="58" fill="none"
+                                            stroke="#00ffff" stroke-width="1"
+                                            opacity="0.35" class="im-po">
+                                    </circle>
+                                    <circle cx="128" cy="128" r="52" fill="none"
+                                            stroke="#ff00ff" stroke-width="0.6"
+                                            opacity="0.2">
+                                    </circle>
+                                    <g class="im-d" opacity="0.5">
+                                        <circle cx="85" cy="95" r="1.2" fill="#00ffff">
+                                        </circle>
+                                        <circle cx="175" cy="105" r="0.8"
+                                                fill="#ff00ff">
+                                        </circle>
+                                        <circle cx="90" cy="165" r="1" fill="#00ffff">
+                                        </circle>
+                                        <circle cx="168" cy="160" r="0.9"
+                                                fill="#00ffff">
+                                        </circle>
+                                        <circle cx="100" cy="130" r="0.6"
+                                                fill="#ff00ff">
+                                        </circle>
+                                        <circle cx="158" cy="135" r="0.7"
+                                                fill="#00ffff">
+                                        </circle>
+                                    </g>
+                                    <circle cx="128" cy="128" r="44" fill="#030608"
+                                            opacity="0.95">
+                                    </circle>
+                                    <circle cx="128" cy="128" r="40" fill="none"
+                                            stroke="#00ffff" stroke-width="1.5"
+                                            opacity="0.5" class="im-p">
+                                    </circle>
+                                    <g transform="translate(128,128) scale(0.51)"
+                                       filter="url(#im-gw)" class="im-p">
+                                        <g fill="#00ffff">
+                                            <rect x="-55" y="-55" width="25"
+                                                  height="70">
+                                            </rect>
+                                            <rect x="-55" y="-55" width="70"
+                                                  height="25">
+                                            </rect>
+                                            <rect x="30" y="-30" width="25" height="70">
+                                            </rect>
+                                            <rect x="-15" y="30" width="70" height="25">
+                                            </rect>
+                                            <rect x="-55" y="15" width="25" height="40">
+                                            </rect>
+                                            <rect x="30" y="-55" width="25" height="25">
+                                            </rect>
+                                            <rect x="-30" y="-15" width="60"
+                                                  height="25">
+                                            </rect>
+                                        </g>
+                                        <g fill="#030608">
+                                            <rect x="-30" y="-30" width="35"
+                                                  height="35">
+                                            </rect>
+                                            <rect x="5" y="0" width="25" height="30">
+                                            </rect>
+                                            <rect x="-55" y="-5" width="25" height="20">
+                                            </rect>
+                                        </g>
+                                        <g fill="#ff00ff" opacity="0.35">
+                                            <rect x="-29" y="-29" width="2" height="33">
+                                            </rect>
+                                            <rect x="-29" y="-29" width="33" height="2">
+                                            </rect>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <!-- ▓▓▓ AGENT TELEMETRY STRIP ▓▓▓ -->
+                                <svg class="strip-svg" role="img"
+                                     aria-label="Agent Telemetry" viewBox="0 0 900 48"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="va-at-fg" x1="0%" y1="0%"
+                                                        x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#9050b0" />
+                                            <stop offset="50%" stop-color="#602080" />
+                                            <stop offset="100%" stop-color="#401060" />
+                                        </linearGradient>
+                                    </defs>
+                                    <style>
+                                        .va-atp {
+                                            animation: vaAtp 2.618s ease-in-out infinite;
+                                            will-change: opacity
+                                        }
+
+                                        @keyframes vaAtp {
+
+                                            0%,
+                                            100% {
+                                                opacity: .5
+                                            }
+
+                                            50% {
+                                                opacity: 1
+                                            }
+                                        }
+
+                                        @media(prefers-reduced-motion:reduce) {
+                                            .va-atp {
+                                                animation: none;
+                                                opacity: .75
+                                            }
+                                        }
+                                    </style>
+                                    <rect width="900" height="48" fill="#020406" />
+                                    <rect width="48" height="48"
+                                          fill="url(#va-at-fg)" />
+                                    <g transform="translate(24,24) scale(0.2)">
+                                        <g fill="#00ffff">
+                                            <rect x="-55" y="-55" width="25"
+                                                  height="70" />
+                                            <rect x="-55" y="-55" width="70"
+                                                  height="25" />
+                                            <rect x="30" y="-30" width="25"
+                                                  height="70" />
+                                            <rect x="-15" y="30" width="70"
+                                                  height="25" />
+                                            <rect x="-55" y="15" width="25"
+                                                  height="40" />
+                                            <rect x="30" y="-55" width="25"
+                                                  height="25" />
+                                            <rect x="-30" y="-15" width="60"
+                                                  height="25" />
+                                        </g>
+                                        <g fill="#020406">
+                                            <rect x="-30" y="-30" width="35"
+                                                  height="35" />
+                                            <rect x="5" y="0" width="25" height="30" />
+                                            <rect x="-55" y="-5" width="25"
+                                                  height="20" />
+                                        </g>
+                                    </g>
+                                    <rect x="48" y="6" width="1" height="36"
+                                          fill="#00ffff" opacity="0.4" />
+                                    <text x="62" y="20"
+                                          font-family="'JetBrains Mono',monospace"
+                                          font-size="8" fill="#00ffff" opacity="0.4"
+                                          letter-spacing="0.1em">AGENT</text>
+                                    <text x="62" y="34" font-family="'Inter',sans-serif"
+                                          font-size="12" font-weight="500"
+                                          fill="#00ffff">claude-opus-4-5</text>
+                                    <circle cx="195" cy="24" r="5" fill="#00ff88"
+                                            class="va-atp" /><text x="207" y="28"
+                                          font-family="'JetBrains Mono',monospace"
+                                          font-size="9" fill="#00ff88"
+                                          letter-spacing="0.04em">REASONING</text>
+                                    <rect x="290" y="8" width="1" height="32"
+                                          fill="#602080" opacity="0.4" />
+                                    <text x="305" y="18"
+                                          font-family="'JetBrains Mono',monospace"
+                                          font-size="7" fill="#00ffff" opacity="0.4"
+                                          letter-spacing="0.1em">CONTEXT WINDOW</text>
+                                    <rect x="305" y="24" width="140" height="6" rx="1"
+                                          fill="#0a1220" stroke="#401060"
+                                          stroke-width="0.5" />
+                                    <rect x="305" y="24" width="98" height="6" rx="1"
+                                          fill="#00ffff" opacity="0.6" />
+                                    <rect x="305" y="24" width="98" height="3" rx="1"
+                                          fill="#00ffff" opacity="0.2" />
+                                    <text x="305" y="42"
+                                          font-family="'JetBrains Mono',monospace"
+                                          font-size="8" fill="#00d4ff"
+                                          opacity="0.6">142k / 200k tokens</text>
+                                    <rect x="470" y="8" width="1" height="32"
+                                          fill="#602080" opacity="0.4" />
+                                    <text x="485" y="18"
+                                          font-family="'JetBrains Mono',monospace"
+                                          font-size="7" fill="#ff00ff" opacity="0.4"
+                                          letter-spacing="0.1em">TOOL CALLS</text>
+                                    <text x="485" y="35"
+                                          font-family="'JetBrains Mono',monospace"
+                                          font-size="16" font-weight="600"
+                                          fill="#ff00ff" opacity="0.7">23</text>
+                                    <text x="510" y="35"
+                                          font-family="'JetBrains Mono',monospace"
+                                          font-size="9" fill="#ff00ff"
+                                          opacity="0.35">this turn</text>
+                                    <rect x="590" y="8" width="1" height="32"
+                                          fill="#602080" opacity="0.4" />
+                                    <text x="605" y="18"
+                                          font-family="'JetBrains Mono',monospace"
+                                          font-size="7" fill="#00ffff" opacity="0.4"
+                                          letter-spacing="0.1em">REASONING DEPTH</text>
+                                    <g transform="translate(605,32)">
+                                        <rect width="8" height="8" fill="#00ffff"
+                                              opacity="0.9" />
+                                        <rect x="10" width="8" height="8" fill="#00ffff"
+                                              opacity="0.7" />
+                                        <rect x="20" width="8" height="8" fill="#00ffff"
+                                              opacity="0.5" />
+                                        <rect x="30" width="8" height="8" fill="#00ffff"
+                                              opacity="0.3" />
+                                        <rect x="40" width="8" height="8" fill="#0a1220"
+                                              stroke="#401060" stroke-width="0.5" />
+                                    </g>
+                                    <text x="660" y="40"
+                                          font-family="'JetBrains Mono',monospace"
+                                          font-size="9" fill="#00d4ff"
+                                          opacity="0.5">4/5</text>
+                                    <rect x="690" y="8" width="1" height="32"
+                                          fill="#602080" opacity="0.4" />
+                                    <text x="705" y="18"
+                                          font-family="'JetBrains Mono',monospace"
+                                          font-size="7" fill="#00ffff" opacity="0.4"
+                                          letter-spacing="0.1em">TTFT</text>
+                                    <text x="705" y="35"
+                                          font-family="'JetBrains Mono',monospace"
+                                          font-size="14" font-weight="500"
+                                          fill="#00ffff">1.2s</text>
+                                    <text x="770" y="18"
+                                          font-family="'JetBrains Mono',monospace"
+                                          font-size="7" fill="#00ffff" opacity="0.4"
+                                          letter-spacing="0.1em">TPS</text>
+                                    <text x="770" y="35"
+                                          font-family="'JetBrains Mono',monospace"
+                                          font-size="14" font-weight="500"
+                                          fill="#00ff88">84</text>
+                                    <circle cx="870" cy="24" r="3" fill="#00ffff"
+                                            opacity="0.3" class="va-atp" />
+                                    <rect width="900" height="48" fill="none"
+                                          stroke="#602080" stroke-width="1.5" />
+                                    <rect y="47" width="900" height="1" fill="#00ffff"
+                                          opacity="0.1" />
+                                </svg>
+
+                                <!-- ▓▓▓ DIVIDER: ENERGY GRADIENT ▓▓▓ -->
+                                <svg class="divider-svg"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 720 20" role="img"
+                                     aria-label="Energy Divider">
+                                    <defs>
+                                        <linearGradient id="va-d2-g" x1="0%" y1="0%"
+                                                        x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#00ffff"
+                                                  stop-opacity="0" />
+                                            <stop offset="20%" stop-color="#00ffff"
+                                                  stop-opacity="0.6" />
+                                            <stop offset="50%" stop-color="#ff00ff"
+                                                  stop-opacity="0.8" />
+                                            <stop offset="80%" stop-color="#00ffff"
+                                                  stop-opacity="0.6" />
+                                            <stop offset="100%" stop-color="#00ffff"
+                                                  stop-opacity="0" />
+                                        </linearGradient>
+                                    </defs>
+                                    <rect x="40" y="9" width="640" height="1"
+                                          fill="url(#va-d2-g)" />
+                                    <rect x="40" y="9" width="640" height="1"
+                                          fill="url(#va-d2-g)" opacity="0.3"
+                                          filter="blur(2px)" />
+                                    <!-- Terminal nodes -->
+                                    <rect x="40" y="7" width="4" height="5" rx="1"
+                                          fill="#00ffff" opacity="0.5" />
+                                    <rect x="676" y="7" width="4" height="5" rx="1"
+                                          fill="#00ffff" opacity="0.5" />
+                                </svg>
+                                <!-- ▓▓▓ MCP SERVER DASHBOARD (custom SVG) ▓▓▓ -->
+                                <svg role="img" aria-labelledby="mcp-title mcp-desc"
+                                     viewBox="0 0 900 150"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     data-hw-status="active"
+                                     data-hw-chromatic="void-cyan"
+                                     data-hw-variant="strip-instrument">
+                                    <title id="mcp-title">MCP Server Dashboard</title>
+                                    <desc id="mcp-desc">Real-time status display for 4
+                                        MCP server connections showing filesystem,
+                                        github, postgres, and web-search with latency,
+                                        call rates, and load sparklines.</desc>
+                                    <defs>
+                                        <!-- Header gradient — deeper purple with glass edge -->
+                                        <linearGradient id="hdr-grad" x1="0" y1="0"
+                                                        x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#a060d0"
+                                                  stop-opacity="0.9" />
+                                            <stop offset="40%" stop-color="#6a2098"
+                                                  stop-opacity="0.95" />
+                                            <stop offset="100%" stop-color="#3a0860"
+                                                  stop-opacity="1" />
+                                        </linearGradient>
+                                        <!-- Body subtle vignette -->
+                                        <radialGradient id="body-vig" cx="50%" cy="50%"
+                                                        r="70%">
+                                            <stop offset="0%" stop-color="#080c12" />
+                                            <stop offset="100%" stop-color="#020406" />
+                                        </radialGradient>
+                                        <!-- Cyan glow for sparklines -->
+                                        <filter id="glow-cyan" x="-20%" y="-40%"
+                                                width="140%" height="180%">
+                                            <feGaussianBlur in="SourceGraphic"
+                                                            stdDeviation="2.5"
+                                                            result="blur" />
+                                            <feColorMatrix in="blur" type="matrix"
+                                                           values="0 0 0 0 0
+                0 0.8 0 0 0.5
+                0 0 1 0 1
+                0 0 0 0.6 0" result="cyan" />
+                                            <feMerge>
+                                                <feMergeNode in="cyan" />
+                                                <feMergeNode in="SourceGraphic" />
+                                            </feMerge>
+                                        </filter>
+                                        <!-- Amber glow for warning sparkline -->
+                                        <filter id="glow-amber" x="-20%" y="-40%"
+                                                width="140%" height="180%">
+                                            <feGaussianBlur in="SourceGraphic"
+                                                            stdDeviation="2.5"
+                                                            result="blur" />
+                                            <feColorMatrix in="blur" type="matrix"
+                                                           values="0 0 0 0 1
+                0 0 0 0 0.55
+                0 0 0 0 0
+                0 0 0 0.6 0" result="amber" />
+                                            <feMerge>
+                                                <feMergeNode in="amber" />
+                                                <feMergeNode in="SourceGraphic" />
+                                            </feMerge>
+                                        </filter>
+                                        <!-- Status dot glow -->
+                                        <filter id="dot-glow" x="-100%" y="-100%"
+                                                width="300%" height="300%">
+                                            <feGaussianBlur in="SourceGraphic"
+                                                            stdDeviation="3"
+                                                            result="blur" />
+                                            <feMerge>
+                                                <feMergeNode in="blur" />
+                                                <feMergeNode in="SourceGraphic" />
+                                            </feMerge>
+                                        </filter>
+                                        <!-- Outer frame shadow -->
+                                        <filter id="frame-sh" x="-2%" y="-4%"
+                                                width="104%" height="112%">
+                                            <feDropShadow dx="0" dy="3" stdDeviation="6"
+                                                          flood-color="#000"
+                                                          flood-opacity="0.7" />
+                                        </filter>
+                                        <!-- Scan line pattern -->
+                                        <pattern id="scanlines" width="4" height="4"
+                                                 patternUnits="userSpaceOnUse">
+                                            <rect width="4" height="2" fill="#000"
+                                                  opacity="0.06" />
+                                        </pattern>
+                                        <!-- Spark area gradient -->
+                                        <linearGradient id="spark-area-cyan" x1="0"
+                                                        y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#00ffff"
+                                                  stop-opacity="0.12" />
+                                            <stop offset="100%" stop-color="#00ffff"
+                                                  stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="spark-area-amber" x1="0"
+                                                        y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#ffaa00"
+                                                  stop-opacity="0.12" />
+                                            <stop offset="100%" stop-color="#ffaa00"
+                                                  stop-opacity="0" />
+                                        </linearGradient>
+                                    </defs>
+                                    <style>
+                                        /* ── Status indicator pulses (staggered) ── */
+                                        .dot-pulse {
+                                            will-change: opacity;
+                                            animation: dotPulse 2.618s ease-in-out infinite;
+                                        }
+
+                                        .dot-pulse-d1 {
+                                            animation-delay: 0s;
+                                        }
+
+                                        .dot-pulse-d2 {
+                                            animation-delay: 0.65s;
+                                        }
+
+                                        .dot-pulse-d3 {
+                                            animation-delay: 1.3s;
+                                        }
+
+                                        @keyframes dotPulse {
+
+                                            0%,
+                                            100% {
+                                                opacity: 0.45;
+                                            }
+
+                                            50% {
+                                                opacity: 1;
+                                            }
+                                        }
+
+                                        /* ── Sparkline stroke draw-in ── */
+                                        .spark-draw {
+                                            stroke-dasharray: 200;
+                                            stroke-dashoffset: 200;
+                                            animation: drawIn 1.618s ease-out forwards;
+                                            will-change: stroke-dashoffset;
+                                        }
+
+                                        .spark-draw-d1 {
+                                            animation-delay: 0.1s;
+                                        }
+
+                                        .spark-draw-d2 {
+                                            animation-delay: 0.25s;
+                                        }
+
+                                        .spark-draw-d3 {
+                                            animation-delay: 0.4s;
+                                        }
+
+                                        .spark-draw-d4 {
+                                            animation-delay: 0.55s;
+                                        }
+
+                                        @keyframes drawIn {
+                                            to {
+                                                stroke-dashoffset: 0;
+                                            }
+                                        }
+
+                                        /* ── Header accent line shimmer ── */
+                                        .accent-shimmer {
+                                            will-change: opacity;
+                                            animation: shimmer 4.236s ease-in-out infinite;
+                                        }
+
+                                        @keyframes shimmer {
+
+                                            0%,
+                                            100% {
+                                                opacity: 0.25;
+                                            }
+
+                                            50% {
+                                                opacity: 0.6;
+                                            }
+                                        }
+
+                                        /* ── Scan overlay drift ── */
+                                        .scan-overlay {
+                                            will-change: transform;
+                                            animation: scanDrift 8s linear infinite;
+                                        }
+
+                                        @keyframes scanDrift {
+                                            from {
+                                                transform: translateY(0);
+                                            }
+
+                                            to {
+                                                transform: translateY(4px);
+                                            }
+                                        }
+
+                                        /* ── Reduced motion ── */
+                                        @media (prefers-reduced-motion: reduce) {
+
+                                            .dot-pulse,
+                                            .accent-shimmer,
+                                            .scan-overlay {
+                                                animation: none;
+                                            }
+
+                                            .dot-pulse {
+                                                opacity: 0.75;
+                                            }
+
+                                            .accent-shimmer {
+                                                opacity: 0.4;
+                                            }
+
+                                            .spark-draw {
+                                                stroke-dashoffset: 0;
+                                                animation: none;
+                                            }
+                                        }
+                                    </style>
+                                    <!-- ═══════ BACKGROUND ═══════ -->
+                                    <rect width="900" height="150" fill="url(#body-vig)"
+                                          filter="url(#frame-sh)" rx="2" />
+                                    <!-- Scan line overlay -->
+                                    <rect class="scan-overlay" width="900" height="150"
+                                          fill="url(#scanlines)" rx="2" />
+                                    <!-- ═══════ HEADER BAR ═══════ -->
+                                    <rect width="900" height="32" fill="url(#hdr-grad)"
+                                          rx="2" ry="0" />
+                                    <!-- Glass highlight edge -->
+                                    <rect y="0" width="900" height="1" fill="#fff"
+                                          opacity="0.08" rx="2" />
+                                    <!-- Accent separator -->
+                                    <rect class="accent-shimmer" y="32" width="900"
+                                          height="1" fill="#00ffff" />
+                                    <!-- Logo glyph -->
+                                    <g transform="translate(16,16) scale(0.13)">
+                                        <g fill="#00ffff" opacity="0.9">
+                                            <rect x="-55" y="-55" width="25"
+                                                  height="70" />
+                                            <rect x="-55" y="-55" width="70"
+                                                  height="25" />
+                                            <rect x="30" y="-30" width="25"
+                                                  height="70" />
+                                            <rect x="-15" y="30" width="70"
+                                                  height="25" />
+                                            <rect x="-55" y="15" width="25"
+                                                  height="40" />
+                                            <rect x="30" y="-55" width="25"
+                                                  height="25" />
+                                            <rect x="-30" y="-15" width="60"
+                                                  height="25" />
+                                        </g>
+                                        <g fill="#6a2098" opacity="0.8">
+                                            <rect x="-30" y="-30" width="35"
+                                                  height="35" />
+                                            <rect x="5" y="0" width="25" height="30" />
+                                            <rect x="-55" y="-5" width="25"
+                                                  height="20" />
+                                        </g>
+                                    </g>
+                                    <!-- Header text -->
+                                    <text x="36" y="20"
+                                          font-family="'JetBrains Mono','SF Mono',monospace"
+                                          font-size="10" font-weight="600"
+                                          fill="#00ffff" letter-spacing="0.1em"
+                                          opacity="0.95">MCP SERVER CONNECTIONS</text>
+                                    <text x="858" y="20"
+                                          font-family="'JetBrains Mono','SF Mono',monospace"
+                                          font-size="9" fill="#00ff88" opacity="0.55"
+                                          text-anchor="end">4 CONNECTED</text>
+                                    <!-- ═══════ TABLE BODY ═══════ -->
+                                    <g
+                                       font-family="'JetBrains Mono','SF Mono',monospace">
+                                        <!-- Column headers -->
+                                        <text x="200" y="44" font-size="6.5"
+                                              fill="#00ffff" opacity="0.3"
+                                              letter-spacing="0.12em"
+                                              font-weight="500">TRANSPORT</text>
+                                        <text x="300" y="44" font-size="6.5"
+                                              fill="#00ffff" opacity="0.3"
+                                              letter-spacing="0.12em"
+                                              font-weight="500">TOOLS</text>
+                                        <text x="420" y="44" font-size="6.5"
+                                              fill="#00ffff" opacity="0.3"
+                                              letter-spacing="0.12em"
+                                              font-weight="500">LATENCY</text>
+                                        <text x="540" y="44" font-size="6.5"
+                                              fill="#00ffff" opacity="0.3"
+                                              letter-spacing="0.12em"
+                                              font-weight="500">CALLS/MIN</text>
+                                        <text x="650" y="44" font-size="6.5"
+                                              fill="#00ffff" opacity="0.3"
+                                              letter-spacing="0.12em"
+                                              font-weight="500">LOAD (5m)</text>
+                                        <!-- ── Row 1: filesystem ── -->
+                                        <circle cx="24" cy="56" r="4" fill="#00ff88"
+                                                filter="url(#dot-glow)"
+                                                class="dot-pulse dot-pulse-d1" />
+                                        <text x="40" y="59" font-size="11"
+                                              font-weight="600"
+                                              fill="#00ffff">filesystem</text>
+                                        <text x="200" y="59" font-size="9"
+                                              fill="#00d4ff" opacity="0.5">stdio</text>
+                                        <text x="300" y="59" font-size="9"
+                                              fill="#00d4ff" opacity="0.4">12
+                                            tools</text>
+                                        <text x="420" y="59" font-size="9"
+                                              fill="#00ff88" opacity="0.65">4ms</text>
+                                        <text x="540" y="59" font-size="9"
+                                              fill="#00d4ff" opacity="0.5">847</text>
+                                        <rect x="16" y="68" width="868" height="1"
+                                              fill="#602080" opacity="0.12" />
+                                        <!-- Sparkline 1: filesystem (high frequency, animated) -->
+                                        <g filter="url(#glow-cyan)">
+                                            <path class="spark-draw spark-draw-d1"
+                                                  fill="none" stroke="#00ffff"
+                                                  stroke-width="1.5"
+                                                  stroke-linecap="round"
+                                                  stroke-linejoin="round" opacity="0.7"
+                                                  d="M650,60 C656,57 660,54 665,56 C670,58 676,60 680,58 C684,56 690,51 695,52 C700,53 706,55 710,54 C714,53 720,49 725,50 C730,51 736,47 740,48 C744,49 750,53 755,52 C760,51 766,45 770,46 C774,47 780,51 785,50" />
+                                        </g>
+                                        <!-- ── Row 2: github ── -->
+                                        <circle cx="24" cy="84" r="4" fill="#00ff88"
+                                                filter="url(#dot-glow)"
+                                                class="dot-pulse dot-pulse-d2" />
+                                        <text x="40" y="87" font-size="11"
+                                              font-weight="600"
+                                              fill="#00ffff">github</text>
+                                        <text x="200" y="87" font-size="9"
+                                              fill="#00d4ff" opacity="0.5">sse</text>
+                                        <text x="300" y="87" font-size="9"
+                                              fill="#00d4ff" opacity="0.4">8
+                                            tools</text>
+                                        <text x="420" y="87" font-size="9"
+                                              fill="#00ff88" opacity="0.65">120ms</text>
+                                        <text x="540" y="87" font-size="9"
+                                              fill="#00d4ff" opacity="0.5">23</text>
+                                        <rect x="16" y="96" width="868" height="1"
+                                              fill="#602080" opacity="0.12" />
+                                        <!-- Sparkline 2: github (gentle, low frequency) -->
+                                        <g filter="url(#glow-cyan)">
+                                            <path class="spark-draw spark-draw-d2"
+                                                  fill="none" stroke="#00ffff"
+                                                  stroke-width="1.5"
+                                                  stroke-linecap="round"
+                                                  stroke-linejoin="round" opacity="0.7"
+                                                  d="M650,88 C656,87 660,85 665,86 C670,87 676,84 680,84 C684,85 690,87 695,86 C700,85 706,83 710,82 C714,83 720,86 725,85 C730,84 736,82 740,83 C744,84 750,81 755,80 C760,81 766,85 770,84 C774,83 780,81 785,82" />
+                                        </g>
+                                        <!-- ── Row 3: postgres (warning state) ── -->
+                                        <circle cx="24" cy="112" r="4" fill="#ffaa00"
+                                                filter="url(#dot-glow)" />
+                                        <circle cx="24" cy="112" r="6" fill="none"
+                                                stroke="#ffaa00" stroke-width="0.5"
+                                                opacity="0.3">
+                                            <animate attributeName="r" values="6;10;6"
+                                                     dur="2.618s"
+                                                     repeatCount="indefinite" />
+                                            <animate attributeName="opacity"
+                                                     values="0.3;0;0.3" dur="2.618s"
+                                                     repeatCount="indefinite" />
+                                        </circle>
+                                        <text x="40" y="115" font-size="11"
+                                              font-weight="600"
+                                              fill="#00ffff">postgres</text>
+                                        <text x="200" y="115" font-size="9"
+                                              fill="#00d4ff" opacity="0.5">stdio</text>
+                                        <text x="300" y="115" font-size="9"
+                                              fill="#00d4ff" opacity="0.4">6
+                                            tools</text>
+                                        <text x="420" y="115" font-size="9"
+                                              fill="#ffaa00" opacity="0.7">340ms
+                                            ⚠</text>
+                                        <text x="540" y="115" font-size="9"
+                                              fill="#ffaa00" opacity="0.5">156</text>
+                                        <rect x="16" y="124" width="868" height="1"
+                                              fill="#602080" opacity="0.12" />
+                                        <!-- Sparkline 3: postgres (volatile, amber warning) -->
+                                        <g filter="url(#glow-amber)">
+                                            <path class="spark-draw spark-draw-d3"
+                                                  fill="none" stroke="#ffaa00"
+                                                  stroke-width="1.5"
+                                                  stroke-linecap="round"
+                                                  stroke-linejoin="round" opacity="0.7"
+                                                  d="M650,116 C656,112 660,108 665,110 C670,112 676,116 680,114 C684,110 690,104 695,106 C700,110 706,114 710,112 C714,108 720,106 725,108 C730,112 736,120 740,118 C744,114 750,102 755,104 C760,108 766,118 770,116 C774,112 780,108 785,110" />
+                                        </g>
+                                        <!-- ── Row 4: web-search ── -->
+                                        <circle cx="24" cy="134" r="4" fill="#00ff88"
+                                                filter="url(#dot-glow)"
+                                                class="dot-pulse dot-pulse-d3" />
+                                        <text x="40" y="137" font-size="11"
+                                              font-weight="600"
+                                              fill="#00ffff">web-search</text>
+                                        <text x="200" y="137" font-size="9"
+                                              fill="#00d4ff" opacity="0.5">sse</text>
+                                        <text x="300" y="137" font-size="9"
+                                              fill="#00d4ff" opacity="0.4">3
+                                            tools</text>
+                                        <text x="420" y="137" font-size="9"
+                                              fill="#00ff88" opacity="0.65">89ms</text>
+                                        <text x="540" y="137" font-size="9"
+                                              fill="#00d4ff" opacity="0.5">412</text>
+                                        <!-- Sparkline 4: web-search (smooth, steady) -->
+                                        <g filter="url(#glow-cyan)">
+                                            <path class="spark-draw spark-draw-d4"
+                                                  fill="none" stroke="#00ffff"
+                                                  stroke-width="1.5"
+                                                  stroke-linecap="round"
+                                                  stroke-linejoin="round" opacity="0.7"
+                                                  d="M650,136 C656,134 660,132 665,132 C670,133 676,135 680,134 C684,133 690,131 695,130 C700,131 706,134 710,133 C714,132 720,130 725,131 C730,132 736,130 740,129 C744,130 750,133 755,132 C760,131 766,127 770,128 C774,129 780,131 785,130" />
+                                        </g>
+                                    </g>
+                                    <!-- ═══════ Vertical column separators ═══════ -->
+                                    <line x1="190" y1="38" x2="190" y2="148"
+                                          stroke="#602080" stroke-width="0.5"
+                                          opacity="0.15" />
+                                    <line x1="290" y1="38" x2="290" y2="148"
+                                          stroke="#602080" stroke-width="0.5"
+                                          opacity="0.15" />
+                                    <line x1="410" y1="38" x2="410" y2="148"
+                                          stroke="#602080" stroke-width="0.5"
+                                          opacity="0.15" />
+                                    <line x1="530" y1="38" x2="530" y2="148"
+                                          stroke="#602080" stroke-width="0.5"
+                                          opacity="0.15" />
+                                    <line x1="640" y1="38" x2="640" y2="148"
+                                          stroke="#602080" stroke-width="0.5"
+                                          opacity="0.15" />
+                                    <!-- ═══════ FRAME ═══════ -->
+                                    <rect width="900" height="150" fill="none"
+                                          stroke="#602080" stroke-width="1.5" rx="2" />
+                                    <!-- Inner highlight edge (top) -->
+                                    <rect x="1" y="1" width="898" height="148"
+                                          fill="none" stroke="#fff" stroke-width="0.5"
+                                          opacity="0.03" rx="2" />
+                                </svg>
+                                <!-- ▓▓▓ DIVIDER: ENERGY GRADIENT ▓▓▓ -->
+                                <svg class="divider-svg"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 720 20" role="img"
+                                     aria-label="Energy Divider">
+                                    <defs>
+                                        <linearGradient id="va-d2-g" x1="0%" y1="0%"
+                                                        x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#00ffff"
+                                                  stop-opacity="0" />
+                                            <stop offset="20%" stop-color="#00ffff"
+                                                  stop-opacity="0.6" />
+                                            <stop offset="50%" stop-color="#ff00ff"
+                                                  stop-opacity="0.8" />
+                                            <stop offset="80%" stop-color="#00ffff"
+                                                  stop-opacity="0.6" />
+                                            <stop offset="100%" stop-color="#00ffff"
+                                                  stop-opacity="0" />
+                                        </linearGradient>
+                                    </defs>
+                                    <rect x="40" y="9" width="640" height="1"
+                                          fill="url(#va-d2-g)" />
+                                    <rect x="40" y="9" width="640" height="1"
+                                          fill="url(#va-d2-g)" opacity="0.3"
+                                          filter="blur(2px)" />
+                                    <!-- Terminal nodes -->
+                                    <rect x="40" y="7" width="4" height="5" rx="1"
+                                          fill="#00ffff" opacity="0.5" />
+                                    <rect x="676" y="7" width="4" height="5" rx="1"
+                                          fill="#00ffff" opacity="0.5" />
+                                </svg>
+                            </div>
+                        </div><!-- /tab-abyssos -->
                     </div>
                     <span class="compositor-label">One Theme DNA → Every artifact type —
                         Self-contained, self-describing, self-evolving</span>
-                </div><!-- /surface-readme -->
+                </div>
+                <!-- /surface-readme -->
                 <!-- SURFACE: Research (Academic Papers) -->
                 <div class="surface-content" id="surface-research" role="tabpanel">
                     <div class="compositor-demo">
@@ -5877,18 +5968,7 @@
                                         <stop offset="100%" stop-color="#dc2626"
                                               stop-opacity=".03" />
                                     </linearGradient>
-                                    <filter id="t2-tx-spec" x="-2%" y="-3%" width="104%"
-                                            height="108%">
-                                        <feSpecularLighting in="SourceAlpha" result="sp"
-                                                            specularConstant=".6"
-                                                            specularExponent="30"
-                                                            lighting-color="#FFFFFF">
-                                            <fePointLight x="400" y="-50" z="200" />
-                                        </feSpecularLighting>
-                                        <feComposite in="SourceGraphic" in2="sp"
-                                                     operator="arithmetic" k1="0" k2="1"
-                                                     k3=".03" k4="0" />
-                                    </filter>
+                                    <!-- Subtle top-light removed — clean flat surface -->
                                     <marker id="t2-tx-arr" viewBox="0 0 8 6" refX="8"
                                             refY="3" markerWidth="8" markerHeight="6"
                                             orient="auto-start-reverse">
@@ -5970,7 +6050,7 @@
                                 </style>
                                 <!-- Frame -->
                                 <rect width="900" height="400" rx="6"
-                                      fill="url(#t2-tx-bg)" filter="url(#t2-tx-spec)" />
+                                      fill="url(#t2-tx-bg)" />
                                 <rect x=".5" y=".5" width="899" height="399" rx="6"
                                       fill="none" stroke="rgba(255,255,255,.05)"
                                       stroke-width="1" />
@@ -6192,7 +6272,7 @@
                                           transform="rotate(-90, 247, 162)">N×</text>
                                 </g>
                                 <!-- Output head -->
-                                <g transform="translate(480, 42)">
+                                <g transform="translate(480, 20)">
                                     <rect x="55" y="0" width="130" height="16" rx="2"
                                           fill="url(#t2-tx-crim)" fill-opacity=".8" />
                                     <text x="120" y="11" fill="rgba(255,255,255,.9)"
@@ -6200,11 +6280,11 @@
                                           font-family="ui-monospace,monospace"
                                           font-size="6" font-weight="600"
                                           letter-spacing="1">LINEAR + SOFTMAX</text>
-                                    <line x1="120" y1="16" x2="120" y2="26"
+                                    <line x1="120" y1="16" x2="120" y2="62"
                                           stroke="#B31B1B" stroke-opacity=".4" />
                                 </g>
                                 <!-- Output label -->
-                                <text class="t2-txd" x="600" y="36" text-anchor="middle"
+                                <text class="t2-txd" x="600" y="16" text-anchor="middle"
                                       font-family="ui-monospace,monospace" font-size="6"
                                       letter-spacing="1">OUTPUT PROBABILITIES</text>
                                 <!-- Decoder Input -->
@@ -6958,6 +7038,9 @@
                         body.classList.add('surface-research');
                     }
                 }
+                // Reset scroll position on the section we're arriving at
+                const incomingCard = sections[index].querySelector('.ontology-card');
+                if (incomingCard) incomingCard.scrollTop = 0;
                 sections[prev].classList.remove('active');
                 sections[index].classList.add('active');
                 navGlyphs[prev].classList.remove('active');
@@ -7018,27 +7101,30 @@
         let wheelAccum = 0;
         let wheelTimeout = null;
         const WHEEL_THRESHOLD = 120;
-        const sec2CardEl = document.querySelector('#sec-2 .ontology-card');
 
         window.addEventListener('wheel', (e) => {
             if (state.locked || isMobile) return;
 
-            // Scroll trapping: when on sec-2, let the compositor card scroll naturally
-            // Only trigger section nav when the card hits its scroll boundary
-            if (state.idx === 2 && sec2CardEl) {
-                const isInsideCard = sec2CardEl.contains(e.target);
-                if (isInsideCard) {
-                    const atTop = sec2CardEl.scrollTop <= 1;
-                    const atBottom = sec2CardEl.scrollTop + sec2CardEl.clientHeight >= sec2CardEl.scrollHeight - 2;
-                    const scrollingDown = e.deltaY > 0;
-                    const scrollingUp = e.deltaY < 0;
+            // Scroll trapping: for ANY section, let scrollable ontology cards scroll naturally.
+            // Only trigger section nav when the card hits its scroll boundary.
+            const activeSection = sections[state.idx];
+            if (activeSection) {
+                const cardEl = activeSection.querySelector('.ontology-card');
+                if (cardEl && cardEl.scrollHeight > cardEl.clientHeight + 2) {
+                    const isInsideCard = cardEl.contains(e.target);
+                    if (isInsideCard) {
+                        const atTop = cardEl.scrollTop <= 1;
+                        const atBottom = cardEl.scrollTop + cardEl.clientHeight >= cardEl.scrollHeight - 2;
+                        const scrollingDown = e.deltaY > 0;
+                        const scrollingUp = e.deltaY < 0;
 
-                    // Card can still scroll in this direction — consume event
-                    if ((scrollingDown && !atBottom) || (scrollingUp && !atTop)) {
-                        wheelAccum = 0; // reset accumulation
-                        return;
+                        // Card can still scroll in this direction — consume event
+                        if ((scrollingDown && !atBottom) || (scrollingUp && !atTop)) {
+                            wheelAccum = 0;
+                            return;
+                        }
+                        // At boundary — fall through to section nav
                     }
-                    // At boundary — fall through to section nav but require extra threshold
                 }
             }
 
