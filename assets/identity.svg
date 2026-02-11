@@ -1,0 +1,119 @@
+<svg role="img" aria-labelledby="auroraTitle auroraDesc" viewBox="0 0 460 340"
+     xmlns="http://www.w3.org/2000/svg" xmlns:hw="https://hyperweave.dev/hw/v1.0">
+    <title id="auroraTitle">Aurora Borealis Material Substrate</title>
+    <desc id="auroraDesc">Animated substrate simulating charged particle curtains in
+        Earth's magnetosphere, rendered with green and magenta specular lighting over
+        fractal noise. Style-tag-free isomorphic variant.</desc>
+    <metadata>
+        <hw:artifact type="material-substrate" series="cold-spectrum"
+                     version="1.1-no-style">
+            <hw:source>callout-set-01-cold.html#aurora-borealis</hw:source>
+            <hw:provenance>
+                <hw:generator>Claude Opus 4.6 (LAB) [claude-opus-4-6]</hw:generator>
+                <hw:created>2026-02-10</hw:created>
+                <hw:human-directed>true</hw:human-directed>
+            </hw:provenance>
+            <hw:reasoning>
+                <hw:intent>Isomorphic rebuild of Aurora Borealis substrate eliminating
+                    all
+                    style-tag dependency for maximum portability across restrictive
+                    renderers that
+                    strip style blocks</hw:intent>
+                <hw:approach>Converted CSS keyframe breathe animation to SMIL animate on
+                    opacity; moved all class-based styling to presentation attributes
+                    and inline
+                    style; retained dual-layer specular filter architecture unchanged
+                </hw:approach>
+                <hw:tradeoffs>Lost @media (prefers-reduced-motion: reduce) — cannot
+                    express
+                    media queries without a style block; accepted this for total
+                    style-tag
+                    independence; will-change hint preserved as inline style; no
+                    prefers-color-scheme adaptation possible without stylesheet context
+                </hw:tradeoffs>
+            </hw:reasoning>
+            <hw:extra>Style-free SVG pattern: SMIL animate is the only animation
+                primitive
+                available without a style tag. For reduced-motion support without style
+                blocks,
+                a future approach could use JavaScript-based matchMedia — but that
+                violates Zero
+                Dependencies doctrine. This is the irreducible tradeoff.</hw:extra>
+            <hw:spec size="460x340" performance="compositor-ok" theme="dark"
+                     a11y="WCAG-AA-partial" />
+        </hw:artifact>
+    </metadata>
+    <defs>
+        <!-- Primary aurora filter: green specular caustics -->
+        <filter id="aurora-primary" x="0%" y="0%" width="100%" height="100%"
+                color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.008 0.002" numOctaves="4"
+                          seed="19" result="noise">
+                <animate attributeName="baseFrequency"
+                         values="0.008 0.002;0.012 0.004;0.008 0.002" dur="15s"
+                         repeatCount="indefinite" />
+            </feTurbulence>
+            <feGaussianBlur in="noise" stdDeviation="6" result="blurred" />
+            <feSpecularLighting in="blurred" surfaceScale="28" specularConstant="1"
+                                specularExponent="35" lighting-color="#00FF87"
+                                result="specular">
+                <fePointLight x="100" y="80" z="200">
+                    <animate attributeName="x" values="100;360;100" dur="18s"
+                             repeatCount="indefinite" />
+                    <animate attributeName="y" values="80;260;80" dur="18s"
+                             repeatCount="indefinite" />
+                </fePointLight>
+            </feSpecularLighting>
+            <feComposite in="specular" in2="SourceGraphic" operator="in" />
+        </filter>
+        <!-- Secondary aurora filter: magenta specular caustics -->
+        <filter id="aurora-secondary" x="0%" y="0%" width="100%" height="100%"
+                color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.008 0.002" numOctaves="4"
+                          seed="73" result="noise2">
+                <animate attributeName="baseFrequency"
+                         values="0.008 0.002;0.014 0.005;0.008 0.002" dur="21s"
+                         repeatCount="indefinite" />
+            </feTurbulence>
+            <feGaussianBlur in="noise2" stdDeviation="6" result="blurred2" />
+            <feSpecularLighting in="blurred2" surfaceScale="28" specularConstant="1"
+                                specularExponent="35" lighting-color="#FF00FF"
+                                result="specular2">
+                <fePointLight x="360" y="260" z="180">
+                    <animate attributeName="x" values="360;100;360" dur="21s"
+                             repeatCount="indefinite" />
+                    <animate attributeName="y" values="260;80;260" dur="21s"
+                             repeatCount="indefinite" />
+                </fePointLight>
+            </feSpecularLighting>
+            <feComposite in="specular2" in2="SourceGraphic" operator="in" />
+        </filter>
+    </defs>
+    <!-- Background -->
+    <rect width="460" height="340" rx="16" fill="#050816" />
+    <!-- Primary aurora layer -->
+    <rect width="460" height="340" rx="16" fill="#00FF87" opacity="0.55"
+          filter="url(#aurora-primary)" style="will-change: opacity;" />
+    <!-- Secondary aurora layer (breathe via SMIL) -->
+    <rect width="460" height="340" rx="16" fill="#FF00FF" opacity="0.3"
+          filter="url(#aurora-secondary)"
+          style="will-change: opacity; mix-blend-mode: screen;">
+        <animate attributeName="opacity" values="0.3;0.45;0.3" dur="4.236s"
+                 calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"
+                 repeatCount="indefinite" />
+    </rect>
+    <!-- Centered glyph -->
+    <text x="230" y="135" text-anchor="middle" dominant-baseline="central"
+          font-family="system-ui, -apple-system, sans-serif" font-size="56"
+          fill="#ffffff" opacity="0.8" style="mix-blend-mode: screen;">INNERAURA</text>
+    <!-- LABS -->
+    <text x="230" y="195" text-anchor="middle" dominant-baseline="central"
+          font-family="system-ui, -apple-system, sans-serif" font-size="56"
+          fill="#ffffff" opacity="0.8" style="mix-blend-mode: screen;">LABS</text>
+    <!-- LABS -->
+    <!-- Substrate name watermark -->
+    <text x="230" y="260" text-anchor="middle"
+          font-family="system-ui, -apple-system, sans-serif" font-size="14"
+          fill="#ffffff" opacity="0.3" letter-spacing="0.08em">Visual Infrastructure for
+        the Agentic Era</text>
+</svg>
