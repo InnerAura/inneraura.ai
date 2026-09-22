@@ -1,0 +1,25 @@
+# InnerAura Labs
+
+> InnerAura Labs builds HyperWeave, an open-source visual artifact compiler for AI agents. Structured agent output compiles into deterministic diagrams, tables, and charts that people can see and agents can read back, change, and verify.
+
+Agents supply structure, not coordinates. HyperWeave measures the content, picks a layout, and draws the connections. Identical input produces identical output.
+
+Each artifact carries its own spec, so agents can read it back, diff it, and verify it instead of redrawing from scratch. One source renders as SVG (self-contained, no JavaScript, embeds in READMEs and docs like any image), ANSI for terminals, or PNG/WebP.
+
+Makes diagrams (twelve types, including pipelines, DAGs, trees, sequence diagrams, and state machines), tables, and charts. Interfaces: MCP server, CLI, HTTP API, and Agent Skill.
+
+## HyperWeave
+
+- [README](https://raw.githubusercontent.com/InnerAura/hyperweave/main/README.md): install, usage, and every artifact type
+- [GitHub repository](https://github.com/InnerAura/hyperweave): source and examples
+- [PyPI package](https://pypi.org/project/hyperweave/): `pip install hyperweave`
+
+## Company
+
+- [Homepage (Markdown)](https://inneraura.ai/index.md): what HyperWeave is and why it exists
+
+## Optional
+
+- [Discord](https://discord.gg/wVmcAZPQZ8): community
+- [X](https://x.com/InnerAuraLabs): announcements
+- [LinkedIn](https://www.linkedin.com/company/inneraura): company page

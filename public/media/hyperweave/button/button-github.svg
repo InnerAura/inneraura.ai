@@ -1,0 +1,450 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:hw="https://hyperweave.app/hw/v1.0"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     role="img"
+     aria-labelledby="title desc"
+     viewBox="0 0 236 56"
+     width="236" height="56"
+     preserveAspectRatio="xMinYMid meet"
+     style="display:block;margin:0;max-width:100%;height:auto;background:transparent"
+     data-hw-component="button-return"
+     data-hw-chromatic="noctilucent-ice"
+     data-hw-variant="pure-monolith-flush"
+     data-hw-status="active"
+     data-hw-regime="normal"
+     data-protocol="hw-v1">
+  <title id="title">GitHub — Noctilucent Vector</title>
+  <desc id="desc">HyperWeave GitHub button. Swept cryogenic vector arrow on the noctilucent ice plate.</desc>
+
+  <metadata>
+    <hw:artifact id="button-return-flush0a2b4c6e" type="button-return" series="hyperweave-identity" version="hand/2026-09-17"
+                 xmlns:hw="https://hyperweave.app/hw/v1.0">
+      <hw:provenance>
+        <hw:generator>Claude Aesthetic Engine (InnerAura Labs) [claude-opus-5]</hw:generator>
+        <hw:created>2026-09-17T06:50:00.000000+00:00</hw:created>
+        <hw:human-directed>true</hw:human-directed>
+      </hw:provenance>
+      <hw:spec size="236x56" performance="paint-ok" theme="adaptive" a11y="WCAG-AA" platform="github-readme"/>
+    </hw:artifact>
+
+    <hw:composition xmlns:hw="https://hyperweave.app/hw/v1.0">
+      <hw:frame>button-return</hw:frame>
+      <hw:genome>noctilucent-ice@6.0.0</hw:genome>
+      <hw:variant>pure-monolith-flush</hw:variant>
+      <hw:derivation from="button-return-9c84e1b2f0a35d71"/>
+      <hw:profile>plate</hw:profile>
+      <hw:stratum>002-TRIBE</hw:stratum>
+      <hw:slots>
+        <hw:slot id="action-label" source="return/label"/>
+        <hw:slot id="action-vector" source="return/glyph-arrow"/>
+      </hw:slots>
+      <hw:environment platform="github-readme" motion="ambient" status="active"/>
+    </hw:composition>
+
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+             xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <rdf:Description>
+        <dc:title>GitHub — Noctilucent Vector</dc:title>
+        <dc:creator>Claude Aesthetic Engine (InnerAura Labs) [claude-opus-5]</dc:creator>
+        <dc:date>2026-09-17T06:50:00.000000+00:00</dc:date>
+        <dc:rights>CC-BY-4.0</dc:rights>
+      </rdf:Description>
+    </rdf:RDF>
+
+    <hw:aesthetic xmlns:hw="https://hyperweave.app/hw/v1.0">
+      <hw:chromatic system="noctilucent-ice" space="oklch" palette="pure-monolith-flush"
+                    contrast-ratio="16.4:1" measured-floor="5.12:1"
+                    phenomenology="Zero-padding cryogenic action plate; swept electric arrow aligned flush with typography"/>
+      <hw:motion vocabulary="fluid-caustic-drift incommensurate-shear" physics="oscillation"
+                 timing="phi" duration-base="3.236s" stagger-regime="contemplative"
+                 cim-compliant="false"/>
+      <hw:geometry form-language="angular-soft" corner-radius="16px" grid="1px-pitch"
+                   proportional-system="root2" mathematical-basis="golden-ratio"
+                   symmetry="bilateral"/>
+      <hw:typography stack="Inter, 'SF Pro Display', system-ui, sans-serif" hierarchy="15/19"
+                     weight-range="500-700" metrics-method="lut" delivery="system"/>
+      <hw:material surface="matte" depth="deep" texture="bayer-8x8-ordered-dither"/>
+    </hw:aesthetic>
+
+    <hw:chromatic-surface xmlns:hw="https://hyperweave.app/hw/v1.0">
+      <hw:zone id="chassis" capability="chromatic-override" tokens="--dna-ground --dna-surface --dna-hairline"/>
+      <hw:zone id="ice-stream" capability="categorical" key="state" count="6"
+               tokens="--dna-ice-0 --dna-ice-1 --dna-ice-2 --dna-ice-3 --dna-ice-4 --dna-ice-5"
+               reason="Discrete quantized LUT reproducing cryogenic liquid isotherms"/>
+      <hw:zone id="vector-arrow" capability="status-color" tokens="--dna-arrow-stroke --dna-arrow-head"
+               reason="Swept return vector rendered in directional arctic gradient"/>
+    </hw:chromatic-surface>
+
+    <hw:reasoning xmlns:hw="https://hyperweave.app/hw/v1.0">
+      <hw:intent>Crop the artifact viewport to the exact outer perimeter (236x56) to eliminate dead whitespace that was breaking Markdown typography flow and causing indentation offset.</hw:intent>
+      <hw:approach>All internal coordinates are normalized by (-12px, -12px). The outer bezel is anchored at (0.5, 0.5) with width 235 and height 55, ensuring stroke boundaries touch the canvas margin with zero lateral or vertical offset. Text and arrow are re-centered symmetrically within the 224px surface plate.</hw:approach>
+      <hw:tradeoffs>Tight canvas crop leaves 0px overflow buffer for external drop shadows; glow and caustics are strictly contained within the perimeter moat.</hw:tradeoffs>
+      <hw:constraints-applied>zero-js, zero-padding, markdown-flush, adaptive-theme, phi-timing, smil-filter-currents, wcag-aa-gated</hw:constraints-applied>
+      <hw:spatial-notes>Canvas 236x56; outer frame at x0.5 y0.5 w235 h55 rx15.5; surface plate at x6 y6 w224 h44 rx10; hairline at x9 y9 w218 h38 rx7; word anchor x93 y34; arrow origin x149 y40; arrow tip x173 y12.</hw:spatial-notes>
+    </hw:reasoning>
+
+    <hw:spatial-trace xmlns:hw="https://hyperweave.app/hw/v1.0">
+      <hw:geometry-type>rectangular</hw:geometry-type>
+      <hw:bounding-box x="0" y="0" width="236" height="56"/>
+      <hw:content-box x="0" y="0" width="236" height="56"/>
+      <hw:animated-properties>dx dy scale</hw:animated-properties>
+      <hw:animation-count>8</hw:animation-count>
+      <hw:timing-signature dur="11.090s" min-dur="11.090s" easing="spline" repeat="indefinite"/>
+      <hw:motion-class primary="oscillation">fluid-shear</hw:motion-class>
+      <hw:stroke-topology><hw:perimeter>584px</hw:perimeter><hw:layers>3</hw:layers></hw:stroke-topology>
+      <hw:performance-tier>paint-ok</hw:performance-tier>
+      <hw:cim-compliant>false</hw:cim-compliant>
+    </hw:spatial-trace>
+
+    <hw:topology xmlns:hw="https://hyperweave.app/hw/v1.0">
+      <hw:manifold type="euclidean" elasticity="0.0">
+        <hw:aspect-lock>true</hw:aspect-lock>
+      </hw:manifold>
+      <hw:flow-field>
+        <hw:vector type="perimeter-trace" direction="bidirectional"/>
+        <hw:energy-source>transform-rotation</hw:energy-source>
+      </hw:flow-field>
+      <hw:zones>
+        <hw:zone id="action-plate" shape="rect" capability="chromatic-override"/>
+        <hw:zone id="moat-trench" shape="perimeter" capability="text-injection"/>
+        <hw:zone id="vector-locus" shape="path" capability="status-color"/>
+      </hw:zones>
+      <hw:parameters>
+        <hw:param name="arrow-weight" target="path.arrow-stem" min="2.4" max="4.0" default="3.2" mapping="linear"/>
+      </hw:parameters>
+    </hw:topology>
+  </metadata>
+
+  <defs>
+    <!-- ═══ PHI-TIMED DISPLACEMENT STRATUM (DARK A) ═══ -->
+    <filter id="dk-lo" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.032" numOctaves="2" seed="53" result="w0"/>
+      <feOffset in="w0" result="w">
+        <animate attributeName="dx" values="0;-40;20;-60;-25;0" dur="17.944s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+        <animate attributeName="dy" values="0;15;-12;20;-4;0" dur="11.090s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+      </feOffset>
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="4" seed="907" result="t0"/>
+      <feOffset in="t0" result="t">
+        <animate attributeName="dx" values="0;30;-10;45;15;0" dur="41.888s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+        <animate attributeName="dy" values="0;-8;5;-12;3;0" dur="26.180s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+      </feOffset>
+      <feDisplacementMap in="t" in2="w" scale="16" xChannelSelector="R" yChannelSelector="G" result="tw">
+        <animate attributeName="scale" values="16;28;18;32;20;16" dur="29.034s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+      </feDisplacementMap>
+      <feColorMatrix in="tw" type="matrix" values="0.34 0.33 0.33 0 0  0.34 0.33 0.33 0 0  0.34 0.33 0.33 0 0  0 0 0 0 1" result="h"/>
+      <feComponentTransfer in="h" result="s">
+        <feFuncR type="linear" slope="2.4" intercept="-0.78"/>
+        <feFuncG type="linear" slope="2.4" intercept="-0.78"/>
+        <feFuncB type="linear" slope="2.4" intercept="-0.78"/>
+      </feComponentTransfer>
+      <feComponentTransfer in="s" result="q">
+        <feFuncR type="discrete" tableValues="0.043 0.420 0.910 0.624 0.239 0.420"/>
+        <feFuncG type="discrete" tableValues="0.063 0.247 0.949 0.776 0.353 0.247"/>
+        <feFuncB type="discrete" tableValues="0.188 0.627 1.000 0.961 0.945 0.627"/>
+      </feComponentTransfer>
+      <feComposite in="q" in2="SourceGraphic" operator="in"/>
+    </filter>
+
+    <!-- ═══ PHI-TIMED DISPLACEMENT STRATUM (DARK B / DITHER COMPONENT) ═══ -->
+    <filter id="dk-loA" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.032" numOctaves="2" seed="53" result="w0"/>
+      <feOffset in="w0" result="w">
+        <animate attributeName="dx" values="0;45;-15;70;30;0" dur="21.531s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+        <animate attributeName="dy" values="0;-16;10;-22;6;0" dur="13.708s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+      </feOffset>
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="4" seed="907" result="t0"/>
+      <feOffset in="t0" result="t">
+        <animate attributeName="dx" values="0;-25;14;-38;6;0" dur="55.424s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+        <animate attributeName="dy" values="0;10;-6;12;-3;0" dur="33.874s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+      </feOffset>
+      <feDisplacementMap in="t" in2="w" scale="20" xChannelSelector="R" yChannelSelector="G" result="tw">
+        <animate attributeName="scale" values="20;34;22;38;24;20" dur="36.265s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+      </feDisplacementMap>
+      <feColorMatrix in="tw" type="matrix" values="0.34 0.33 0.33 0 0  0.34 0.33 0.33 0 0  0.34 0.33 0.33 0 0  0 0 0 0 1" result="h"/>
+      <feComponentTransfer in="h" result="s">
+        <feFuncR type="linear" slope="2.4" intercept="-0.68"/>
+        <feFuncG type="linear" slope="2.4" intercept="-0.68"/>
+        <feFuncB type="linear" slope="2.4" intercept="-0.68"/>
+      </feComponentTransfer>
+      <feComponentTransfer in="s" result="q">
+        <feFuncR type="discrete" tableValues="0.043 0.420 0.910 0.624 0.239 0.420"/>
+        <feFuncG type="discrete" tableValues="0.063 0.247 0.949 0.776 0.353 0.247"/>
+        <feFuncB type="discrete" tableValues="0.188 0.627 1.000 0.961 0.945 0.627"/>
+      </feComponentTransfer>
+      <feComposite in="q" in2="SourceGraphic" operator="in"/>
+    </filter>
+
+    <!-- ═══ PHI-TIMED DISPLACEMENT STRATUM (LIGHT A) ═══ -->
+    <filter id="lt-lo" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.032" numOctaves="2" seed="53" result="w0"/>
+      <feOffset in="w0" result="w">
+        <animate attributeName="dx" values="0;-40;20;-60;-25;0" dur="17.944s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+        <animate attributeName="dy" values="0;15;-12;20;-4;0" dur="11.090s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+      </feOffset>
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="4" seed="907" result="t0"/>
+      <feOffset in="t0" result="t">
+        <animate attributeName="dx" values="0;30;-10;45;15;0" dur="41.888s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+        <animate attributeName="dy" values="0;-8;5;-12;3;0" dur="26.180s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+      </feOffset>
+      <feDisplacementMap in="t" in2="w" scale="16" xChannelSelector="R" yChannelSelector="G" result="tw">
+        <animate attributeName="scale" values="16;28;18;32;20;16" dur="29.034s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+      </feDisplacementMap>
+      <feColorMatrix in="tw" type="matrix" values="0.34 0.33 0.33 0 0  0.34 0.33 0.33 0 0  0.34 0.33 0.33 0 0  0 0 0 0 1" result="h"/>
+      <feComponentTransfer in="h" result="s">
+        <feFuncR type="linear" slope="2.4" intercept="-0.78"/>
+        <feFuncG type="linear" slope="2.4" intercept="-0.78"/>
+        <feFuncB type="linear" slope="2.4" intercept="-0.78"/>
+      </feComponentTransfer>
+      <feComponentTransfer in="s" result="q">
+        <feFuncR type="discrete" tableValues="0.024 0.082 0.157 0.357 0.624 0.941"/>
+        <feFuncG type="discrete" tableValues="0.051 0.165 0.333 0.557 0.776 0.965"/>
+        <feFuncB type="discrete" tableValues="0.141 0.408 0.722 0.902 0.961 1.000"/>
+      </feComponentTransfer>
+      <feComposite in="q" in2="SourceGraphic" operator="in"/>
+    </filter>
+
+    <!-- ═══ PHI-TIMED DISPLACEMENT STRATUM (LIGHT B / DITHER COMPONENT) ═══ -->
+    <filter id="lt-loA" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.032" numOctaves="2" seed="53" result="w0"/>
+      <feOffset in="w0" result="w">
+        <animate attributeName="dx" values="0;45;-15;70;30;0" dur="21.531s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+        <animate attributeName="dy" values="0;-16;10;-22;6;0" dur="13.708s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+      </feOffset>
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="4" seed="907" result="t0"/>
+      <feOffset in="t0" result="t">
+        <animate attributeName="dx" values="0;-25;14;-38;6;0" dur="55.424s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+        <animate attributeName="dy" values="0;10;-6;12;-3;0" dur="33.874s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+      </feOffset>
+      <feDisplacementMap in="t" in2="w" scale="20" xChannelSelector="R" yChannelSelector="G" result="tw">
+        <animate attributeName="scale" values="20;34;22;38;24;20" dur="36.265s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+      </feDisplacementMap>
+      <feColorMatrix in="tw" type="matrix" values="0.34 0.33 0.33 0 0  0.34 0.33 0.33 0 0  0.34 0.33 0.33 0 0  0 0 0 0 1" result="h"/>
+      <feComponentTransfer in="h" result="s">
+        <feFuncR type="linear" slope="2.4" intercept="-0.68"/>
+        <feFuncG type="linear" slope="2.4" intercept="-0.68"/>
+        <feFuncB type="linear" slope="2.4" intercept="-0.68"/>
+      </feComponentTransfer>
+      <feComponentTransfer in="s" result="q">
+        <feFuncR type="discrete" tableValues="0.024 0.082 0.157 0.357 0.624 0.941"/>
+        <feFuncG type="discrete" tableValues="0.051 0.165 0.333 0.557 0.776 0.965"/>
+        <feFuncB type="discrete" tableValues="0.141 0.408 0.722 0.902 0.961 1.000"/>
+      </feComponentTransfer>
+      <feComposite in="q" in2="SourceGraphic" operator="in"/>
+    </filter>
+
+    <!-- ═══ OPTICAL GLINT / SPECULAR FILTER ═══ -->
+    <filter id="glint" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02 0.03" numOctaves="3" seed="211" result="t0"/>
+      <feOffset in="t0" result="t">
+        <animate attributeName="dx" values="0;-50;25;-80;-15;0" dur="23.886s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+        <animate attributeName="dy" values="0;12;-8;16;-5;0" dur="14.656s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+      </feOffset>
+      <feColorMatrix in="t" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  2.6 0 0 0 -0.95" result="a"/>
+      <feComponentTransfer in="a" result="band">
+        <feFuncA type="discrete" tableValues="0 0 0 0 .55 1"/>
+      </feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="band" operator="in"/>
+    </filter>
+
+    <!-- ═══ CHROMATIC GRADIENTS ═══ -->
+    <linearGradient id="dk-ramp" x1="0" y1="0" x2="236" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E8F2FF"/>
+      <stop offset="40%" stop-color="#6090E8"/>
+      <stop offset="100%" stop-color="#1B245A"/>
+    </linearGradient>
+
+    <linearGradient id="dk-inner" x1="9" y1="9" x2="9" y2="47" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity=".95"/>
+      <stop offset="35%" stop-color="#E8F2FF" stop-opacity=".6"/>
+      <stop offset="70%" stop-color="#6090E8" stop-opacity=".3"/>
+      <stop offset="100%" stop-color="#1B245A" stop-opacity=".85"/>
+    </linearGradient>
+
+    <!-- Vector Arrow Gradients (Dark) -->
+    <linearGradient id="dk-arrow-stroke" x1="149" y1="40" x2="173" y2="12" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1D4ED8" stop-opacity="0.3"/>
+      <stop offset="35%" stop-color="#3B82F6"/>
+      <stop offset="75%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#E8F2FF"/>
+    </linearGradient>
+
+    <linearGradient id="dk-arrow-head" x1="161" y1="23" x2="173" y2="12" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1E40AF" stop-opacity="0.4"/>
+      <stop offset="45%" stop-color="#3B82F6" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#FFFFFF"/>
+    </linearGradient>
+
+    <!-- Vector Arrow Gradients (Light) -->
+    <linearGradient id="lt-ramp" x1="0" y1="0" x2="236" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0F1E36"/>
+      <stop offset="40%" stop-color="#244B7E"/>
+      <stop offset="100%" stop-color="#070D18"/>
+    </linearGradient>
+
+    <linearGradient id="lt-inner" x1="9" y1="9" x2="9" y2="47" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#93C5FD" stop-opacity=".95"/>
+      <stop offset="40%" stop-color="#3B82F6" stop-opacity=".6"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity=".95"/>
+    </linearGradient>
+
+    <linearGradient id="lt-arrow-stroke" x1="149" y1="40" x2="173" y2="12" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#60A5FA" stop-opacity="0.35"/>
+      <stop offset="40%" stop-color="#2563EB"/>
+      <stop offset="85%" stop-color="#1D4ED8"/>
+      <stop offset="100%" stop-color="#081028"/>
+    </linearGradient>
+
+    <linearGradient id="lt-arrow-head" x1="161" y1="23" x2="173" y2="12" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.5"/>
+      <stop offset="50%" stop-color="#1E40AF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#081028"/>
+    </linearGradient>
+
+    <!-- ═══ 8x8 BAYER DITHER PATTERN ═══ -->
+    <pattern id="bayer" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect x="0.1" y="0.1" width="1.8" height="1.8" fill="#fff"/>
+      <rect x="2.46" y="0.46" width="1.08" height="1.08" fill="#fff"/>
+      <rect x="4.19" y="0.19" width="1.62" height="1.62" fill="#fff"/>
+      <rect x="6.55" y="0.55" width="0.9" height="0.9" fill="#fff"/>
+      <rect x="0.64" y="2.64" width="0.72" height="0.72" fill="#fff"/>
+      <rect x="2.28" y="2.28" width="1.44" height="1.44" fill="#fff"/>
+      <rect x="4.73" y="2.73" width="0.54" height="0.54" fill="#fff"/>
+      <rect x="6.37" y="2.37" width="1.26" height="1.26" fill="#fff"/>
+      <rect x="0.235" y="4.235" width="1.53" height="1.53" fill="#fff"/>
+      <rect x="2.595" y="4.595" width="0.81" height="0.81" fill="#fff"/>
+      <rect x="4.145" y="4.145" width="1.71" height="1.71" fill="#fff"/>
+      <rect x="6.505" y="4.505" width="0.99" height="0.99" fill="#fff"/>
+      <rect x="0.775" y="6.775" width="0.45" height="0.45" fill="#fff"/>
+      <rect x="2.415" y="6.415" width="1.17" height="1.17" fill="#fff"/>
+      <rect x="4.685" y="6.685" width="0.63" height="0.63" fill="#fff"/>
+      <rect x="6.325" y="6.325" width="1.35" height="1.35" fill="#fff"/>
+    </pattern>
+
+    <mask id="bayer-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="236" height="56">
+      <g>
+        <animateTransform attributeName="transform" type="translate" calcMode="discrete" dur="11.09s" repeatCount="indefinite" values="0 0;0.707 0.707;1.414 1.414;2.121 2.121;2.828 2.828;3.536 3.536;4.243 4.243;4.950 4.950"/>
+        <rect x="-10" y="-10" width="256" height="76" fill="url(#bayer)"/>
+      </g>
+    </mask>
+
+    <mask id="ring-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="236" height="56">
+      <rect x="0" y="0" width="236" height="56" rx="16" fill="#fff"/>
+      <rect x="6" y="6" width="224" height="44" rx="10" fill="#000"/>
+    </mask>
+  </defs>
+
+  <style>
+    :root {
+      --color-ground-dk: #080C24;
+      --color-ground-lt: #FFFFFF;
+      --color-ice-base-dk: #E8F2FF;
+      --color-ice-base-lt: #060D24;
+      --stroke-rim-width: 1.8px;
+      --stroke-inner-width: 1.25px;
+      --ease-phi: cubic-bezier(.4, 0, .2, 1);
+    }
+
+    svg { color-scheme: light dark; }
+
+    /* Surface &amp; Borders */
+    .surface { fill: var(--color-ground-dk); transition: fill .3s var(--ease-phi); }
+    .hairline { fill: none; stroke: url(#dk-inner); stroke-width: var(--stroke-inner-width); stroke-linejoin: round; stroke-linecap: round; }
+    .frame { fill: none; stroke: url(#dk-ramp); stroke-width: var(--stroke-rim-width); stroke-linejoin: round; }
+
+    /* Typography */
+    .word {
+      fill: #F7FBFF;
+      font-family: Inter, 'SF Pro Display', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 3.2px;
+      text-anchor: middle;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    /* Isolated Vector Arrow */
+    .arrow-stem {
+      fill: none;
+      stroke: url(#dk-arrow-stroke);
+      stroke-width: 3.4px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke .3s var(--ease-phi);
+    }
+
+    .arrow-head {
+      fill: url(#dk-arrow-head);
+      stroke: #60A5FA;
+      stroke-width: 0.6px;
+      stroke-linejoin: round;
+      transition: fill .3s var(--ease-phi);
+    }
+
+    .arrow-crest {
+      stroke: #FFFFFF;
+      stroke-width: 1.1px;
+      stroke-linecap: round;
+      opacity: 0.9;
+    }
+
+    /* This plate stays on the dark noctilucent face. The closer is always dark. */
+    .theme-light { display: none; }
+    svg { color-scheme: dark; }
+
+    /* Accessibility High Contrast */
+    @media (forced-colors: active) {
+      .surface { fill: Canvas; }
+      .word { fill: CanvasText; }
+      .arrow-stem, .arrow-head { stroke: CanvasText; fill: CanvasText; }
+      .hairline, .frame { stroke: CanvasText; }
+      .field { display: none !important; }
+    }
+  </style>
+
+  <!-- ═══ FLUID ICE MOAT ═══ -->
+  <g class="field" mask="url(#ring-mask)">
+    <g class="theme-dark">
+      <rect x="0" y="0" width="236" height="56" fill="var(--color-ice-base-dk)"/>
+      <rect x="-10" y="-10" width="256" height="76" filter="url(#dk-lo)"/>
+      <g mask="url(#bayer-mask)">
+        <rect x="-10" y="-10" width="256" height="76" filter="url(#dk-loA)"/>
+      </g>
+      <rect x="-10" y="-10" width="256" height="76" fill="#FFFFFF" opacity=".32" filter="url(#glint)"/>
+    </g>
+
+    <g class="theme-light">
+      <rect x="0" y="0" width="236" height="56" fill="var(--color-ice-base-lt)"/>
+      <rect x="-10" y="-10" width="256" height="76" filter="url(#lt-lo)"/>
+      <g mask="url(#bayer-mask)">
+        <rect x="-10" y="-10" width="256" height="76" filter="url(#lt-loA)"/>
+      </g>
+      <rect x="-10" y="-10" width="256" height="76" fill="#DBEAFE" opacity=".26" filter="url(#glint)"/>
+    </g>
+  </g>
+
+  <!-- Frame: Monolith Outer Bezel (Exact Perimeter Anchor) -->
+  <rect class="frame" x="0.9" y="0.9" width="234.2" height="54.2" rx="15.1"/>
+
+  <!-- Surface Plate: Obsidian / Porcelain Chassis -->
+  <rect class="surface" x="6" y="6" width="224" height="44" rx="10"/>
+
+  <!-- Hairline: Precision Subsurface Contour -->
+  <rect class="hairline" x="9" y="9" width="218" height="38" rx="7"/>
+
+  <!-- Wordmark: "GITHUB" Action Anchor -->
+  <text class="word" x="93" y="34">GITHUB</text>
+
+  <!-- ═══ HERO ARROW VECTOR ═══ -->
+  <g id="vector-arrow">
+    <!-- Swept Arc Tail -->
+    <path class="arrow-stem" d="M 149,40 C 157,39.5 166,33 171,22"/>
+
+    <!-- Delta Arrowhead Chevron -->
+    <polygon class="arrow-head" points="173,12 161,23 169,20.5 171,23 181,23.5"/>
+
+    <!-- Apex Specular Spine -->
+    <line class="arrow-crest" x1="173" y1="13" x2="169" y2="21"/>
+  </g>
+</svg>
