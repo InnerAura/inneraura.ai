@@ -922,10 +922,30 @@ h1 em, h2 em {
 }
 
 @media (max-width: 900px) {
-    :root { --rail: 0px; --nav: 0px; }
-    html, body { overflow-y: auto; height: auto; }
+    :root {
+        --rail: 0px;
+        --nav: 0px;
+        --hero-band: calc(100vw * 220 / 1200);
+    }
+    html, body {
+        overflow-y: auto;
+        height: auto;
+        transition-duration: 0.16s;
+    }
     .left-rail, .right-rail { display: none; }
     .top-bar { left: 0; right: 0; padding: 0 16px; }
+    .view-field { transition-duration: 0.14s; }
+    .view-field[data-field="0"] {
+        top: var(--top);
+        right: 0;
+        bottom: auto;
+        left: 0;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1200 / 220;
+        object-fit: cover;
+        object-position: center center;
+    }
     .bottom-bar {
         position: relative;
         z-index: var(--z-stage);
@@ -937,6 +957,10 @@ h1 em, h2 em {
     }
     .stage {
         position: relative;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
         overflow: visible;
         padding-top: var(--top);
         z-index: var(--z-stage);
@@ -952,7 +976,7 @@ h1 em, h2 em {
         align-items: flex-start;
     }
     #sec-0 {
-        padding-top: calc(var(--top) + 20vw);
+        padding-top: calc(var(--hero-band) + 16px);
         padding-bottom: 88px;
     }
     #sec-4 {

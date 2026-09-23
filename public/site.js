@@ -22,6 +22,9 @@
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
     var srcOf = {};
     var releaseTimer = 0;
+    var scrollSync = 0;
+    var navHold = 0;
+    var navHoldTimer = 0;
 
     fields.forEach(function (el) {
         var key = el.getAttribute('data-field');
@@ -35,12 +38,15 @@
     }
 
     function showField(index) {
+        var ahead = String(index + 1);
         fields.forEach(function (el) {
-            var on = el.getAttribute('data-field') === String(index);
-            if (on) mountField(el);
+            var key = el.getAttribute('data-field');
+            var on = key === String(index);
+            if (on || (mq.matches && key === ahead)) mountField(el);
             el.classList.toggle('is-on', on);
         });
         window.clearTimeout(releaseTimer);
+        if (mq.matches) return;
         releaseTimer = window.setTimeout(function () {
             fields.forEach(function (el) {
                 if (!el.classList.contains('is-on')) el.removeAttribute('src');
@@ -86,6 +92,7 @@
         if (fromWheel && state.wheelLock) return;
 
         if (mq.matches) {
+            holdNav();
             if (sections[index]) {
                 sections[index].scrollIntoView({
                     behavior: reduce.matches ? 'auto' : 'smooth',
@@ -188,21 +195,66 @@
         }
     }, { passive: true });
 
-    if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function (entries) {
-            if (!mq.matches) return;
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting && entry.intersectionRatio > 0.45) {
-                    var index = sections.indexOf(entry.target);
-                    if (index >= 0 && index !== state.idx) {
-                        setChrome(index);
-                        state.idx = index;
-                    }
-                }
-            });
-        }, { threshold: [0.45, 0.6] });
-        sections.forEach(function (s) { io.observe(s); });
+    function holdNav() {
+        navHold = 1;
+        window.clearTimeout(navHoldTimer);
+        navHoldTimer = window.setTimeout(releaseNav, 900);
     }
+
+    function releaseNav() {
+        navHold = 0;
+        syncChromeFromScroll();
+    }
+
+    function bumpNavHold() {
+        if (!navHold) return;
+        window.clearTimeout(navHoldTimer);
+        navHoldTimer = window.setTimeout(releaseNav, 180);
+    }
+
+    function syncChromeFromScroll() {
+        if (!mq.matches || navHold) return;
+        var h = window.innerHeight || document.documentElement.clientHeight || 1;
+        var line = h * 0.72;
+        var slack = 64;
+        var idx = state.idx;
+        var steps = 0;
+        while (steps++ < sections.length && idx < sections.length - 1 &&
+            sections[idx + 1].getBoundingClientRect().top <= line) {
+            idx++;
+        }
+        steps = 0;
+        while (steps++ < sections.length && idx > 0 &&
+            sections[idx].getBoundingClientRect().top > line + slack) {
+            idx--;
+        }
+        if (idx !== state.idx) {
+            setChrome(idx);
+            state.idx = idx;
+        }
+    }
+
+    function queueScrollSync() {
+        if (scrollSync) return;
+        scrollSync = window.requestAnimationFrame(function () {
+            scrollSync = 0;
+            syncChromeFromScroll();
+        });
+    }
+
+    function onViewportScroll() {
+        if (!mq.matches) return;
+        if (navHold) {
+            bumpNavHold();
+            return;
+        }
+        queueScrollSync();
+    }
+
+    window.addEventListener('scroll', onViewportScroll, { passive: true });
+    window.addEventListener('touchmove', onViewportScroll, { passive: true });
+    window.addEventListener('resize', queueScrollSync);
+    if (mq.addEventListener) mq.addEventListener('change', queueScrollSync);
 
     function copyNow(text) {
         var area = document.createElement('textarea');
@@ -243,6 +295,7 @@
     });
 
     setChrome(0);
+    queueScrollSync();
     if ('requestIdleCallback' in window) window.requestIdleCallback(warmFields);
     else window.setTimeout(warmFields, 400);
 })();
